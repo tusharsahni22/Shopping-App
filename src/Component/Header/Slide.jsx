@@ -8,12 +8,20 @@ const EachSlide = styled.div`
   align-items: center;
   justify-content: center;
   background-size: cover;
-  height: 50px;
+  height: 30px;
+  color: white;
 `;
 
+
+const properties = {
+    prevArrow: <button style={{display:"none"}}/>,
+    nextArrow: <button style={{display:"none"}}/> 
+}
+
 const SlideShow = () => {
+   
   return (
-    <Slide autoplay={true} transitionDuration={1000}>
+    <Slide {...properties} duration="3000" transitionDuration="300">
       <EachSlide>
         We Ship Worldwide! InkBox Tattos Everywhere
       </EachSlide>
