@@ -1,9 +1,8 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Route from './Router.jsx'
+import React from 'react'
+import Routes from './Router.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  
-    <Route />
+    <Routes/>
 
 )

@@ -1,18 +1,17 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Component/Header"
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Header from './Component/Header'
+import Homepage from './Component/Homepage'
 import './App.css'
 
-function Router() {
-
+function Router () {
   return (
     <BrowserRouter>
-    <Routes>     
-      <Route path="/" element={<Home/>}/> 
-      <Route path="/newItem" element={<Home/>}/>
-      <Route path="/viewItem" element={<Home/>}/>
-      
-    </Routes>
-  </BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Homepage />} />
+        <Route path='/header' element={<Header />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
