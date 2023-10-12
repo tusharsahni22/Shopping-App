@@ -22,6 +22,7 @@ justify-content: space-between;
 
 `;
 const Title = styled.div`
+margin-top: 25px;
 
 
 `;
@@ -41,6 +42,17 @@ function Whatsnew() {
     <Wrapper>
         <Heading>New In</Heading>
         <Products>
+            <div style={{padding:" 0 20px 0 0"}}>
+            <Img src='./Service.jpg' />   
+            <Service>
+            <div>                
+            <Title>Forgettable</Title>
+            <Size>4x4 Inches</Size>
+            <Price>$ 21 USD</Price>
+            </div>
+            <BiCart/>
+            </Service>
+            </div>
             <div>
             <Img src='./Service.jpg' />   
             <Service>
@@ -53,12 +65,42 @@ function Whatsnew() {
             </Service>
           
             </div>
-            <Img src='./Service.jpg' />
-            <Img src='./Service.jpg' />
-            <Img src='./Service.jpg' />
-            <Img src='./Service.jpg' />
-            <Img src='./Service.jpg' />
-           
+            <div>
+            <Img src='./Service.jpg' />   
+            <Service>
+            <div>                
+            <Title>Forgettable</Title>
+            <Size>4x4 Inches</Size>
+            <Price>$ 21 USD</Price>
+            </div>
+            <BiCart/>
+            </Service>
+          
+            </div>
+            <div>
+            <Img src='./Service.jpg' />   
+            <Service>
+            <div>                
+            <Title>Forgettable</Title>
+            <Size>4x4 Inches</Size>
+            <Price>$ 21 USD</Price>
+            </div>
+            <BiCart/>
+            </Service>
+          
+            </div>
+            <div>
+            <Img src='./Service.jpg' />   
+            <Service>
+            <div>                
+            <Title>Forgettable</Title>
+            <Size>4x4 Inches</Size>
+            <Price>$ 21 USD</Price>
+            </div>
+            <BiCart/>
+            </Service>
+          
+            </div>
 
 
         </Products>
