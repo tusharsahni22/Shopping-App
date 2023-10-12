@@ -108,9 +108,11 @@ const DropDown= styled.div`
   padding: 10px 10.5em 22px 10.5em;
  `;
 const Text= styled.div`
+margin-right: 5px;
  `;
 const Option= styled.div`
 display: flex;
+font-weight: bold;
  `;
 function Header() {
   return (
@@ -143,11 +145,16 @@ function Header() {
         </User>
       </Menu>
       <DropDown>
-        <Option><Text>New</Text><HiOutlineChevronDown/></Option>
-        <Option><Text>Tattoos</Text><HiOutlineChevronDown/></Option>
-        <Option><Text>Nail</Text><HiOutlineChevronDown/></Option>
-        <Option><Text>Custom</Text><HiOutlineChevronDown/></Option>
-        <Option><Text>Tattoo Maker</Text><HiOutlineChevronDown/></Option>
+        <Option><Text>New</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
+        <Option><Text>Tattoos</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
+        <Option><Text>Nail</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
+        <Option><Text>Custom</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
+        <Option><Text>Tattoo Maker</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
+        <Option><Text>New</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
+        <Option><Text>Tattoos</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
+        <Option><Text>Nail</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
+        <Option><Text>Custom</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
+        <Option><Text>Tattoo Maker</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
 
       </DropDown>
     </Wrapper>
