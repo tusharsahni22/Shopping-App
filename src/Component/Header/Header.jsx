@@ -145,12 +145,7 @@ function Header() {
         </User>
       </Menu>
       <DropDown>
-        <Option><Text>New</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
-        <Option><Text>Tattoos</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
-        <Option><Text>Nail</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
-        <Option><Text>Custom</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
-        <Option><Text>Tattoo Maker</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
-        <Option><Text>New</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
+        <Option><Text>New</Text><div className="flip">v</div></Option>
         <Option><Text>Tattoos</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
         <Option><Text>Nail</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
         <Option><Text>Custom</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
