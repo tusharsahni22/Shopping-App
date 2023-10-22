@@ -1,18 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
-import Footer from './Footer';
+import Footer from "./Footer"
 
-const Wrapper = styled.div`
-
-`;
-
-function index() {
+function Index() {
   return (
-    <Wrapper>
+    <div>
         <Footer/>
-
-    </Wrapper>
+    </div>
   )
 }
 
-export default index
+export default Index
