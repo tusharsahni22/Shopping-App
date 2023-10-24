@@ -30,7 +30,7 @@ display: grid;
 width: 100%;
 height: 100vh;
 overflow-y: scroll;
-grid-template-columns: repeat(3, minmax(0, 1fr));
+grid-template-columns: repeat(3, minmax(0, 1fr)); 
 
 `;
 const Price = styled.div`
