@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Header from './Component/Header'
+import Product from './Component/Products'
 import Homepage from './Component/Homepage'
 import './App.css'
 
@@ -9,7 +9,7 @@ function Router () {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/header' element={<Header />} />
+        <Route path='/products' element={<Product/>} />
       </Routes>
     </BrowserRouter>
   )

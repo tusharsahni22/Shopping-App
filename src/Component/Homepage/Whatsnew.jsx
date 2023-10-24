@@ -9,6 +9,9 @@ padding: 0 50px;
 const Products = styled.div`
 display: flex;
 overflow-x: scroll;
+::-webkit-scrollbar{
+    display: none;
+  }
 `;
 const Heading = styled.div`
 font:18px antique-olive;

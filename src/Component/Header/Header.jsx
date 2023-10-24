@@ -6,6 +6,7 @@ import { BiUserCircle } from 'react-icons/bi';
 import { FiMenu } from 'react-icons/fi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { HiOutlineChevronDown } from 'react-icons/hi';
+import { useNavigate } from "react-router-dom";
 const Wrapper = styled.div`
 `;
 const Slide = styled.div`
@@ -23,6 +24,10 @@ height: 30px;
 const Content =styled.div`
 font:12px roboto;
 padding: 7px 5px;
+&:hover{
+  cursor: pointer;
+  color: gray;
+}
 `;
 
 const Menu =  styled.div`
@@ -107,14 +112,43 @@ const DropDown= styled.div`
   justify-content: space-between;
   padding: 10px 10.5em 22px 10.5em;
  `;
+ const Div= styled.div`
+ display: none;
+ position: absolute;
+  `;
 const Text= styled.div`
 margin-right: 5px;
- `;
+&:hover{
+  ${Div}{
+  display: flex;
+  background-color: white;
+  left: 0;
+  width: 80%;
+  padding: 0 10%;
+  position: absolute;
+  height: 350px;
+  z-index: 1;
+  justify-content: center;
+}} `;
+
 const Option= styled.div`
 display: flex;
 font-weight: bold;
  `;
+const Title= styled.div`
+margin-top: 50px;
+font-weight: bold;
+ `;
+const Element= styled.div`
+margin-top: 10px;
+font-weight: 100;
+ `;
+ const Section= styled.div`
+padding:20px 50px;
+  `;
+
 function Header() {
+  const navigate = useNavigate();
   return (
     <Wrapper>
       <Slide><SlideShow /></Slide>
@@ -128,9 +162,9 @@ function Header() {
       <Menu>
         <MobileMenu>
         <FiMenu style={{width:"25px",height:"25px"}}/>
-        <ImgMob src="./logo.jpg" alt="logo"/>
+        <ImgMob src="./logo.jpg" alt="logo" onClick={(e)=>{navigate("/")}}/>
         </MobileMenu>
-        <Img src="./logo.jpg" alt="logo"/>
+        <Img src="./logo.jpg" alt="logo" onClick={(e)=>{navigate("/")}}/>
         <Search>
         <Input type="text" placeholder="Find something you will love!"/>
         <IoIosSearch style={{height:"26px",width:"20px"}}/>
@@ -145,11 +179,116 @@ function Header() {
         </User>
       </Menu>
       <DropDown>
-        <Option><Text>New</Text><div className="flip">v</div></Option>
-        <Option><Text>Tattoos</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
-        <Option><Text>Nail</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
-        <Option><Text>Custom</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
-        <Option><Text>Tattoo Maker</Text><HiOutlineChevronDown style={{marginTop:"3px"}}/></Option>
+        <Option><Text>New<HiOutlineChevronDown/>
+        <Div>
+        <Section>
+          <Title>WHATS NEW?</Title>
+          <Element>Nail</Element>
+          <Element>Pro Kit</Element>
+          <Element>Extra-Large Tattoos</Element>
+          <Element>New Tattoos</Element>
+        </Section>
+        <Section>
+          <Title>WHATS NEW?</Title>
+          <Element>Nail</Element>
+          <Element>Pro Kit</Element>
+          <Element>Extra-Large Tattoos</Element>
+          <Element>New Tattoos</Element>
+        </Section>
+        <Section>
+          <Title>WHATS NEW?</Title>
+          <Element>Nail</Element>
+          <Element>Pro Kit</Element>
+          <Element>Extra-Large Tattoos</Element>
+          <Element>New Tattoos</Element>
+        </Section>
+        </Div>
+      </Text></Option>
+        <Option><Text>Tattoos<HiOutlineChevronDown/><Div>
+          <Section>
+          <Title>By Size</Title>
+          <Element>Small</Element>
+          <Element>Medium</Element>
+          <Element>Large</Element>
+          <Element>Extra-Large</Element>
+          <Element>Shop All</Element>
+          </Section>
+          <Section>
+          <Title>BY PRODUCT</Title>
+          <Element>New In</Element>
+          <Element>Bundles</Element>
+          <Element>Mystery Bundles</Element>
+          <Element>Finger Packs</Element>
+          <Element>Sale</Element>
+          <Element>Accessories</Element>
+          <Element>Gift Card</Element>
+          <Element>Shop All</Element>
+          </Section>
+          <Section>
+          <Title>BY CATEGORY</Title>
+          <Element>Floral</Element>
+          <Element>Minimal</Element>
+          <Element>Butterfly</Element>
+          <Element>Quotes</Element>
+          <Element>Shop All</Element>
+          </Section>
+        </Div></Text></Option>
+        <Option><Text>Nail<HiOutlineChevronDown/><Div>
+          <Section>
+          <Title>WHATS NEW?</Title>
+          <Element>Nail</Element>
+          <Element>Pro Kit</Element>
+          <Element>Extra-Large Tattoos</Element>
+          <Element>New Tattoos</Element>
+          </Section>
+          <Section>
+          <Title>WHATS NEW?</Title>
+          <Element>Nail</Element>
+          <Element>Pro Kit</Element>
+          <Element>Extra-Large Tattoos</Element>
+          <Element>New Tattoos</Element>
+        </Section>
+        <Section>
+          <Title>WHATS NEW?</Title>
+          <Element>Nail</Element>
+          <Element>Pro Kit</Element>
+          <Element>Extra-Large Tattoos</Element>
+          <Element>New Tattoos</Element>
+        </Section>
+        </Div></Text></Option>
+        <Option><Text>Custom<HiOutlineChevronDown/><Div>
+        <Section>
+          <Title>WHATS NEW?</Title>
+          <Element>Nail</Element>
+          <Element>Pro Kit</Element>
+          <Element>Extra-Large Tattoos</Element>
+          <Element>New Tattoos</Element>
+          </Section>
+          <Section>
+          <Title>WHATS NEW?</Title>
+          <Element>Nail</Element>
+          <Element>Pro Kit</Element>
+          <Element>Extra-Large Tattoos</Element>
+          <Element>New Tattoos</Element>
+        </Section>
+        </Div></Text></Option>
+        <Option><Text>Tattoo Maker<HiOutlineChevronDown/><Div>
+          <Section>
+          <Title>TATTOO MARKER</Title>
+          <Element>Tattoo Markers</Element>
+          <Element>Pro Kit</Element>
+          <Element>Freehand Kits and Duos</Element>
+          <Element>Accessories</Element>
+          <Element>Trace App</Element>
+          </Section>
+          <Section>
+          <Title>WHATS NEW?</Title>
+          <Element>Nail</Element>
+          <Element>Pro Kit</Element>
+          <Element>Extra-Large Tattoos</Element>
+          <Element>New Tattoos</Element>
+        </Section>
+        </Div></Text></Option>
 
       </DropDown>
     </Wrapper>

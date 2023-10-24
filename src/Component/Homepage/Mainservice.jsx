@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import {useNavigate} from "react-router-dom"
 
 const MainService =  styled.div`
 display: grid;
@@ -23,11 +24,15 @@ cursor: pointer;
 `;
 
 function Mainservice(props) {
+  const navigate = useNavigate()
+  const handleProducts = ()=>{
+    navigate("/products")
+  }
   return (
     <MainService>
       {props.url.map((e)=>(
-        <div key={props.data}>
-        <Img src={e.data}/>
+        <div key={props.data} onClick={()=>{handleProducts()}} >
+        <Img src={e.data} />
         </div>
        
       ))}
