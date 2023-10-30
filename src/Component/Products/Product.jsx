@@ -4,7 +4,6 @@ import SideBar from "../SideBar/SideBar"
 import { BiCart } from 'react-icons/bi';
 
 const Wrapper = styled.div`
-padding: 0px 5% 100px;
 width: 100%;
 
 `;
@@ -13,6 +12,11 @@ display: flex;
 `;
 const Services = styled.div`
 display: flex;
+padding: 0 60px;
+::-webkit-scrollbar {
+    display: none;
+}
+width: 100%;
 `;
 const Title = styled.div`
 font-size: 1rem;
@@ -25,16 +29,15 @@ font-weight: bold;
 padding: 25px 0;
 `;
 const ProductItems = styled.div`
-margin-top: 50px;
+/* margin-top: 50px; */
 display: grid;
 width: 100%;
 height: 100vh;
 overflow-y: scroll;
-grid-template-columns: repeat(3, minmax(0, 1fr)); 
-
+grid-template-columns: repeat(3, minmax(0, 1fr));
 `;
 const Price = styled.div`
-
+font-weight: bold;
 `;
 const Size = styled.div`
 
@@ -44,13 +47,17 @@ padding: 10px;
 
 `;
 const Img =styled.img`
-width: 340px;
-height: 420px;
+/* width: 340px;
+height: 420px; */
+width: 100%;
+max-width: 340px;
+height: auto;
+max-height: 340px;
 `;
 const Service = styled.div`
 display: flex;
 justify-content: space-between;
-width: 340px;
+max-width: 340px;
 
 `;
 
@@ -78,13 +85,14 @@ function Product() {
             <div>                
             <Title>{e.title}</Title>
             <Size>{e.size}</Size>
-            <Price>$ {e.price} USD</Price>
+            <Price>${e.price} USD</Price>
             </div>
-            <BiCart style={{marginTop:"35px",height:"25px",width:"25px"}}/>
+            <BiCart className='Bicart' style={{marginTop:"35px",height:"25px",width:"25px",padding:"10px",borderRadius:"20px",':hover': {backgroundColor:"#80808057",cursor:"pointer"}}}/>
             </Service>
             </Frame>
          ))}
         </ProductItems>
+       
       </Services>
 
       </Container>

@@ -5,16 +5,20 @@ import Footer from '../Footer';
 import Product from './Product'
 
 const Wrapper = styled.div`
+padding: 0px  0 100px 5% ;
 `;
 
 
 function Index() {
   return (
-    <Wrapper>
+    <div>
+
     <Header/>
+    <Wrapper>
     <Product/>
-    <Footer/>
     </Wrapper>
+    <Footer/>
+    </div>
   )
 }
 

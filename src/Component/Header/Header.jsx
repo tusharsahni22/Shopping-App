@@ -7,6 +7,8 @@ import { FiMenu } from 'react-icons/fi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { HiOutlineChevronDown } from 'react-icons/hi';
 import { useNavigate } from "react-router-dom";
+import AddToCart from "./AddToCart";
+import { useState } from "react";
 const Wrapper = styled.div`
 `;
 const Slide = styled.div`
@@ -149,6 +151,12 @@ padding:20px 50px;
 
 function Header() {
   const navigate = useNavigate();
+  const [AddCartToggle, setAddCartToggle] = useState(false);
+
+  const toggleSidebar = () => {
+    console.log("toggleSidebar", AddCartToggle)
+    setAddCartToggle(!AddCartToggle);
+  };
   return (
     <Wrapper>
       <Slide><SlideShow /></Slide>
@@ -175,8 +183,9 @@ function Header() {
           </Usericon>
           <TagLine>JOIN & GET 20% OFF </TagLine>
           <Tags><BsHeart style={{width:"25px",height:"25px"}}/></Tags>
-          <Tags><AiOutlineShoppingCart style={{width:"25px",height:"25px"}}/></Tags>         
+          <Tags><AiOutlineShoppingCart onClick={toggleSidebar} style={{width:"25px",height:"25px"}}/></Tags>  
         </User>
+        {AddCartToggle? <AddToCart/> : "n"}
       </Menu>
       <DropDown>
         <Option><Text>New<HiOutlineChevronDown/>

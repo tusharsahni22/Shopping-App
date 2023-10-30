@@ -8,5 +8,16 @@
   transform: rotate(180deg);
   background-color: red;
 }
+/* .BiCart{
+  margin-top:35px;
+  height:25px;
+  width:25px;
+  padding:10px;
+  border-radius:20px;
+  :hover{
+    background-color:#80808057;
+    cursor:pointer
+  }
+  } */
     
 }
