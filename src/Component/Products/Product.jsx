@@ -75,7 +75,7 @@ function Product() {
     <Wrapper>
       <Heading>All Products</Heading>
       <Container>
-      <SideBar data={[{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Style",type:["Linework","Illustrative","Blackwork","Minimalist","Text"]}]}/>
+      <SideBar data={[{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Style",type:["Linework","Illustrative","Blackwork","Minimalist","Text"]},{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]}]}/>
       <Services>
         <ProductItems>
         {dummyData.map((e)=>(

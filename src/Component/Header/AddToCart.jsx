@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { BsArrowLeft } from 'react-icons/bs';
 const Sidebar = styled.div`
   position: absolute;
-  top: 200;
+  top: 0;
   right: 0;
   height: 100vh;
-  width: 300px;
+  width: 448px;
   background-color: #fff;
   overflow-y: scroll;
   z-index: 999;
@@ -15,14 +15,35 @@ const Sidebar = styled.div`
   /* transform: translateX(100%); */
   backdrop-filter: blur(5px);
 `;
+const Head = styled.div`
+display : flex;
+height: 50px;
+background-color: #212121;
+justify-content: space-between;
+color: white;
+align-items: center;
+padding: 0 15px;
+`;
+const LeftArrow = styled(BsArrowLeft)`
 
-function App() {
+`;
+const Text = styled.div`
+
+`;
+const Count = styled.div`
+
+`;
+
+function App({toggleSidebar}) {
   
 
   return (
     <>
       <Sidebar >
-        <h2>Sidebar Content</h2>
+        <Head><LeftArrow onClick={()=>{toggleSidebar()}}/>
+        <Text>Keep Shoping </Text>
+        <Count>{0} Item(s)</Count>
+        </Head>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         <p>Nullam euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>
         <p>Donec euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>

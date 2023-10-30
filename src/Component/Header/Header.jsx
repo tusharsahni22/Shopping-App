@@ -83,12 +83,15 @@ const User = styled.div`
   width: auto;
 `
 const Tags= styled.div`
-padding :10px 34px 0 0;
+padding :4px 4px 0 0;
 margin: 0 10px;
 display: flex;
+@media(max-width:1024px){
+padding :1px 4px 0 0;
+}
  `;
  const TagLine= styled.div`
- padding :12px 34px 0 0;
+ padding :4px 4px 0 0;
  margin: 0 5px;
  display: flex;
  width: 155px;
@@ -99,6 +102,9 @@ display: flex;
 const Usericon= styled.div`
   padding :10px 0px 0 0;
   margin: 0 0 0 20px;
+  border-radius: 25px;
+  display: flex;
+  &:hover{background-color:#F4F5F7;}
   @media (max-width:1024px){
   display: none;
 }
@@ -148,7 +154,35 @@ font-weight: 100;
  const Section= styled.div`
 padding:20px 50px;
   `;
-
+const CartIcon =styled(AiOutlineShoppingCart)`
+width: 25px;
+height: 25px;
+padding: 8px;
+&:hover{
+  background-color:#F4F5F7;
+    cursor:pointer;
+    border-radius:17px;
+    
+}
+`
+const Heart =styled(BsHeart)`
+width: 25px;
+height: 25px;
+padding: 8px;
+border-radius:17px;
+&:hover{
+  background-color:#F4F5F7;
+    cursor:pointer;    
+}
+`
+const UserIcon =styled(BiUserCircle)`
+width: 25px;
+height: 25px;
+padding-left: 10px;
+@media(max-width:1024px){
+  display: none;
+}
+`
 function Header() {
   const navigate = useNavigate();
   const [AddCartToggle, setAddCartToggle] = useState(false);
@@ -179,13 +213,13 @@ function Header() {
         </Search>
         <User>
         <Usericon>
-          <BiUserCircle style={{width:"25px",height:"25px"}}/>
-          </Usericon>
+          <UserIcon />
           <TagLine>JOIN & GET 20% OFF </TagLine>
-          <Tags><BsHeart style={{width:"25px",height:"25px"}}/></Tags>
-          <Tags><AiOutlineShoppingCart onClick={toggleSidebar} style={{width:"25px",height:"25px"}}/></Tags>  
+          </Usericon>
+          <Tags><Heart /></Tags>
+          <Tags><CartIcon onClick={toggleSidebar} /></Tags>  
         </User>
-        {AddCartToggle? <AddToCart/> : "n"}
+        {AddCartToggle? <AddToCart toggleSidebar={toggleSidebar}/> :""}
       </Menu>
       <DropDown>
         <Option><Text>New<HiOutlineChevronDown/>
@@ -301,6 +335,7 @@ function Header() {
 
       </DropDown>
     </Wrapper>
+
   );
 }
 

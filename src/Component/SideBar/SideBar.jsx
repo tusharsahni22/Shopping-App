@@ -3,8 +3,11 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
 height: 100vh;
-overflow-y:scroll ;
 width: 150px;
+overflow-y: scroll;
+&::-webkit-scrollbar{
+  display: none;
+}
 `;
 const Heading = styled.div`
 font-size: 15px;
