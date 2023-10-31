@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BsArrowLeft } from 'react-icons/bs';
+import SliderComponent from './Slider';
 const Sidebar = styled.div`
   position: absolute;
   top: 0;
@@ -14,6 +15,15 @@ const Sidebar = styled.div`
   transition: transform 0.3s ease-in-out;
   /* transform: translateX(100%); */
   backdrop-filter: blur(5px);
+`;
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  z-index: 1;
 `;
 const Head = styled.div`
 display : flex;
@@ -33,17 +43,32 @@ const Text = styled.div`
 const Count = styled.div`
 
 `;
+const Bundle = styled.div`
+text-align: center;
+color: #212121;
+margin-top: 25px;
+font-weight: bold;
+`;
+const AddMore = styled.div`
+text-align: center;
+color: #212121;
+margin-top: 12px;
+`;
 
 function App({toggleSidebar}) {
   
 
   return (
-    <>
+    <> 
+      <Overlay />
       <Sidebar >
         <Head><LeftArrow onClick={()=>{toggleSidebar()}}/>
         <Text>Keep Shoping </Text>
         <Count>{0} Item(s)</Count>
         </Head>
+        <Bundle>Bundle And Save!</Bundle>
+        <AddMore>Add More Save More</AddMore>
+        <SliderComponent />
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         <p>Nullam euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>
         <p>Donec euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>

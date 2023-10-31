@@ -7,8 +7,9 @@ import { FiMenu } from 'react-icons/fi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { HiOutlineChevronDown } from 'react-icons/hi';
 import { useNavigate } from "react-router-dom";
-import AddToCart from "./AddToCart";
+import AddToCart from "../Cart/AddToCart";
 import { useState } from "react";
+import SignupPage from "../Auth";
 const Wrapper = styled.div`
 `;
 const Slide = styled.div`
@@ -186,13 +187,22 @@ padding-left: 10px;
 function Header() {
   const navigate = useNavigate();
   const [AddCartToggle, setAddCartToggle] = useState(false);
+  const [signup, setSignup] = useState(false);
+  // const [classs,setClasss] = useState("unblur");
 
   const toggleSidebar = () => {
-    console.log("toggleSidebar", AddCartToggle)
     setAddCartToggle(!AddCartToggle);
+    // setClasss(AddCartToggle ? "unblur" : "blur");
+  };
+  const toggleSignup = () => {
+    setSignup(!signup)
   };
   return (
-    <Wrapper>
+    <>
+    {AddCartToggle? <AddToCart toggleSidebar={toggleSidebar}/> :""}
+    {signup?<SignupPage toggleSignup={toggleSignup} /> :""}
+    
+    <Wrapper >
       <Slide><SlideShow /></Slide>
       <Members>
         <Content>India</Content>
@@ -212,14 +222,14 @@ function Header() {
         <IoIosSearch style={{height:"26px",width:"20px"}}/>
         </Search>
         <User>
-        <Usericon>
+        <Usericon onClick={toggleSignup}>
           <UserIcon />
           <TagLine>JOIN & GET 20% OFF </TagLine>
           </Usericon>
           <Tags><Heart /></Tags>
           <Tags><CartIcon onClick={toggleSidebar} /></Tags>  
         </User>
-        {AddCartToggle? <AddToCart toggleSidebar={toggleSidebar}/> :""}
+        
       </Menu>
       <DropDown>
         <Option><Text>New<HiOutlineChevronDown/>
@@ -335,6 +345,7 @@ function Header() {
 
       </DropDown>
     </Wrapper>
+    </>
 
   );
 }
