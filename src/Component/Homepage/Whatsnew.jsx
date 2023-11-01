@@ -9,7 +9,7 @@ padding: 0 50px;
 const Products = styled.div`
 display: flex;
 overflow-x: scroll;
-::-webkit-scrollbar{
+&::-webkit-scrollbar{
     display: none;
   }
 `;

@@ -114,7 +114,7 @@ function Login({SwitchLogin,toggleSignup}) {
     <LoginForm>
         <Header>
                 <div></div>
-                <Text>Log In</Text>
+                <Text>Welcome Back! Log In</Text>
                 <Close onClick={()=>{toggleSignup()}}/> 
             </Header>
             <Field>

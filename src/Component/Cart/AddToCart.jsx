@@ -54,6 +54,36 @@ text-align: center;
 color: #212121;
 margin-top: 12px;
 `;
+const NoItem = styled.div`
+text-align: center;
+color: #212121;
+padding:50% 0 0 0
+
+// `;
+const Total = styled.div`
+padding:0 15px;
+
+
+`;
+const SubTotal = styled.div`
+display:flex;
+justify-content: space-between;
+margin-top:25px
+
+`;
+const Price = styled.div`
+
+`;
+const BuyButton = styled.div`
+height:45px;
+width: 100%;
+background-color: #212121;
+text-align:center;
+color:white;
+border-radius:5px;
+margin: 20px 0
+
+`;
 
 function App({toggleSidebar}) {
   
@@ -69,16 +99,26 @@ function App({toggleSidebar}) {
         <Bundle>Bundle And Save!</Bundle>
         <AddMore>Add More Save More</AddMore>
         <SliderComponent />
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <p>Nullam euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>
-        <p>Donec euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>
-        <p>Etiam euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>
-        <p>Proin euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>
-        <p>Quisque euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>
-        <p>Aliquam euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>
-        <p>Phasellus euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>
-        <p>Suspendisse euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>
-        <p>Vestibulum euismod, velit vel bibendum bibendum, velit elit bibendum ipsum.</p>
+        <NoItem>You have no items in your cart</NoItem>
+
+        <Total>
+          <SubTotal>
+            <div>Subtotal</div>
+            <Price>$20</Price>
+          </SubTotal>
+          <SubTotal>
+            <div>Savings</div>
+            <Price>{"--"}</Price>
+          </SubTotal>
+          <SubTotal>
+            <div style={{fontWeight:"bold"}}>Total</div>
+            <Price>$20</Price>
+          </SubTotal>
+            <BuyButton>Buy Now</BuyButton>
+
+
+
+        </Total>
       </Sidebar>
     </>
   );
