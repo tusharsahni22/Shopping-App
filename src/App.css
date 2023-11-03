@@ -7,7 +7,8 @@
   -webkit-transform:rotate(180deg);
   transform: rotate(180deg);
   background-color: red;
-} */
+} 
+}*/
 .blur{
   -webkit-filter: blur(5px);
   filter: blur(5px);
@@ -17,4 +18,9 @@
   -webkit-filter: blur(0px);
   filter: blur(0px);
 }
-    
+.image-gallery-content{
+  width: 400px;
+}
+.image-gallery-thumbnails-container{
+  text-align: left!important; ;
+}

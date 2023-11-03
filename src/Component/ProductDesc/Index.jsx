@@ -5,7 +5,7 @@ import Footer from '../Footer';
 import ProductDesc from "./Product"
 
 const Wrapper = styled.div`
-padding: 0px  0 100px 5% ;
+padding: 3% 10% 0 10% ;
 `;
 
 

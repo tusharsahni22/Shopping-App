@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import SideBar from "../SideBar/SideBar"
 import { BiCart } from 'react-icons/bi';
-
+import { useNavigate } from 'react-router-dom';
 const Wrapper = styled.div`
 width: 100%;
 
@@ -35,6 +35,9 @@ width: 100%;
 height: 100vh;
 overflow-y: scroll;
 grid-template-columns: repeat(3, minmax(0, 1fr));
+&:hover{
+  cursor: pointer;
+}
 `;
 const Price = styled.div`
 font-weight: bold;
@@ -62,6 +65,7 @@ max-width: 340px;
 `;
 
 function Product() {
+  const navigate = useNavigate();
   const dummyData = [
     {pic:"whatsnew1.jpg",title:"Forgettable",size:"4x4 Inches",price:"21"},
     {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
@@ -77,7 +81,7 @@ function Product() {
       <Container>
       <SideBar data={[{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Style",type:["Linework","Illustrative","Blackwork","Minimalist","Text"]},{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]}]}/>
       <Services>
-        <ProductItems>
+        <ProductItems onClick={()=>{navigate("/product-description")}}>
         {dummyData.map((e)=>(
             <Frame key={e.key}>
             <Img src={e.pic} />   

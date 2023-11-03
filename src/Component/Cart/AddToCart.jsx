@@ -57,7 +57,7 @@ margin-top: 12px;
 const NoItem = styled.div`
 text-align: center;
 color: #212121;
-padding:50% 0 0 0
+padding:50% 0 0 0;
 
 // `;
 const Total = styled.div`
@@ -81,7 +81,7 @@ background-color: #212121;
 text-align:center;
 color:white;
 border-radius:5px;
-margin: 20px 0
+margin: 20px 0;
 
 `;
 
