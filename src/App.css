@@ -24,3 +24,11 @@
 .image-gallery-thumbnails-container{
   text-align: left!important; ;
 }
+.image-gallery-thumbnail:focus {
+  outline: none;
+  border: 2px solid black !important;
+}
+.image-gallery-thumbnail.active{
+  outline: none;
+  border: 2px solid black !important;
+}

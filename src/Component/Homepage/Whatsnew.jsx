@@ -1,10 +1,12 @@
 import React from 'react'
 import { BiCart } from 'react-icons/bi';
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom';
+import { MdOutlineFavoriteBorder } from "react-icons/md";
 
 const Wrapper = styled.div`
 margin-bottom: 100px;
-padding: 0 50px;
+/* padding: 0 50px; */
 `;
 const Products = styled.div`
 display: flex;
@@ -17,6 +19,7 @@ const Heading = styled.div`
 font:18px antique-olive;
 margin-bottom: 40px;
 font-weight: 800;
+margin-top: 50px;
 
 `;
 const Service = styled.div`
@@ -38,14 +41,27 @@ const Size = styled.div`
 `;
 const Frame = styled.div`
 padding: 10px;
+:hover{
+  cursor: pointer;
+}
 
 `;
 const Img =styled.img`
 width: 190px;
 height: 240px;
+
+`;
+const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
+  position: relative;
+  top: 31px;
+  left: 165px;
+  color: black;
+  &:hover{
+    color: red;
+  }
 `;
 
-function Whatsnew() {
+function Whatsnew(props) {
     const dummyData = [
         {pic:"whatsnew1.jpg",title:"Forgettable",size:"4x4 Inches",price:"21"},
         {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
@@ -55,18 +71,20 @@ function Whatsnew() {
         {pic:"whatsnew3.jpg",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
         {pic:"whatsnew1.jpg",title:"We're a Team",size:"4x4 Inches",price:"21"}
     ]
+    const navigate = useNavigate();
   return (
     <Wrapper>
-        <Heading>New In</Heading>
+        <Heading>{props.title}</Heading>
         <Products >
         {dummyData.map((e)=>(
-            <Frame key={e.key}>
-            <Img src={e.pic} />   
+            <Frame key={e.key} >
+              <FavoriteIcon/>
+            <Img onClick={()=>{navigate("/products")}} src={e.pic} />   
             <Service>
             <div>                
             <Title>{e.title}</Title>
             <Size>{e.size}</Size>
-            <Price>$ {e.price} USD</Price>
+            <Price>₹ {e.price}</Price>
             </div>
             <BiCart style={{marginTop:"35px",height:"25px",width:"25px"}}/>
             </Service>

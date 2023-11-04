@@ -5,7 +5,6 @@ import ProductDesc from './Component/ProductDesc/Index'
 import Homepage from './Component/Homepage'
 import Signup from './Component/Auth/Signup'
 import './App.css'
-
 function Router () {
   return (
     <BrowserRouter>

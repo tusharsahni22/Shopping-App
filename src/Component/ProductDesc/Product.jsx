@@ -4,6 +4,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { MdFavoriteBorder } from "react-icons/md";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import Whatsnew from '../Homepage/Whatsnew';
 
 const Wrapper = styled.div``;
 const Upper = styled.div`
@@ -67,6 +68,9 @@ justify-content: center;
 gap: 10px;
 padding: 10px 0px;
 border-radius: 7px;
+&:hover{
+  cursor: pointer;
+}
 `;
 const Favorite = styled.div`
 height: 27px;
@@ -80,12 +84,16 @@ gap: 10px;
 padding: 10px 0px;
 outline: 1px solid black;
 border-radius: 7px;
+width: 100%;
+&:hover{
+  cursor: pointer;
+}
 `;
 const CartIcon = styled(IoCartOutline)`
-
+pointer-events: none;
 `;
 const FavoriteIcon = styled(MdFavoriteBorder)`
-
+pointer-events: none;
 `;
 
 
@@ -110,12 +118,12 @@ function Product() {
         <Upper>
         <Section1>
             {/* <Frame src='./whatsnew2.jpg'/> */}
-            <ImageGallery className="image-gallery-content image-gallery-thumbnails-container" showFullscreenButton={false} showNav={false} showPlayButton={false} items={images} />
+            <ImageGallery className="image-gallery-content image-gallery-thumbnails-container image-gallery-thumbnail image-gallery-thumbnail.active" showFullscreenButton={false} showNav={false} showPlayButton={false} items={images} />
         </Section1>
         <Section2>
             <Tittle>Papier</Tittle>
             <Description>Design by </Description>
-            <Price>${50}</Price>
+            <Price>₹{50}</Price>
             <Specification>Many people think of moths as mysterious, nocturnal, knock-off butterfliesthat is, until they see this eye-catching creature. The legendary Luna Moth is beloved for its beautifully bright color and stunning size. And since it has a rather short lifespan, the marvelous moth is widely seen as a symbol of the beauty and brevity of life.</Specification>
             <Text>Quantity</Text>
             
@@ -137,6 +145,7 @@ function Product() {
    
         </Section2>
         </Upper>
+        <Whatsnew title={"Best Seller"}/>
         </Wrapper>
     );
 }

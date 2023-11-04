@@ -7,7 +7,9 @@ import Whatsnew from "./Whatsnew";
 
 const Wrapper =  styled.div`
 padding: 0px 5% 100px;
-
+`;
+const Padding = styled.div`
+padding: 0 50px;
 `;
 
 function Homepage() {
@@ -17,7 +19,9 @@ function Homepage() {
       <Mainservice url={[{data:"Service.jpg"},{data:"Service.jpg"},{data:"Service.jpg"},{data:"Service.jpg"}]}/>
       <Poster url={"./Poster.jpg"}/>
       <TwoService url2={"./Service2.jpg"} url1={"./Service3.jpg"} buy1={"Shop Now"} buy2={"Shop Nail Art Strips"}/>
-      <Whatsnew/>
+      <Padding>
+      <Whatsnew title={"New In"}/>
+      </Padding>
     </Wrapper>
   )
 }

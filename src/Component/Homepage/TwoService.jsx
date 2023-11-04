@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {BsArrowRight} from "react-icons/bs"
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
 display: flex;
@@ -48,9 +49,10 @@ width: 100%;
 }
 `;
 function TwoService(props) {
+  const navigate = useNavigate();
   return (
     <Wrapper>
-        <Service>
+        <Service onClick={()=>{navigate("/products")}}>
         <Img src={props.url1}/>
         <Title>Save *Big* on Halloween Ink</Title>
         <Desc>We had free space on our site and Spirit Halloween immediately took over?</Desc>
@@ -59,7 +61,7 @@ function TwoService(props) {
         <BsArrowRight style={{margin: "25px 0 0 15px"}}/>
         </div>
         </Service>
-        <Service>
+        <Service onClick={()=>{navigate("/products")}}>
         <Img2 src={props.url2}/>
         <Title>Save *Big* on Halloween Ink</Title>
         <Desc>We had free space on our site and Spirit Halloween immediately took over?</Desc>
