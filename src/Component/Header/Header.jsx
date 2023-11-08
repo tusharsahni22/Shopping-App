@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import AddToCart from "../Cart/AddToCart";
 import { useState } from "react";
 import SignupPage from "../Auth";
+import Sidebar from "./Sidebar";
 const Wrapper = styled.div`
 `;
 const Slide = styled.div`
@@ -196,19 +197,23 @@ function Header() {
   const navigate = useNavigate();
   const [AddCartToggle, setAddCartToggle] = useState(false);
   const [signup, setSignup] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
   // const [classs,setClasss] = useState("unblur");
 
-  const toggleSidebar = () => {
+  const toggleAddtocart = () => {
     setAddCartToggle(!AddCartToggle);
-    // setClasss(AddCartToggle ? "unblur" : "blur");
   };
   const toggleSignup = () => {
     setSignup(!signup)
   };
+  const toggleSidebar = () => {
+    setSidebar(!sidebar)
+  };
   return (
     <>
-    {AddCartToggle? <AddToCart toggleSidebar={toggleSidebar}/> :""}
+    {AddCartToggle? <AddToCart toggleAddtocart={toggleAddtocart}/> :""}
     {signup?<SignupPage toggleSignup={toggleSignup} /> :""}
+    {sidebar?<Sidebar toggleSidebar={toggleSidebar} /> :""}
     
     <Wrapper >
       <Slide><SlideShow /></Slide>
@@ -221,7 +226,7 @@ function Header() {
       </Members>
       <Menu>
         <MobileMenu>
-        <FiMenu style={{width:"25px",height:"25px"}}/>
+        <FiMenu onClick={toggleSidebar} style={{width:"25px",height:"25px"}}/>
         <ImgMob src="./logo.jpg" alt="logo" onClick={(e)=>{navigate("/")}}/>
         </MobileMenu>
         <Img src="./logo.jpg" alt="logo" onClick={(e)=>{navigate("/")}}/>
@@ -235,7 +240,7 @@ function Header() {
           <TagLine>JOIN & GET 20% OFF </TagLine>
           </Usericon>
           <Tags><Heart /></Tags>
-          <Tags><CartIcon onClick={toggleSidebar} /></Tags>  
+          <Tags><CartIcon onClick={toggleAddtocart} /></Tags>  
         </User>
         
       </Menu>
