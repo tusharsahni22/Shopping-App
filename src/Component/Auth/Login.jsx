@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { IoCloseOutline } from 'react-icons/io5';
 import { FcGoogle } from 'react-icons/fc';
 import { BsFacebook } from 'react-icons/bs';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const Overlay = styled.div`
@@ -15,6 +16,7 @@ const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 `;
 const LoginForm = styled.form`
   background: #fff;
@@ -24,6 +26,7 @@ const LoginForm = styled.form`
   height: 550px;
   display: flex;
   flex-direction: column;
+  outline: 1px solid black;
 `;
 
 const Input = styled.input`
@@ -109,6 +112,7 @@ text-align: center;
 `;
 
 function Login({SwitchLogin,toggleSignup}) {
+  const { loginWithRedirect } = useAuth0();
   return (
     <Overlay>
     <LoginForm>
@@ -126,7 +130,7 @@ function Login({SwitchLogin,toggleSignup}) {
             <Field>
     
             
-            <Button>Log In</Button>
+            <Button onClick={()=>{loginWithRedirect()}}>Log In</Button>
             <Line/>
             <FancyButton><Google/>Continue with Google</FancyButton>
             <FancyButton><Facebook/>Continue with Facebook</FancyButton>

@@ -5,7 +5,6 @@ import { BsHeart } from 'react-icons/bs';
 import { BiUserCircle } from 'react-icons/bi';
 import { FiMenu } from 'react-icons/fi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { HiOutlineChevronDown } from 'react-icons/hi';
 import { useNavigate } from "react-router-dom";
 import AddToCart from "../Cart/AddToCart";
 import { useState } from "react";
@@ -68,6 +67,9 @@ const Img = styled.img`
 width:200px;
 height:30px;
 padding: 6px 0;
+&:hover{
+  cursor: pointer;
+}
 @media (max-width:1023px){
   padding: 6px 12px;
   display: none;
@@ -77,7 +79,9 @@ const ImgMob = styled.img`
 width:200px;
 height:30px;
 padding: 0px 10px;
-
+&:hover{
+  cursor: pointer;
+}
 `;
 const User = styled.div`
   display: flex;
@@ -138,11 +142,15 @@ margin-right: 5px;
   height: 350px;
   z-index: 1;
   justify-content: center;
+  cursor: pointer;
 }} `;
 
 const Option= styled.div`
 display: flex;
 font-weight: bold;
+&:hover{
+  cursor: pointer;
+}
  `;
 const Title= styled.div`
 margin-top: 50px;
@@ -232,7 +240,7 @@ function Header() {
         
       </Menu>
       <DropDown>
-        <Option><Text>New<HiOutlineChevronDown/>
+        <Option><Text>New
         <Div>
         <Section>
           <Title>WHATS NEW?</Title>
@@ -257,7 +265,7 @@ function Header() {
         </Section>
         </Div>
       </Text></Option>
-        <Option><Text>Tattoos<HiOutlineChevronDown/><Div>
+        <Option><Text>Tattoos<Div>
           <Section>
           <Title>By Size</Title>
           <Element>Small</Element>
@@ -286,7 +294,7 @@ function Header() {
           <Element>Shop All</Element>
           </Section>
         </Div></Text></Option>
-        <Option><Text>Nail<HiOutlineChevronDown/><Div>
+        <Option><Text>Nail<Div>
           <Section>
           <Title>WHATS NEW?</Title>
           <Element>Nail</Element>
@@ -309,7 +317,7 @@ function Header() {
           <Element>New Tattoos</Element>
         </Section>
         </Div></Text></Option>
-        <Option><Text>Custom<HiOutlineChevronDown/><Div>
+        <Option><Text>Custom<Div>
         <Section>
           <Title>WHATS NEW?</Title>
           <Element>Nail</Element>
@@ -325,7 +333,7 @@ function Header() {
           <Element>New Tattoos</Element>
         </Section>
         </Div></Text></Option>
-        <Option><Text>Tattoo Maker<HiOutlineChevronDown/><Div>
+        <Option><Text>Tattoo Maker<Div>
           <Section>
           <Title>TATTOO MARKER</Title>
           <Element>Tattoo Markers</Element>

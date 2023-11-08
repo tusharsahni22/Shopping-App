@@ -8,11 +8,9 @@ const Wrapper = styled.div`
 padding: 3% 10% 0 10% ;
 `;
 
-
 function Index() {
   return (
     <div>
-
     <Header/>
     <Wrapper>
     <ProductDesc/>

@@ -14,6 +14,7 @@ const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 `;
 
 const SignupForm = styled.form`
@@ -24,6 +25,7 @@ const SignupForm = styled.form`
   height: 550px;
   display: flex;
   flex-direction: column;
+  outline: 1px solid black;
 `;
 
 const Input = styled.input`

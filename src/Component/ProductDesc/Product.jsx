@@ -93,7 +93,13 @@ const CartIcon = styled(IoCartOutline)`
 pointer-events: none;
 `;
 const FavoriteIcon = styled(MdFavoriteBorder)`
-pointer-events: none;
+
+&:hover{
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
 `;
 
 
