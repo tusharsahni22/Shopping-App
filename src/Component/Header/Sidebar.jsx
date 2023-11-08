@@ -1,0 +1,113 @@
+import React from 'react';
+import styled from 'styled-components';
+import { BsArrowRightShort } from 'react-icons/bs';
+
+const Sidebarr = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 320px;
+  background-color: #fff;
+  overflow-y: scroll;
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  /* transform: translateX(100%); */
+  backdrop-filter: blur(5px);
+`;
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  z-index: 1;
+`;
+const Head = styled.div`
+display : flex;
+height: 50px;
+background-color: #212121;
+justify-content: space-between;
+
+`;
+
+
+const Option = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 40px;
+`;
+const Title = styled.div`
+`;
+const ArrowRight = styled(BsArrowRightShort)`
+height: 20px;
+width: 20px;
+`;
+const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #e5e5e5;
+`;
+function Sidebar({toggleSidebar}) {
+  return (
+    <> 
+      <Overlay onClick={()=>{toggleSidebar()}} />
+      
+      <Sidebarr >
+      <Head/>
+      <Line/>
+      <Option>
+          <Title>Account</Title>
+          <ArrowRight/>
+        </Option>
+    
+        <Line/>
+        <Option>
+          <Title>New</Title>
+          <ArrowRight/>
+        </Option>
+        <Line/>
+        <Option>
+          <Title>Tattoos</Title>
+          <ArrowRight/>
+        </Option>
+        <Line/>
+        <Option>
+          <Title>Nail</Title>
+          <ArrowRight/>
+        </Option>
+        <Line/>
+        <Option>
+          <Title>Custom</Title>
+          <ArrowRight/>
+        </Option>
+        <Line/>
+        <Option>
+          <Title>Tattoo MakeOver</Title>
+          <ArrowRight/>
+        </Option>
+        <Line/>
+        <Option>
+          <Title>Sale</Title>
+          <ArrowRight/>
+        </Option>
+        <Line/>
+        <Option>
+          <Title>Category</Title>
+          <ArrowRight/>
+        </Option>
+        <Line/>
+        <Option>
+          <Title>Help</Title>
+          <ArrowRight/>
+        </Option>
+        
+        
+      </Sidebarr>
+    </>
+  );
+}
+
+export default Sidebar;

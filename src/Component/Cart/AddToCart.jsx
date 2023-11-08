@@ -85,14 +85,14 @@ margin: 20px 0;
 
 `;
 
-function App({toggleSidebar}) {
+function App({toggleAddtocart}) {
   
 
   return (
     <> 
       <Overlay />
       <Sidebar >
-        <Head><LeftArrow onClick={()=>{toggleSidebar()}}/>
+        <Head><LeftArrow onClick={()=>{toggleAddtocart()}}/>
         <Text>Keep Shoping </Text>
         <Count>{0} Item(s)</Count>
         </Head>
