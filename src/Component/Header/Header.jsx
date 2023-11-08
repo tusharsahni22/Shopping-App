@@ -194,7 +194,6 @@ function Header() {
 
   const toggleAddtocart = () => {
     setAddCartToggle(!AddCartToggle);
-    // setClasss(AddCartToggle ? "unblur" : "blur");
   };
   const toggleSignup = () => {
     setSignup(!signup)
