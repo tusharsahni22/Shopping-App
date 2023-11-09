@@ -84,10 +84,12 @@ padding: 0px 10px;
   cursor: pointer;
 }
 `;
+
 const User = styled.div`
   display: flex;
-  width: auto;
-`
+  width: auto; 
+`;
+
 const Tags= styled.div`
 padding :4px 4px 0 0;
 margin: 0 10px;
@@ -104,7 +106,7 @@ padding :1px 4px 0 0;
  @media (max-width:1024px){
   display: none;
 }
-  `;
+`;
 const Usericon= styled.div`
   padding :10px 0px 0 0;
   margin: 0 0 0 20px;
@@ -126,6 +128,8 @@ const DropDown= styled.div`
   justify-content: space-between;
   padding: 10px 10.5em 22px 10.5em;
  `;
+ 
+
  const Div= styled.div`
  display: none;
  position: absolute;
@@ -193,6 +197,44 @@ padding-left: 10px;
   display: none;
 }
 `
+const ProfileMenu= styled.div`
+display: none;
+position: absolute;
+`;
+
+const MyProFile =styled.div`
+padding :4px 4px 0 0;
+margin: 0 5px;
+display: flex;
+width: 155px;
+@media (max-width:1024px){
+ display: none;
+}
+&:hover{
+  ${ProfileMenu}{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  left: 0;
+  width: 100px;
+  padding: 0 10%;
+  position: absolute;
+  height: 350px;
+  z-index: 1;
+  justify-content: center;
+  cursor: pointer;
+}}
+`;
+
+const ProfileOption =styled.div`
+padding: 10px 0;
+&:hover{
+  background-color:#F4F5F7;
+    cursor:pointer;
+    border-radius:17px;
+}
+`;
+
 function Header() {
   const navigate = useNavigate();
   const [AddCartToggle, setAddCartToggle] = useState(false);
@@ -238,6 +280,16 @@ function Header() {
         <Usericon onClick={toggleSignup}>
           <UserIcon />
           <TagLine>JOIN & GET 20% OFF </TagLine>
+          </Usericon>
+        <Usericon>
+          <UserIcon />
+          <MyProFile>MY ACCOUNT 
+          <ProfileMenu>
+            <ProfileOption>My Profile</ProfileOption>
+            <ProfileOption>Order History</ProfileOption>
+            <ProfileOption>LogOut</ProfileOption>
+          </ProfileMenu>
+          </MyProFile>
           </Usericon>
           <Tags><Heart /></Tags>
           <Tags><CartIcon onClick={toggleAddtocart} /></Tags>  
