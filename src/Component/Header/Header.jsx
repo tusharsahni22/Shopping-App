@@ -2,7 +2,8 @@ import styled from "styled-components";
 import SlideShow from "./Slide";
 import { IoIosSearch } from 'react-icons/io';
 import { BsHeart } from 'react-icons/bs';
-import { BiUserCircle } from 'react-icons/bi';
+import { TiShoppingCart as TbHistory } from 'react-icons/ti';
+import { BiUserCircle,BiLogOutCircle } from 'react-icons/bi';
 import { FiMenu } from 'react-icons/fi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useNavigate } from "react-router-dom";
@@ -112,7 +113,10 @@ const Usericon= styled.div`
   margin: 0 0 0 20px;
   border-radius: 25px;
   display: flex;
-  &:hover{background-color:#F4F5F7;}
+  &:hover{
+    cursor: pointer;
+    background-color:#F4F5F7;
+  }
   @media (max-width:1024px){
   display: none;
 }
@@ -175,8 +179,7 @@ padding: 8px;
 &:hover{
   background-color:#F4F5F7;
     cursor:pointer;
-    border-radius:17px;
-    
+    border-radius:17px;   
 }
 `
 const Heart =styled(BsHeart)`
@@ -197,9 +200,31 @@ padding-left: 10px;
   display: none;
 }
 `
+const Logout =styled(BiLogOutCircle)`
+width: 25px;
+height: 25px;
+padding-left: 10px;
+@media(max-width:1024px){
+  display: none;
+}
+`
+const OrderHistory =styled(TbHistory)`
+width: 25px;
+height: 25px;
+padding-left: 10px;
+&:hover{
+  background-color:#F4F5F7;
+    cursor:pointer;
+    border-radius:17px;   
+}
+`
 const ProfileMenu= styled.div`
 display: none;
+border-radius: 15px;
 position: absolute;
+background-color: white;
+z-index: 1;
+color: black;
 `;
 
 const MyProFile =styled.div`
@@ -215,23 +240,31 @@ width: 155px;
   display: flex;
   flex-direction: column;
   background-color: white;
-  left: 0;
-  width: 100px;
-  padding: 0 10%;
+  top: 135px;
+  right:185px;
+  width: 180px;
+  padding: 0 15px;
   position: absolute;
-  height: 350px;
+  height: 150px;
   z-index: 1;
-  justify-content: center;
+  padding: 10px 10px;
   cursor: pointer;
+  gap: 10px;
+
+  outline: 1px solid #9FA6B2;
 }}
 `;
 
 const ProfileOption =styled.div`
-padding: 10px 0;
+height: 20px;
+gap: 10px;
+padding: 10px 0px;
+display: flex;
+align-items: center;
 &:hover{
   background-color:#F4F5F7;
     cursor:pointer;
-    border-radius:17px;
+    border-radius:10px;
 }
 `;
 
@@ -240,10 +273,13 @@ function Header() {
   const [AddCartToggle, setAddCartToggle] = useState(false);
   const [signup, setSignup] = useState(false);
   const [sidebar, setSidebar] = useState(false);
-  // const [classs,setClasss] = useState("unblur");
+  const [isLogout, setIsLogout] = useState(false);
 
   const toggleAddtocart = () => {
     setAddCartToggle(!AddCartToggle);
+  };
+  const login = () => {
+    setIsLogout(!isLogout);
   };
   const toggleSignup = () => {
     setSignup(!signup)
@@ -277,20 +313,21 @@ function Header() {
         <IoIosSearch style={{height:"26px",width:"20px"}}/>
         </Search>
         <User>
+        {isLogout?
         <Usericon onClick={toggleSignup}>
           <UserIcon />
           <TagLine>JOIN & GET 20% OFF </TagLine>
-          </Usericon>
+          </Usericon>:
         <Usericon>
           <UserIcon />
           <MyProFile>MY ACCOUNT 
           <ProfileMenu>
-            <ProfileOption>My Profile</ProfileOption>
-            <ProfileOption>Order History</ProfileOption>
-            <ProfileOption>LogOut</ProfileOption>
+            <ProfileOption onClick={()=>{navigate("/myprofile")}}><UserIcon/> My Profile</ProfileOption>
+            <ProfileOption><OrderHistory/>Order History</ProfileOption>
+            <ProfileOption onClick={login}><Logout/>LogOut</ProfileOption>
           </ProfileMenu>
           </MyProFile>
-          </Usericon>
+          </Usericon>}
           <Tags><Heart /></Tags>
           <Tags><CartIcon onClick={toggleAddtocart} /></Tags>  
         </User>
