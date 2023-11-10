@@ -9,11 +9,11 @@ function SubSidebar() {
         </Head>
       <Line/>
       <Option>
-        <Title>Your Profile</Title>
+        <Title onClick={()=>{navigate("/myprofile",{state:{YourProfileTab:"Your Profile"}})}}>Your Profile</Title>
       </Option>
       <Line/>
       <Option>
-        <Title>Order History</Title>
+        <Title onClick={()=>{navigate("/myprofile",{state:{OrderHistoryTab:"Order History"}})}}>Order History</Title>
       </Option>
       </SubTitle>
   )

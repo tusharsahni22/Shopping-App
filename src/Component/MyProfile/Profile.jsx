@@ -4,20 +4,7 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
 padding: 0 10%;
 `;
-const Head = styled.div`
-margin: 70px 0 0 0 ;
-display: flex;
-justify-content: center;
-gap: 20px;
-`;
-const Title = styled.div`
-font-size: 15px;
-font-weight: 500;
-color: #000000;
-&:hover{
-    cursor: pointer;
-}
-`;
+
 const ProfilePic = styled.div`
 margin: 50px 0 0 0;
 display: flex;
@@ -129,14 +116,10 @@ gap: 10px;
 `;
 
 function Profile() {
+    
   return (
     <Wrapper>
-        <Head>
-            <Title>Your Profile</Title>
-            <Title>Order History</Title>
-            <Title>Reward</Title>
-            <Title>Favorites</Title>
-        </Head>
+        
         <ProfilePic>
             <Img src="./whatsnew3.jpg" alt="fsfsf"/>
             <div>
@@ -146,15 +129,15 @@ function Profile() {
         </ProfilePic>
         <FirstNameLastName />
         <Name>First & Last Name</Name>
-        <InputField />
-        <Email>E-Mail Address</Email>
-        <InputField />
+        <InputField type='text' />
+        <Email >E-Mail Address</Email>
+        <InputField type='email'/>
         <ChangePassword>Change Password</ChangePassword>
         <Line></Line>
         <Buttons>
             <SaveAndCancel>
-            <Save>Save</Save>
             <Cancel>Cancel</Cancel>
+            <Save>Save</Save>
             </SaveAndCancel>
             <Logout>Logout</Logout>
 

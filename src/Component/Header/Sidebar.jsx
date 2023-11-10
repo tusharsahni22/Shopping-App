@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { BsArrowRightShort,BsArrowLeftShort } from 'react-icons/bs';
 
 const Sidebarr = styled.div`
@@ -73,6 +74,7 @@ const Line = styled.div`
   background-color: #e5e5e5;
 `;
 function Sidebar({toggleSidebar}) {
+  const navigate  = useNavigate();
   const [subTitle, setSubTitle] = React.useState("Back");
   const handleSubTitle = (data) => {
     setSubTitle(data);
@@ -139,11 +141,11 @@ function Sidebar({toggleSidebar}) {
         </Head>
       <Line/>
       <Option>
-        <Title>Your Profile</Title>
+        <Title onClick={()=>{navigate("/myprofile",{state:{YourProfileTab:"Your Profile"}})}}>Your Profile</Title>
       </Option>
       <Line/>
       <Option>
-        <Title>Order History</Title>
+        <Title onClick={()=>{navigate("/myprofile",{state:{OrderHistoryTab:"Order History"}})}}>Order History</Title>
       </Option>
       </SubTitle>:""}
 

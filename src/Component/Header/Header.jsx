@@ -72,7 +72,7 @@ padding: 6px 0;
 &:hover{
   cursor: pointer;
 }
-@media (max-width:1023px){
+@media (max-width:1024px){
   padding: 6px 12px;
   display: none;
 }
@@ -123,7 +123,7 @@ const Usericon= styled.div`
  `;
 const MobileMenu= styled.div`
   display: flex;
-  @media (min-width:1024px){
+  @media (min-width:1025px){
   display: none;
 }
  `;
@@ -240,7 +240,7 @@ width: 155px;
   display: flex;
   flex-direction: column;
   background-color: white;
-  top: 135px;
+  top: 128px;
   right:185px;
   width: 180px;
   padding: 0 15px;
@@ -322,13 +322,13 @@ function Header() {
           <UserIcon />
           <MyProFile>MY ACCOUNT 
           <ProfileMenu>
-            <ProfileOption onClick={()=>{navigate("/myprofile")}}><UserIcon/> My Profile</ProfileOption>
-            <ProfileOption><OrderHistory/>Order History</ProfileOption>
+            <ProfileOption onClick={()=>{navigate("/myprofile",{state:{YourProfileTab:"Your Profile"}})}}><UserIcon/> My Profile</ProfileOption>
+            <ProfileOption onClick={()=>{navigate("/myprofile",{state:{OrderHistoryTab:"Order History"}})}}><OrderHistory/>Order History</ProfileOption>
             <ProfileOption onClick={login}><Logout/>LogOut</ProfileOption>
           </ProfileMenu>
           </MyProFile>
           </Usericon>}
-          <Tags><Heart /></Tags>
+          <Tags><Heart onClick={()=>{navigate("/myprofile",{state:{favorites:"Favorites"}})}}/></Tags>
           <Tags><CartIcon onClick={toggleAddtocart} /></Tags>  
         </User>
         
