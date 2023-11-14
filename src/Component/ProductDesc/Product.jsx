@@ -107,16 +107,16 @@ const FavoriteIcon = styled(MdFavoriteBorder)`
 function Product() {
     const images = [
         {
-          original: "./whatsnew2.jpg",
-          thumbnail: "./whatsnew2.jpg",
+          original: "./cool-man-sweatshirt.png",
+          thumbnail: "./cool-man-sweatshirt.png",
         },
         {
-          original: "./whatsnew3.jpg",
-          thumbnail: "./whatsnew3.jpg",
+          original: "./man-hd.png",
+          thumbnail: "./man-hd.png",
         },
         {
-          original: "./whatsnew1.jpg",
-          thumbnail: "./whatsnew1.jpg",
+          original: "./man-tshirt.png",
+          thumbnail: "./man-tshirt.png",
         },
       ];
     return (

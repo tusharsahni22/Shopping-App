@@ -30,13 +30,11 @@ function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
     <Wrapper>
         <Head>
             <Title selected={selectedTitle === 'Your Profile'} onClick={() => setSelectedTitle('Your Profile')}>Your Profile</Title>
-            <Title selected={selectedTitle === 'Order History'} onClick={() => setSelectedTitle('Order History')}>Order History</Title>
-            {/* <Title selected={selectedTitle === 'Reward'} onClick={() => setSelectedTitle('Reward')}>Reward</Title> */}
+            <Title selected={selectedTitle === 'Order History'} onClick={() => setSelectedTitle('Order History')}>Order History</Title> 
             <Title selected={selectedTitle === 'Favorites'} onClick={() => setSelectedTitle('Favorites')}>Favorites</Title>
         </Head>
         {selectedTitle === 'Your Profile'? <Profile/> : null}
         {selectedTitle === 'Order History'? <OrderHistory/> : null}
-        {/* {selectedTitle === 'Reward' && <div>Reward</div>} */}
         {selectedTitle === 'Favorites'? <Favorites/> : null}
 
     </Wrapper>

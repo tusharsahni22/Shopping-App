@@ -8,9 +8,10 @@ import { FiMenu } from 'react-icons/fi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useNavigate } from "react-router-dom";
 import AddToCart from "../Cart/AddToCart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SignupPage from "../Auth";
 import Sidebar from "./Sidebar";
+import { doLogout, isUserLoggedIn } from "../Services/auth";
 const Wrapper = styled.div`
 `;
 const Slide = styled.div`
@@ -273,13 +274,14 @@ function Header() {
   const [AddCartToggle, setAddCartToggle] = useState(false);
   const [signup, setSignup] = useState(false);
   const [sidebar, setSidebar] = useState(false);
-  const [isLogout, setIsLogout] = useState(false);
+  const [LoggedIN, setLoggedIN] = useState(false);
+
+  useEffect(() => {
+    setLoggedIN(isUserLoggedIn());
+  }, [signup]);
 
   const toggleAddtocart = () => {
     setAddCartToggle(!AddCartToggle);
-  };
-  const login = () => {
-    setIsLogout(!isLogout);
   };
   const toggleSignup = () => {
     setSignup(!signup)
@@ -313,20 +315,20 @@ function Header() {
         <IoIosSearch style={{height:"26px",width:"20px"}}/>
         </Search>
         <User>
-        {isLogout?
-        <Usericon onClick={toggleSignup}>
-          <UserIcon />
-          <TagLine>JOIN & GET 20% OFF </TagLine>
-          </Usericon>:
-        <Usericon>
+        {LoggedIN?<Usericon>
           <UserIcon />
           <MyProFile>MY ACCOUNT 
           <ProfileMenu>
             <ProfileOption onClick={()=>{navigate("/myprofile",{state:{YourProfileTab:"Your Profile"}})}}><UserIcon/> My Profile</ProfileOption>
             <ProfileOption onClick={()=>{navigate("/myprofile",{state:{OrderHistoryTab:"Order History"}})}}><OrderHistory/>Order History</ProfileOption>
-            <ProfileOption onClick={login}><Logout/>LogOut</ProfileOption>
+            <ProfileOption onClick={()=>{doLogout()}}
+            ><Logout/>LogOut</ProfileOption>
           </ProfileMenu>
           </MyProFile>
+          </Usericon>:
+        <Usericon onClick={toggleSignup}>
+          <UserIcon />
+          <TagLine>JOIN & GET 20% OFF </TagLine>
           </Usericon>}
           <Tags><Heart onClick={()=>{navigate("/myprofile",{state:{favorites:"Favorites"}})}}/></Tags>
           <Tags><CartIcon onClick={toggleAddtocart} /></Tags>  

@@ -5,6 +5,7 @@ import ProductDesc from './Component/ProductDesc/Index'
 import Homepage from './Component/Homepage'
 import MyProfile from './Component/MyProfile/Index'
 import './App.css'
+// import PrivateRoutes from './Component/PrivateRoute'
 function Router () {
   return (
     <BrowserRouter>
@@ -13,6 +14,7 @@ function Router () {
         <Route path='/' element={<Homepage />} />
         <Route path='/products' element={<Product/>} />
         <Route path='/product-description' element={<ProductDesc/>} />
+        {/* <Route path='/myprofile' element={<PrivateRoutes/>} /> */}
         <Route path='/myprofile' element={<MyProfile/>} />
       </Routes>
     </BrowserRouter>

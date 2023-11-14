@@ -67,11 +67,11 @@ max-width: 340px;
 function Product() {
   const navigate = useNavigate();
   const dummyData = [
-    {pic:"whatsnew1.jpg",title:"Forgettable",size:"4x4 Inches",price:"21"},
+    {pic:"cool-man-sweatshirt.png",title:"Forgettable",size:"4x4 Inches",price:"21"},
     {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew3.jpg",title:"The Marvels Emblem",size:"4x4 Inches",price:"21"},
+    {pic:"man-hd.png",title:"The Marvels Emblem",size:"4x4 Inches",price:"21"},
     {pic:"whatsnew2.jpg",title:"Photon",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew1.jpg",title:"Ms. Marvel",size:"4x4 Inches",price:"21"},
+    {pic:"man-tshirt.png",title:"Ms. Marvel",size:"4x4 Inches",price:"21"},
     {pic:"whatsnew3.jpg",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
     {pic:"whatsnew1.jpg",title:"We're a Team",size:"4x4 Inches",price:"21"}
 ]

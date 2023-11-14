@@ -1,9 +1,11 @@
-import React from 'react'
+import React,{useState}from 'react'
 import styled from 'styled-components';
 import { IoCloseOutline } from 'react-icons/io5';
 import { FcGoogle } from 'react-icons/fc';
 import { BsFacebook } from 'react-icons/bs';
-import { useAuth0 } from "@auth0/auth0-react";
+import { login } from '../Services/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Overlay = styled.div`
@@ -112,10 +114,40 @@ text-align: center;
 `;
 
 function Login({SwitchLogin,toggleSignup}) {
-  const { loginWithRedirect } = useAuth0();
+  const [email, setEmail] =useState("");
+  const [password, setPassword] =useState("");
+
+  const clearForm = () => {
+    setEmail("");
+    setPassword("");
+  }
+
+
+  const handleLogin = () => {
+   const data = {email,password};
+    login(data).then((res)=>{
+      console.log(res);
+      if(res.status === 200){
+      localStorage.setItem("token",res.data.token);
+      toast.success("Login Successfull");
+    // clear the states 
+    clearForm()
+    // close the window
+    toggleSignup();
+    }
+    else{
+      toast.error("Invalid Credentials");
+      clearForm()
+    }
+    }).catch((err)=>{
+      console.log(err);
+    })
+   };
+
   return (
     <Overlay>
     <LoginForm>
+      <ToastContainer/>
         <Header>
                 <div></div>
                 <Text>Welcome Back! Log In</Text>
@@ -123,14 +155,12 @@ function Login({SwitchLogin,toggleSignup}) {
             </Header>
             <Field>
             <Email>Email</Email>
-            <Input type="email" placeholder="Email" />
+            <Input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="email" placeholder="Email" />
             <Password>Password</Password>
-            <Input type="password" placeholder="Password" />
+            <Input value={password} onChange={(e)=>{setPassword(e.target.value)}} type="password" placeholder="Password" />
             </Field>
             <Field>
-    
-            
-            <Button onClick={()=>{loginWithRedirect()}}>Log In</Button>
+            <Button onClick={handleLogin}>Log In</Button>
             <Line/>
             <FancyButton><Google/>Continue with Google</FancyButton>
             <FancyButton><Facebook/>Continue with Facebook</FancyButton>

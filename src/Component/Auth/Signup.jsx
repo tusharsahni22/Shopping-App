@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { IoCloseOutline } from 'react-icons/io5';
 import { FcGoogle } from 'react-icons/fc';
 import { BsFacebook } from 'react-icons/bs';
+import { Signup } from '../Services/auth';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const Overlay = styled.div`
   position: fixed;
@@ -111,10 +114,38 @@ color: #212121;
 `;
 
 function SignupPage({toggleSignup,SwitchLogin}) {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  
+  const clearForm = () => {
+    setEmail("");
+    setPassword("");
+  }
+
+  const handleSignup = () => {
+    const data = {email,password};
+    Signup(data).then((res)=>{
+      if(res.status === 200){
+        alert("Signup Successful");
+        toast.success("Signup Successful");
+        // clear the form
+        clearForm()
+        // move to login
+        SwitchLogin();
+      }
+      else if(res.status === 400){
+        toast.error("User already exists");
+        clearForm()
+      }
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
    
   return (
     <Overlay>
       <SignupForm>
+        <ToastContainer/>
       <Header>
             <div></div>
             <Text>Sign Up Now!</Text>
@@ -122,14 +153,14 @@ function SignupPage({toggleSignup,SwitchLogin}) {
         </Header>
         <Field>
         <Email>Email</Email>
-        <Input type="email" placeholder="Email" />
+        <Input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="email" placeholder="Email" />
         <Password>Password</Password>
-        <Input type="password" placeholder="Password" />
+        <Input  value={password} onChange={(e)=>{setPassword(e.target.value)}} type="password" placeholder="Password" />
         </Field>
         <Field>
 
         
-        <Button>Sign Up</Button>
+        <Button onClick={handleSignup}>Sign Up</Button>
         <Line/>
         <FancyButton><Google/>Continue with Google</FancyButton>
         <FancyButton><Facebook/>Continue with Facebook</FancyButton>
