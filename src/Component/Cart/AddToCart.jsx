@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BsArrowLeft } from 'react-icons/bs';
-import SliderComponent from './Slider';
+// import SliderComponent from './Slider';
+import { useSelector,useDispatch  } from 'react-redux';
+import { removeFromCart,updateQuantity } from '../reducers/cart';
+
 const Sidebar = styled.div`
   position: absolute;
   top: 0;
@@ -35,12 +38,13 @@ align-items: center;
 padding: 0 15px;
 `;
 const LeftArrow = styled(BsArrowLeft)`
-
+cursor: pointer;
 `;
 const Text = styled.div`
 
 `;
 const Count = styled.div`
+
 
 `;
 const Bundle = styled.div`
@@ -58,35 +62,140 @@ const NoItem = styled.div`
 text-align: center;
 color: #212121;
 padding:50% 0 0 0;
+ `;
+const AllCartItems = styled.div`
+height: 50vh;
+overflow-y: scroll;
+overflow-x: hidden;
+`;
 
-// `;
 const Total = styled.div`
-padding:0 15px;
+padding:0 25px;
 
 
 `;
 const SubTotal = styled.div`
 display:flex;
 justify-content: space-between;
-margin-top:25px
-
+margin-top:25px;
 `;
 const Price = styled.div`
-
 `;
+const PriceTotal = styled.div`
+font-weight: bold;
+display:flex;
+justify-content: flex-end;
+margin-top: 10px;
+`;
+
 const BuyButton = styled.div`
 height:45px;
 width: 100%;
 background-color: #212121;
-text-align:center;
 color:white;
 border-radius:5px;
 margin: 20px 0;
+display:flex;
+align-items: center;
+justify-content: center;
+`;
+const CartItems = styled.div`
+display:flex;
+padding: 0 25px;
+margin-top: 20px;
+`;
+const Image = styled.div`
+height: 100px;
+width: 100px;
+background-color: #D2D6DC;
+border-radius: 5px;
+`;
+const Details = styled.div`
+display:flex;
+flex-direction: column;
+justify-content: space-between;
+margin-left: 15px;
+`;
+const Name = styled.div`
+margin-top: 10px;
+font-weight: bold;
+`;
+
+const TotalPrice = styled.div`
+margin-left: auto;
+`;
+const Remove = styled.div`
+color: #212121;
+margin-top: 60px;
+cursor: pointer;
+`;
+
+
+const Minus = styled.div`
+height: 25px;
+width: 25px;
+border: 1px solid #D2D6DC;
+border-radius: 5px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 20px;
+cursor: pointer;
+&:hover{
+    background-color: #D2D6DC;
+  }
+`;
+const Plus = styled.div`
+height: 25px;
+width: 25px;
+border: 1px solid #D2D6DC;
+border-radius: 5px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 20px;
+cursor: pointer;
+  &:hover{
+    background-color: #D2D6DC;
+  }
+`;
+const Countq = styled.div`
+height: 25px;
+width: 25px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 15px;
+`;
+const Quantity = styled.div`
+display: flex;
+align-items: center;
 
 `;
 
+
+
 function App({toggleAddtocart}) {
+  const dispatch = useDispatch()
   
+  const product = useSelector((state) => state.cart)
+  const total = useSelector((state) => state.total)
+  const totalItems = 0 || parseInt(useSelector((state) => state.totalItems))
+  const handleproduct = ()=>{
+    console.log("product",product,"total",total,"totalItems",totalItems)
+  }
+  const handleRemoveFromCart = (id)=>{
+    dispatch(removeFromCart(id))
+
+  }
+  const handleQuantityMinus = (id)=>{
+    const data ={"quantity":-1,id}    
+      dispatch(updateQuantity(data))
+  }
+  const handleQuantityPlus = (id)=>{
+    const data ={"quantity":1,id}    
+    dispatch(updateQuantity(data))
+  }
 
   return (
     <> 
@@ -94,17 +203,36 @@ function App({toggleAddtocart}) {
       <Sidebar >
         <Head><LeftArrow onClick={()=>{toggleAddtocart()}}/>
         <Text>Keep Shoping </Text>
-        <Count>{0} Item(s)</Count>
+        <Count>{totalItems} Item(s)</Count>
         </Head>
         <Bundle>Bundle And Save!</Bundle>
         <AddMore>Add More Save More</AddMore>
-        <SliderComponent />
-        <NoItem>You have no items in your cart</NoItem>
-
+        {/* <SliderComponent /> */}
+        <AllCartItems>
+        {product.map((e)=>(
+        totalItems===0?<NoItem key={e.id} >No Item in Cart</NoItem>:
+        <CartItems key={e.id}>
+          <Image />
+          <Details>
+            <Name>{e.title}</Name>
+            <Price>₹{e.price}</Price>
+            <Quantity>
+              <Minus onClick={()=>{handleQuantityMinus(e.id)}}>-</Minus>
+              <Countq>{e.quantity}</Countq>
+              <Plus onClick={()=>{handleQuantityPlus(e.id)}}>+</Plus>
+            </Quantity>
+          </Details>
+          <TotalPrice>
+            <PriceTotal>₹{e.total}</PriceTotal>
+            <Remove onClick={()=>{handleRemoveFromCart(e.id)}}>Remove</Remove>
+          </TotalPrice>
+        </CartItems>
+        ))}
+        </AllCartItems>
         <Total>
           <SubTotal>
             <div>Subtotal</div>
-            <Price>$20</Price>
+            <Price>₹{total}</Price>
           </SubTotal>
           <SubTotal>
             <div>Savings</div>
@@ -112,12 +240,9 @@ function App({toggleAddtocart}) {
           </SubTotal>
           <SubTotal>
             <div style={{fontWeight:"bold"}}>Total</div>
-            <Price>$20</Price>
+            <Price>₹{total}</Price>
           </SubTotal>
-            <BuyButton>Buy Now</BuyButton>
-
-
-
+        <BuyButton onClick={handleproduct}>Buy Now</BuyButton>
         </Total>
       </Sidebar>
     </>

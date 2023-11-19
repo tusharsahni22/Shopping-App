@@ -5,6 +5,9 @@ import { MdFavoriteBorder } from "react-icons/md";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import Whatsnew from '../Homepage/Whatsnew';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../reducers/cart';
+// import { nanoid } from '@reduxjs/toolkit';
 
 const Wrapper = styled.div``;
 const Upper = styled.div`
@@ -49,9 +52,8 @@ const Quantity = styled.select`
     background-position: calc(100% - 5px) center; /* Adjust 10px to the padding you want */
     padding-left: 10px;
     border-radius: 7px;
-
     &:focus {
-        outline: 2px solid blue;
+      outline: 2px solid blue;
     }
 `;
 const Option = styled.option`
@@ -105,6 +107,9 @@ const FavoriteIcon = styled(MdFavoriteBorder)`
 
 
 function Product() {
+  const dispatch = useDispatch();
+  const [quantity, setQuantity] = React.useState(1);
+
     const images = [
         {
           original: "./cool-man-sweatshirt.png",
@@ -119,11 +124,19 @@ function Product() {
           thumbnail: "./man-tshirt.png",
         },
       ];
+      const handleAddtocart = () => {
+        dispatch(addToCart({
+          id: 1,
+          title: "Papier",
+          price: 50,
+          quantity,
+        }))
+      }
+
     return (
         <Wrapper>
         <Upper>
         <Section1>
-            {/* <Frame src='./whatsnew2.jpg'/> */}
             <ImageGallery className="image-gallery-content image-gallery-thumbnails-container image-gallery-thumbnail image-gallery-thumbnail.active" showFullscreenButton={false} showNav={false} showPlayButton={false} items={images} />
         </Section1>
         <Section2>
@@ -133,7 +146,7 @@ function Product() {
             <Specification>Many people think of moths as mysterious, nocturnal, knock-off butterfliesthat is, until they see this eye-catching creature. The legendary Luna Moth is beloved for its beautifully bright color and stunning size. And since it has a rather short lifespan, the marvelous moth is widely seen as a symbol of the beauty and brevity of life.</Specification>
             <Text>Quantity</Text>
             
-            <Quantity>
+            <Quantity onChange={(e)=>{setQuantity(e.target.value)}}>
             <Option value="1">1</Option>
             <Option value="2">2</Option>
             <Option value="3">3</Option>
@@ -146,7 +159,7 @@ function Product() {
             <Option value="10">10</Option>
             </Quantity>
             
-            <AddtoCart> <CartIcon/> Add to Cart</AddtoCart>
+            <AddtoCart onClick={handleAddtocart}> <CartIcon/> Add to Cart</AddtoCart>
             <Favorite><FavoriteIcon/>Favorite</Favorite>
    
         </Section2>
