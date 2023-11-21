@@ -126,7 +126,7 @@ function Product() {
       ];
       const handleAddtocart = () => {
         dispatch(addToCart({
-          id: 1,
+          id: 2 ,
           title: "Papier",
           price: 50,
           quantity,

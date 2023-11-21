@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import SignupPage from "../Auth";
 import Sidebar from "./Sidebar";
 import { doLogout, isUserLoggedIn } from "../Services/auth";
+import { useSelector } from "react-redux";
+
 const Wrapper = styled.div`
 `;
 const Slide = styled.div`
@@ -268,9 +270,15 @@ align-items: center;
     border-radius:10px;
 }
 `;
+const CartItemCount =styled.div`
+position: absolute;
+padding: 0 0 0 32px;
+`;
 
 function Header() {
   const navigate = useNavigate();
+  const totalItems = parseInt(useSelector((state) => state.totalItems)) || ""
+
   const [AddCartToggle, setAddCartToggle] = useState(false);
   const [signup, setSignup] = useState(false);
   const [sidebar, setSidebar] = useState(false);
@@ -331,7 +339,7 @@ function Header() {
           <TagLine>JOIN & GET 20% OFF </TagLine>
           </Usericon>}
           <Tags><Heart onClick={()=>{navigate("/myprofile",{state:{favorites:"Favorites"}})}}/></Tags>
-          <Tags><CartIcon onClick={toggleAddtocart} /></Tags>  
+          <Tags><CartIcon onClick={toggleAddtocart} /><CartItemCount>{totalItems}</CartItemCount></Tags>  
         </User>
         
       </Menu>
