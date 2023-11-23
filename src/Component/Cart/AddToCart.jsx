@@ -104,7 +104,7 @@ display:flex;
 padding: 0 25px;
 margin-top: 20px;
 `;
-const Image = styled.div`
+const Image = styled.img`
 height: 100px;
 width: 100px;
 background-color: #D2D6DC;
@@ -212,7 +212,7 @@ function App({toggleAddtocart}) {
         {product.map((e)=>(
         totalItems===0?<NoItem key={e.id} >No Item in Cart</NoItem>:
         <CartItems key={e.id}>
-          <Image />
+          <Image src={e.pic} />
           <Details>
             <Name>{e.title}</Name>
             <Price>₹{e.price}</Price>

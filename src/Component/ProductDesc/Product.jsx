@@ -8,6 +8,7 @@ import Whatsnew from '../Homepage/Whatsnew';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../reducers/cart';
 // import { nanoid } from '@reduxjs/toolkit';
+import { useLocation } from 'react-router-dom';
 
 const Wrapper = styled.div``;
 const Upper = styled.div`
@@ -109,6 +110,10 @@ const FavoriteIcon = styled(MdFavoriteBorder)`
 function Product() {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = React.useState(1);
+  const {state} = useLocation();
+  const {id,title,price,pic,specification} = state;
+  // description,size
+  console.log("id",pic)
 
     const images = [
         {
@@ -126,10 +131,11 @@ function Product() {
       ];
       const handleAddtocart = () => {
         dispatch(addToCart({
-          id: 2 ,
-          title: "Papier",
-          price: 50,
+          id,
+          title,
+          price,
           quantity,
+          pic
         }))
       }
 
@@ -140,10 +146,10 @@ function Product() {
             <ImageGallery className="image-gallery-content image-gallery-thumbnails-container image-gallery-thumbnail image-gallery-thumbnail.active" showFullscreenButton={false} showNav={false} showPlayButton={false} items={images} />
         </Section1>
         <Section2>
-            <Tittle>Papier</Tittle>
+            <Tittle>{title}</Tittle>
             <Description>Design by </Description>
-            <Price>₹{50}</Price>
-            <Specification>Many people think of moths as mysterious, nocturnal, knock-off butterfliesthat is, until they see this eye-catching creature. The legendary Luna Moth is beloved for its beautifully bright color and stunning size. And since it has a rather short lifespan, the marvelous moth is widely seen as a symbol of the beauty and brevity of life.</Specification>
+            <Price>₹{price}</Price>
+            <Specification>{specification}</Specification>
             <Text>Quantity</Text>
             
             <Quantity onChange={(e)=>{setQuantity(e.target.value)}}>

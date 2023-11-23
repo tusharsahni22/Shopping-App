@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import SideBar from "../SideBar/SideBar"
 import { BiCart } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
+import { viewProduct } from "../Services/product";
 const Wrapper = styled.div`
 width: 100%;
 
@@ -66,30 +67,47 @@ max-width: 340px;
 
 function Product() {
   const navigate = useNavigate();
-  const dummyData = [
-    {pic:"cool-man-sweatshirt.png",title:"Forgettable",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
-    {pic:"man-hd.png",title:"The Marvels Emblem",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew2.jpg",title:"Photon",size:"4x4 Inches",price:"21"},
-    {pic:"man-tshirt.png",title:"Ms. Marvel",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew3.jpg",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew1.jpg",title:"We're a Team",size:"4x4 Inches",price:"21"}
-]
+  const [data,setData] = React.useState([])
+//   const dummyData = [
+//     // {pic:"cool-man-sweatshirt.png",title:"Forgettable",size:"4x4 Inches",price:"21"},
+//     // {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
+//     // {pic:"man-hd.png",title:"The Marvels Emblem",size:"4x4 Inches",price:"21"},
+//     // {pic:"whatsnew2.jpg",title:"Photon",size:"4x4 Inches",price:"21"},
+//     // {pic:"man-tshirt.png",title:"Ms. Marvel",size:"4x4 Inches",price:"21"},
+//     // {pic:"whatsnew3.jpg",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
+//     // {pic:"whatsnew1.jpg",title:"We're a Team",size:"4x4 Inches",price:"21"}
+// ]
+useEffect(()=>{
+viewProduct().then((res)=>{
+  console.log(res.data)
+  setData(res.data)
+}).catch((err)=>console.log(err))
+},[])
+
+
   return (
     <Wrapper>
       <Heading>All Products</Heading>
       <Container>
       <SideBar data={[{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Style",type:["Linework","Illustrative","Blackwork","Minimalist","Text"]},{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]}]}/>
       <Services>
-        <ProductItems onClick={()=>{navigate("/product-description")}}>
-        {dummyData.map((e)=>(
-            <Frame key={e.key}>
+        <ProductItems >
+        {data.map((e)=>(
+            <Frame key={e._id} onClick={()=>{navigate("/product-description",{state:{
+              id:e._id,
+              price:e.price,
+              size:e.size,
+              title:e.title,
+              pic:e.pic,
+              specification:e.specification,
+              description:e.description
+              }} )}}>
             <Img src={e.pic} />   
             <Service>
             <div>                
             <Title>{e.title}</Title>
             <Size>{e.size}</Size>
-            <Price>${e.price} USD</Price>
+            <Price>₹{e.price}</Price>
             </div>
             <BiCart className='Bicart' style={{marginTop:"35px",height:"25px",width:"25px",padding:"10px",borderRadius:"20px",':hover': {backgroundColor:"#80808057",cursor:"pointer"}}}/>
             </Service>

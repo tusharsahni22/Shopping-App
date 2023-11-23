@@ -36,7 +36,7 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            const { id, title, price, image,quantity } = action.payload;
+            const { id, title, price, image,quantity,pic } = action.payload;
             const product = state.cart.find((item) => item.id === id);
             const total= price*quantity;
             
@@ -52,6 +52,7 @@ export const cartSlice = createSlice({
                     image,
                     quantity,
                     total,
+                    pic
                 });
             }
 
