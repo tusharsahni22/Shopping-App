@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import { AiFillInstagram,AiFillYoutube,AiOutlineTwitter } from 'react-icons/ai'
-import { FaPinterest } from 'react-icons/fa'
+import { AiFillInstagram} from 'react-icons/ai'
+// import { FaPinterest } from 'react-icons/fa'
 import { BsFacebook } from 'react-icons/bs'
 import { GoArrowRight } from 'react-icons/go'
 
@@ -37,7 +37,8 @@ const Option = styled.div`
 color:white;
 display:flex;
 margin:20px 0;
-justify-content: space-between;
+gap: 10px;
+/* justify-content: space-between; */
 width: 200px;
 `;
 const Input = styled.input`
@@ -64,12 +65,12 @@ function Footer() {
        </InputDiv>
        </Column>
        <Column>
-       <Option>About InkBox</Option>
+       <Option>About StreetsWwear</Option>
        <Option>About</Option>
        <Option>Promotional Deals</Option>
        <Option>Reviews</Option>
-       <Option>Carrer</Option>
-       <Option>Press</Option>
+       {/* <Option>Carrer</Option>
+       <Option>Press</Option> */}
        </Column>
 
        <Column>
@@ -78,23 +79,27 @@ function Footer() {
        <Option>Shipping</Option>
        <Option>Return</Option>
        <Option>Help & FAQ</Option>
-       <Option>Return</Option>
        </Column>
 
        <Column>
        <Option>
-        <div>Other</div>
-        <AiFillInstagram/>
+        <div>Follow Us</div>
+        {/* <AiFillInstagram/>
         <FaPinterest/>
         <BsFacebook/>
         <AiFillYoutube/>
-        <AiOutlineTwitter/>
+        <AiOutlineTwitter/> */}
        </Option>
+       <Option><AiFillInstagram/> Instagram</Option>
+       <Option><BsFacebook/> Facebook</Option>
+       {/* <Option>Partnership</Option>
+       <Option>Inkbox Community</Option> */}
+       {/* <Option>Press</Option>
        <Option>About</Option>
        <Option>Carrer</Option>
        <Option>Partnership</Option>
        <Option>Inkbox Community</Option>
-       <Option>Press</Option>
+       <Option>Press</Option> */}
        </Column>
     
     </Wrapper>
