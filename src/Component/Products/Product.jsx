@@ -77,6 +77,7 @@ function Product() {
 //     // {pic:"whatsnew3.jpg",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
 //     // {pic:"whatsnew1.jpg",title:"We're a Team",size:"4x4 Inches",price:"21"}
 // ]
+
 useEffect(()=>{
 viewProduct().then((res)=>{
   console.log(res.data)

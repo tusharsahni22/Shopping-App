@@ -315,9 +315,9 @@ function Header() {
       <Menu>
         <MobileMenu>
         <FiMenu onClick={toggleSidebar} style={{width:"25px",height:"25px"}}/>
-        <ImgMob src="./logo.jpg" alt="logo" onClick={(e)=>{navigate("/")}}/>
+        <ImgMob src="./brand.png" alt="logo" onClick={(e)=>{navigate("/")}}/>
         </MobileMenu>
-        <Img src="./logo.jpg" alt="logo" onClick={(e)=>{navigate("/")}}/>
+        <Img src="./brand.png" alt="logo" onClick={(e)=>{navigate("/")}}/>
         <Search>
         <Input type="text" placeholder="Find something you will love!"/>
         <IoIosSearch style={{height:"26px",width:"20px"}}/>

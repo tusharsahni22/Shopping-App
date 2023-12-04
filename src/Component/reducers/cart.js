@@ -63,6 +63,7 @@ export const cartSlice = createSlice({
         removeFromCart: (state, action) => {
             const  id  = action.payload;
             const product = state.cart.find((item) => item.id === id);
+            console.log("pra",product)
             // if product then remove from cart
 
             if (product) {
