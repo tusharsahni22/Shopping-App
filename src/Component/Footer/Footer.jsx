@@ -66,7 +66,7 @@ function Footer() {
        </Column>
        <Column>
        <Option>About StreetsWwear</Option>
-       <Option>About</Option>
+       <Option>About Us</Option>
        <Option>Promotional Deals</Option>
        <Option>Reviews</Option>
        {/* <Option>Carrer</Option>
