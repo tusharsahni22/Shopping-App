@@ -69,8 +69,8 @@ font-size: 15px;
 outline: none;
 `;
 const Img = styled.img`
-width:200px;
-height:30px;
+width:250px;
+height:60px;
 padding: 6px 0;
 &:hover{
   cursor: pointer;
@@ -81,8 +81,8 @@ padding: 6px 0;
 }
 `;
 const ImgMob = styled.img`
-width:200px;
-height:30px;
+width:260px;
+height:60px;
 padding: 0px 10px;
 &:hover{
   cursor: pointer;

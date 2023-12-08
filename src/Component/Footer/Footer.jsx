@@ -65,7 +65,7 @@ function Footer() {
        </InputDiv>
        </Column>
        <Column>
-       <Option>About StreetsWwear</Option>
+       <Option>About StreetsWear</Option>
        <Option>About Us</Option>
        <Option>Promotional Deals</Option>
        <Option>Reviews</Option>
