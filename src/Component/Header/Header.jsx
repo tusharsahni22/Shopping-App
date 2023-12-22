@@ -6,6 +6,7 @@ import { TiShoppingCart as TbHistory } from 'react-icons/ti';
 import { BiUserCircle,BiLogOutCircle } from 'react-icons/bi';
 import { FiMenu } from 'react-icons/fi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import {FaUpload} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import AddToCart from "../Cart/AddToCart";
 import { useEffect, useState } from "react";
@@ -168,6 +169,11 @@ const Title= styled.div`
 margin-top: 50px;
 font-weight: bold;
  `;
+const TitleCenter= styled.div`
+margin-top: 50px;
+text-align: center;
+font-weight: bold;
+ `;
 const Element= styled.div`
 margin-top: 10px;
 font-weight: 100;
@@ -258,6 +264,20 @@ width: 155px;
 }}
 `;
 
+const UploadDesign =styled.div`
+display: flex;
+border-radius: 10px;
+align-items: center;
+justify-content: center;
+font-size: 16px;
+color: white;
+margin: 50px 0 0 0;
+height: 50px;
+width: 370px;
+border: 1px solid black;
+background-color: rgb(33,33,33);
+`
+
 const ProfileOption =styled.div`
 height: 20px;
 gap: 10px;
@@ -274,6 +294,9 @@ const CartItemCount =styled.div`
 position: absolute;
 padding: 0 0 0 32px;
 `;
+const UploadIcon = styled(FaUpload)`
+padding-right: 10px;
+`;
 
 function Header() {
   const navigate = useNavigate();
@@ -283,6 +306,13 @@ function Header() {
   const [signup, setSignup] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const [LoggedIN, setLoggedIN] = useState(false);
+
+  const handleHover=(event)=>{
+    event.stopPropagation();
+    const MHeading1=event.target.getAttribute("data-value")
+    const SubHeading=event.target.innerText
+    navigate("/products",{state:{MHeading1,SubHeading}});
+  }
 
   useEffect(() => {
     setLoggedIN(isUserLoggedIn());
@@ -348,7 +378,8 @@ function Header() {
         <Div>
         <Section>
           <Title>WHATS NEW?</Title>
-          <Element>Nail</Element>
+          <Element  data-value="WHATS NEW?"  onClick={handleHover}>Nail</Element>
+          
           <Element>Pro Kit</Element>
           <Element>Extra-Large Tattoos</Element>
           <Element>New Tattoos</Element>
@@ -369,89 +400,59 @@ function Header() {
         </Section>
         </Div>
       </Text></Option>
-        <Option><Text>Tattoos<Div>
+        <Option><Text>Men<Div>
           <Section>
           <Title>By Size</Title>
-          <Element>Small</Element>
-          <Element>Medium</Element>
-          <Element>Large</Element>
-          <Element>Extra-Large</Element>
-          <Element>Shop All</Element>
-          </Section>
-          <Section>
-          <Title>BY PRODUCT</Title>
-          <Element>New In</Element>
-          <Element>Bundles</Element>
-          <Element>Mystery Bundles</Element>
-          <Element>Finger Packs</Element>
-          <Element>Sale</Element>
-          <Element>Accessories</Element>
-          <Element>Gift Card</Element>
-          <Element>Shop All</Element>
+          <Element  data-value="By Size" onClick={handleHover}>Small</Element>
+          <Element  data-value="By Size" onClick={handleHover}>Medium</Element>
+          <Element data-value="By Size" onClick={handleHover}>Large</Element>
+          <Element data-value="By Size" onClick={handleHover}>Extra-Large</Element>
+          <Element data-value="By Size" onClick={handleHover}>Shop All</Element>
           </Section>
           <Section>
           <Title>BY CATEGORY</Title>
-          <Element>Floral</Element>
-          <Element>Minimal</Element>
-          <Element>Butterfly</Element>
-          <Element>Quotes</Element>
-          <Element>Shop All</Element>
+          <Element data-value="By Category" onClick={handleHover}>Drop Shoulder</Element>
+          <Element data-value="By Category" onClick={handleHover}>Hoodies</Element>
+          <Element data-value="By Category" onClick={handleHover}>Best Seller</Element>
+          <Element data-value="By Category" onClick={handleHover}>Shop All</Element>
           </Section>
         </Div></Text></Option>
-        <Option><Text>Nail<Div>
-          <Section>
-          <Title>WHATS NEW?</Title>
-          <Element>Nail</Element>
-          <Element>Pro Kit</Element>
-          <Element>Extra-Large Tattoos</Element>
-          <Element>New Tattoos</Element>
-          </Section>
-          <Section>
-          <Title>WHATS NEW?</Title>
-          <Element>Nail</Element>
-          <Element>Pro Kit</Element>
-          <Element>Extra-Large Tattoos</Element>
-          <Element>New Tattoos</Element>
-        </Section>
+        <Option><Text>Women<Div>
         <Section>
-          <Title>WHATS NEW?</Title>
-          <Element>Nail</Element>
-          <Element>Pro Kit</Element>
-          <Element>Extra-Large Tattoos</Element>
-          <Element>New Tattoos</Element>
-        </Section>
-        </Div></Text></Option>
+          <Title>By Size</Title>
+          <Element data-value="By Size" onClick={handleHover}>Small</Element>
+          <Element data-value="By Size" onClick={handleHover}>Medium</Element>
+          <Element data-value="By Size" onClick={handleHover}>Large</Element>
+          <Element data-value="By Size" onClick={handleHover}>Extra-Large</Element>
+          <Element data-value="By Size" onClick={handleHover}>Shop All</Element>
+          </Section>
+          <Section>
+          <Title>BY CATEGORY</Title>
+          <Element data-value="By Category" onClick={handleHover}>Drop Shoulder</Element>
+          <Element data-value="By Category" onClick={handleHover}>Hoodies</Element>
+          <Element data-value="By Category" onClick={handleHover}>Best Seller</Element>
+          <Element data-value="By Category" onClick={handleHover}>Shop All</Element>
+          </Section>
+          </Div></Text></Option>
         <Option><Text>Custom<Div>
-        <Section>
-          <Title>WHATS NEW?</Title>
-          <Element>Nail</Element>
-          <Element>Pro Kit</Element>
-          <Element>Extra-Large Tattoos</Element>
-          <Element>New Tattoos</Element>
-          </Section>
-          <Section>
-          <Title>WHATS NEW?</Title>
-          <Element>Nail</Element>
-          <Element>Pro Kit</Element>
-          <Element>Extra-Large Tattoos</Element>
-          <Element>New Tattoos</Element>
-        </Section>
-        </Div></Text></Option>
-        <Option><Text>Tattoo Maker<Div>
-          <Section>
-          <Title>TATTOO MARKER</Title>
-          <Element>Tattoo Markers</Element>
-          <Element>Pro Kit</Element>
+          {/* <Section>
+          <Title>Our Designs</Title>
+          <Element>By Colour</Element>
+          <Element>By Design</Element>
           <Element>Freehand Kits and Duos</Element>
           <Element>Accessories</Element>
           <Element>Trace App</Element>
-          </Section>
+          </Section> */}
           <Section>
-          <Title>WHATS NEW?</Title>
-          <Element>Nail</Element>
+          <TitleCenter>Make Your Own</TitleCenter>
+          <UploadDesign>
+          {/* <TitleCenter>Make Your Own</TitleCenter> */}
+          <UploadIcon />
+          upload from your pc or mobile</UploadDesign>
+          {/* <Element>Nail</Element>
           <Element>Pro Kit</Element>
           <Element>Extra-Large Tattoos</Element>
-          <Element>New Tattoos</Element>
+          <Element>New Tattoos</Element> */}
         </Section>
         </Div></Text></Option>
 

@@ -4,10 +4,20 @@ import { AiFillInstagram} from 'react-icons/ai'
 // import { FaPinterest } from 'react-icons/fa'
 import { BsFacebook } from 'react-icons/bs'
 import { GoArrowRight } from 'react-icons/go'
+import { useNavigate } from "react-router-dom"
+
+const Container=styled.div`
+width:100%;
+height: 400px;
+background-color:#212121;
+display:flex;
+flex-direction: column;
+justify-content: space-between;
+`;
 
 const Wrapper=styled.div`
 width:100%;
-height: 480px;
+height: 380px;
 background-color:#212121;
 display:flex;
 `;
@@ -33,6 +43,14 @@ margin-top: 40px;
 border-radius: 7px;
 
 `;
+const Heading = styled.div`
+color:white;
+display:flex;
+margin:20px 0;
+gap: 10px;
+/* justify-content: space-between; */
+width: 200px;
+`;
 const Option = styled.div`
 color:white;
 display:flex;
@@ -40,6 +58,9 @@ margin:20px 0;
 gap: 10px;
 /* justify-content: space-between; */
 width: 200px;
+&:hover{
+  cursor: pointer;
+}
 `;
 const Input = styled.input`
 background-color:#212121;
@@ -52,9 +73,31 @@ placeholderTextColor:white
         color: white;
     }
 `;
+const AllRight = styled.div`
+background-color:#212121;
+color:white;
+margin:0 30px;
+`;
+const Policy = styled.div`
+background-color:#212121;
+color:white;
+margin:0 30px;
+display: flex;
+gap: 10px;
+`;
+const Buttons = styled.div`
+color:white;
+margin:20px 0;
+&:hover{
+  cursor: pointer;
+}
+`;
+
 
 function Footer() {
+  const navigate = useNavigate()
   return (
+    <Container>
     <Wrapper>
        <Column>
        <Title>Be the first to know</Title>
@@ -65,7 +108,7 @@ function Footer() {
        </InputDiv>
        </Column>
        <Column>
-       <Option>About StreetsWear</Option>
+       <Heading>About StreetsWear</Heading>
        <Option>About Us</Option>
        <Option>Promotional Deals</Option>
        <Option>Reviews</Option>
@@ -74,7 +117,7 @@ function Footer() {
        </Column>
 
        <Column>
-       <Option>Customer Care</Option>
+       <Heading>Customer Care</Heading>
        <Option>Tracking</Option>
        <Option>Shipping</Option>
        <Option>Return</Option>
@@ -82,27 +125,21 @@ function Footer() {
        </Column>
 
        <Column>
-       <Option>
-        <div>Follow Us</div>
-        {/* <AiFillInstagram/>
-        <FaPinterest/>
-        <BsFacebook/>
-        <AiFillYoutube/>
-        <AiOutlineTwitter/> */}
-       </Option>
+       <Title>
+        <div>Follow us</div>
+       </Title>
        <Option><AiFillInstagram/> Instagram</Option>
        <Option><BsFacebook/> Facebook</Option>
-       {/* <Option>Partnership</Option>
-       <Option>Inkbox Community</Option> */}
-       {/* <Option>Press</Option>
-       <Option>About</Option>
-       <Option>Carrer</Option>
-       <Option>Partnership</Option>
-       <Option>Inkbox Community</Option>
-       <Option>Press</Option> */}
        </Column>
-    
     </Wrapper>
+    <AllRight>© 2023, Streetswear India. All rights reserved.</AllRight>
+    <Policy>
+      <Buttons onClick={()=>{navigate("/policy/return&refund")}}>Return & Refund policy</Buttons>
+      <Buttons>Privacy policy</Buttons>
+      <Buttons>Terms of service</Buttons>
+      <Buttons>Shipping policy</Buttons>
+      </Policy>
+    </Container>
   )
 }
 

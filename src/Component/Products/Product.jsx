@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import SideBar from "../SideBar/SideBar"
 import { BiCart } from 'react-icons/bi';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,useLocation } from 'react-router-dom';
 import { viewProduct } from "../Services/product";
 const Wrapper = styled.div`
 width: 100%;
@@ -27,7 +27,12 @@ padding: 25px 0;
 const Heading = styled.div`
 font-size: 2.25rem;
 font-weight: bold;
-padding: 25px 0;
+padding: 25px 0 0 0;
+`;
+const SubHeadings = styled.div`
+font-size: 1.25rem;
+font-weight: bold;
+padding: 0 0 25px 0;
 `;
 const ProductItems = styled.div`
 /* margin-top: 50px; */
@@ -68,6 +73,8 @@ max-width: 340px;
 function Product() {
   const navigate = useNavigate();
   const [data,setData] = React.useState([])
+  const location = useLocation();
+  const {MHeading1,SubHeading} = location.state || {}
 //   const dummyData = [
 //     // {pic:"cool-man-sweatshirt.png",title:"Forgettable",size:"4x4 Inches",price:"21"},
 //     // {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
@@ -88,7 +95,8 @@ viewProduct().then((res)=>{
 
   return (
     <Wrapper>
-      <Heading>All Products</Heading>
+      <Heading>{MHeading1}</Heading>
+      <SubHeadings>{SubHeading}</SubHeadings>
       <Container>
       <SideBar data={[{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Style",type:["Linework","Illustrative","Blackwork","Minimalist","Text"]},{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]}]}/>
       <Services>
