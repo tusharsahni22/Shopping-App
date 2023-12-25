@@ -52,6 +52,7 @@ display:flex;
 justify-content: space-between;
 padding: 16px 3.5rem;
 width: auto;
+align-items: center;
 @media (max-width:1024px){
   padding: 16px 12px;
 }
