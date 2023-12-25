@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../reducers/cart';
 // import { nanoid } from '@reduxjs/toolkit';
 import { useLocation } from 'react-router-dom';
+import { ToastContainer,toast } from 'react-toastify';
 
 const Wrapper = styled.div``;
 const Upper = styled.div`
@@ -137,10 +138,12 @@ function Product() {
           quantity,
           pic
         }))
+        toast.success("Added to cart successfully")
       }
 
     return (
         <Wrapper>
+        <ToastContainer />
         <Upper>
         <Section1>
             <ImageGallery className="image-gallery-content image-gallery-thumbnails-container image-gallery-thumbnail image-gallery-thumbnail.active" showFullscreenButton={false} showNav={false} showPlayButton={false} items={images} />

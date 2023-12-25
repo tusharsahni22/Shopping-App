@@ -16,6 +16,15 @@ import { doLogout, isUserLoggedIn } from "../Services/auth";
 import { useSelector } from "react-redux";
 
 const Wrapper = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100; // Ensure the header stays on top of other content
+  // Other styles...
+  background-color: white;
+`;
+const HeaderContent = styled.div`
+  padding-bottom: 220px; // This should be equal to the height of your header
 `;
 const Slide = styled.div`
   height: 36px;
@@ -333,7 +342,8 @@ function Header() {
     {signup?<SignupPage toggleSignup={toggleSignup} /> :""}
     {sidebar?<Sidebar toggleSidebar={toggleSidebar} /> :""}
     
-    <Wrapper >
+    <HeaderContent>
+    <Wrapper>
       <Slide><SlideShow /></Slide>
       <Members>
         <Content>India</Content>
@@ -458,6 +468,7 @@ function Header() {
 
       </DropDown>
     </Wrapper>
+      </HeaderContent>
     </>
 
   );

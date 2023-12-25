@@ -6,7 +6,7 @@ import { useSelector,useDispatch  } from 'react-redux';
 import { removeFromCart,updateQuantity } from '../reducers/cart';
 
 const Sidebar = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   height: 100vh;
@@ -26,7 +26,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   backdrop-filter: blur(2px);
-  z-index: 1;
+  z-index: 100;
 `;
 const Head = styled.div`
 display : flex;
