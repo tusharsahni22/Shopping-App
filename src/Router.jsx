@@ -7,6 +7,7 @@ import MyProfile from './Component/MyProfile/Index'
 import './App.css'
 import Checkout from './Component/Checkout'
 import ReturnandRefund from "./Component/Policy/returnandreturnpolicy"
+import Shipping from "./Component/Policy/shipping"
 // import PrivateRoutes from './Component/PrivateRoute'
 function Router () {
   return (
@@ -17,6 +18,7 @@ function Router () {
         <Route path='/products' element={<Product/>} />
         <Route path='/product-description' element={<ProductDesc/>} />
         <Route path='/policy/return&refund' element={<ReturnandRefund/>} />
+        <Route path='/policy/shipping-policy' element={<Shipping/>} />
         <Route path='/checkout' element={<Checkout/>} />
         {/* <Route path='/myprofile' element={<PrivateRoutes/>} /> */}
         <Route path='/myprofile' element={<MyProfile/>} />

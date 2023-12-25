@@ -84,6 +84,7 @@ color:white;
 margin:0 30px;
 display: flex;
 gap: 10px;
+align-items: center;
 `;
 const Buttons = styled.div`
 color:white;
@@ -134,10 +135,10 @@ function Footer() {
     </Wrapper>
     <AllRight>© 2023, Streetswear India. All rights reserved.</AllRight>
     <Policy>
-      <Buttons onClick={()=>{navigate("/policy/return&refund")}}>Return & Refund policy</Buttons>
-      <Buttons>Privacy policy</Buttons>
-      <Buttons>Terms of service</Buttons>
-      <Buttons>Shipping policy</Buttons>
+    •<Buttons onClick={()=>{navigate("/policy/return&refund")}}>Return & Refund policy</Buttons>• 
+      <Buttons>Privacy policy</Buttons>• 
+      <Buttons>Terms of service</Buttons>• 
+      <Buttons onClick={()=>{navigate("/policy/shipping-policy")}}>Shipping policy</Buttons> 
       </Policy>
     </Container>
   )
