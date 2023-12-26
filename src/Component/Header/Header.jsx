@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 100; // Ensure the header stays on top of other content
+  z-index: 99; // Ensure the header stays on top of other content
   // Other styles...
   background-color: white;
 `;
