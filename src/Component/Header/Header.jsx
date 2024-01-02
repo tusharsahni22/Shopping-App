@@ -411,7 +411,7 @@ function Header() {
         </Section>
         </Div>
       </Text></Option>
-        <Option><Text>Men<Div>
+        <Option><Text>Hoddies<Div>
           <Section>
           <Title>By Size</Title>
           <Element  data-value="By Size" onClick={handleHover}>Small</Element>
@@ -428,7 +428,7 @@ function Header() {
           <Element data-value="By Category" onClick={handleHover}>Shop All</Element>
           </Section>
         </Div></Text></Option>
-        <Option><Text>Women<Div>
+        <Option><Text>Sweatshirts<Div>
         <Section>
           <Title>By Size</Title>
           <Element data-value="By Size" onClick={handleHover}>Small</Element>
