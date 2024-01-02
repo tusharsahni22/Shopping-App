@@ -137,7 +137,7 @@ function Footer() {
     <Policy>
     •<Buttons onClick={()=>{navigate("/policy/return&refund")}}>Return & Refund policy</Buttons>• 
       <Buttons>Privacy policy</Buttons>• 
-      <Buttons>Terms of service</Buttons>• 
+      <Buttons onClick={()=>{navigate("/policy/terms-of-service")}}>Terms of service</Buttons>• 
       <Buttons onClick={()=>{navigate("/policy/shipping-policy")}}>Shipping policy</Buttons> 
       </Policy>
     </Container>

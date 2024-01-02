@@ -16,7 +16,7 @@ function Homepage() {
   return (
     <Wrapper>
       <Banner url={"./banner.jpg"}/>
-      <Mainservice url={[{data:"Service.jpg"},{data:"Service.jpg"},{data:"Service.jpg"},{data:"Service.jpg"}]}/>
+      <Mainservice url={[{data:"./Mainserice/1.png"},{data:"./Mainserice/2.png"},{data:"./Mainserice/3.png"},{data:"./Mainserice/4.png"}]}/>
       <Poster url={"./Poster.jpg"}/>
       <TwoService url2={"./Service2.jpg"} url1={"./Service3.jpg"} buy1={"Shop Now"} buy2={"Shop Nail Art Strips"}/>
       <Padding>
