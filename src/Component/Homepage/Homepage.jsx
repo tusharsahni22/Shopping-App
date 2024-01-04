@@ -15,10 +15,10 @@ padding: 0 50px;
 function Homepage() {
   return (
     <Wrapper>
-      <Banner url={"./FREE KEYCHAIN WITH EVERY ORDER.png"}/>
-      <Mainservice url={[{data:"./Mainserice/1.png"},{data:"./Mainserice/2.png"},{data:"./Mainserice/3.png"},{data:"./Mainserice/4.png"}]}/>
-      <Poster url={"./Poster.png"}/>
-      <TwoService url2={"./service1.png"} url1={"./service2.png"} buy1={"Shop Now"} buy2={"Shop Nail Art Strips"}/>
+      <Banner url={"./FREE KEYCHAIN WITH EVERY ORDER.jpg"}/>
+      <Mainservice url={[{data:"./Mainserice/1.jpg"},{data:"./Mainserice/2.jpg"},{data:"./Mainserice/3.jpg"},{data:"./Mainserice/4.jpg"}]}/>
+      <Poster url={"./Poster.jpg"}/>
+      <TwoService url2={"./service1.jpg"} url1={"./service2.jpg"} buy1={"Shop Now"} buy2={"Shop Nail Art Strips"}/>
       <Padding>
       <Whatsnew title={"New In"}/>
       </Padding>

@@ -55,7 +55,7 @@ const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
   position: relative;
   top: 31px;
   left: 165px;
-  color: black;
+  color: white;
   &:hover{
     color: red;
   }
@@ -66,10 +66,10 @@ function Whatsnew(props) {
         {pic:"whatsnew1.jpg",title:"Forgettable",size:"4x4 Inches",price:"21"},
         {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
         {pic:"whatsnew3.jpg",title:"The Marvels Emblem",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew2.jpg",title:"Photon",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew1.jpg",title:"Ms. Marvel",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew3.jpg",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew1.jpg",title:"We're a Team",size:"4x4 Inches",price:"21"}
+        {pic:"whatsnew4.jpg",title:"Photon",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew5.jpg",title:"Ms. Marvel",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew6.jpg",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew7.jpg",title:"We're a Team",size:"4x4 Inches",price:"21"}
     ]
     const navigate = useNavigate();
   return (
