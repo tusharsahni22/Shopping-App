@@ -16,7 +16,7 @@ width: 100%;
 function Poster(props) {
   return (
     <Wrapper>
-        <Img src={props.url}/>
+        <Img  loading='lazy' src={props.url}/>
     </Wrapper>
   )
 }

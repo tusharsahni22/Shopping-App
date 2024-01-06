@@ -79,7 +79,7 @@ function Whatsnew(props) {
         {dummyData.map((e)=>(
             <Frame key={e.key} >
               <FavoriteIcon/>
-            <Img onClick={()=>{navigate("/products")}} src={e.pic} />   
+            <Img loading='lazy' onClick={()=>{navigate("/products")}} src={e.pic} />   
             <Service>
             <div>                
             <Title>{e.title}</Title>

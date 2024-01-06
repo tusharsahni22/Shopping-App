@@ -53,7 +53,7 @@ function TwoService(props) {
   return (
     <Wrapper>
         <Service onClick={()=>{navigate("/products")}}>
-        <Img src={props.url1}/>
+        <Img loading='lazy' src={props.url1}/>
         <Title>Save *Big* on Halloween Ink</Title>
         <Desc>We had free space on our site and Spirit Halloween immediately took over?</Desc>
         <div style={{display:"flex"}}>
@@ -62,7 +62,7 @@ function TwoService(props) {
         </div>
         </Service>
         <Service onClick={()=>{navigate("/products")}}>
-        <Img2 src={props.url2}/>
+        <Img2 loading='lazy' src={props.url2}/>
         <Title>Save *Big* on Halloween Ink</Title>
         <Desc>We had free space on our site and Spirit Halloween immediately took over?</Desc>
         <div style={{display:"flex"}}>

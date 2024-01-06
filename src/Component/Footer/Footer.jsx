@@ -133,10 +133,10 @@ function Footer() {
        <Option><BsFacebook/> Facebook</Option>
        </Column>
     </Wrapper>
-    <AllRight>© 2023, Streetswear India. All rights reserved. Managed By Tushar Sahni  </AllRight>
+    <AllRight>© 2024, Streetswear India. All rights reserved. Managed By Tushar Sahni  </AllRight>
     <Policy>
     •<Buttons onClick={()=>{navigate("/policy/return&refund")}}>Return & Refund policy</Buttons>• 
-      <Buttons>Privacy policy</Buttons>• 
+      <Buttons onClick={()=>{navigate("/policy/privacy-policy")}} >Privacy policy</Buttons>• 
       <Buttons onClick={()=>{navigate("/policy/terms-of-service")}}>Terms of service</Buttons>• 
       <Buttons onClick={()=>{navigate("/policy/shipping-policy")}}>Shipping policy</Buttons> 
       </Policy>

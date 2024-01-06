@@ -32,7 +32,7 @@ function Mainservice(props) {
     <MainService>
       {props.url.map((e)=>(
         <div key={props.data} onClick={()=>{handleProducts()}} >
-        <Img src={e.data} />
+        <Img loading='lazy' src={e.data} />
         </div>
        
       ))}
