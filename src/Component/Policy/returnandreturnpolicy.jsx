@@ -128,17 +128,17 @@ function Index() {
           <br />
           <br />
           <ul>
-            <li>Via Email: support@streetswear.live</li>
+            <li>Via Email: support@streetswear.in</li>
             <br />
             <li>
               Via this Link: 
               <a
-                href="https://www.streetswear.live"
+                href="https://www.streetswear.in"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{paddingLeft:"5px"}}
               >
-               streetswear.live
+               streetswear.in
               </a>
             </li>
           </ul>

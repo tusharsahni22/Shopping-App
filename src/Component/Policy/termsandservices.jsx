@@ -603,7 +603,17 @@ function Index() {
           <ul>
             <br />
             <li>Email: support@streetswear.in</li>
-            <li>Via this Link: https://streetswear.in</li>
+            <li>
+              Via this Link: 
+              <a
+                href="https://www.streetswear.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{paddingLeft:"5px"}}
+              >
+               streetswear.in
+              </a>
+            </li>
           </ul>
         </PolicyText>
         <br />

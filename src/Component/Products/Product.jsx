@@ -98,7 +98,7 @@ viewProduct().then((res)=>{
       <Heading>{MHeading1}</Heading>
       <SubHeadings>{SubHeading}</SubHeadings>
       <Container>
-      <SideBar data={[{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Style",type:["Linework","Illustrative","Blackwork","Minimalist","Text"]},{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]}]}/>
+      <SideBar data={[{category:"Size",type:["Small","Medium","Large","X Large","XXL"]},{category:"Colours",type:["White","Black","Blue","Warm White","Grey"]},{category:"Category",type:["Tshits","Sweatshirt","Hoddies"]}]}/>
       <Services>
         <ProductItems >
         {data.map((e)=>(
@@ -107,11 +107,12 @@ viewProduct().then((res)=>{
               price:e.price,
               size:e.size,
               title:e.title,
-              pic:e.pic,
+              mainPicture:e.mainPicture,
+              altPictures:e.altPictures,
               specification:e.specification,
               description:e.description
               }} )}}>
-            <Img src={e.pic} />   
+            <Img src={e.mainPicture} />   
             <Service>
             <div>                
             <Title>{e.title}</Title>

@@ -112,22 +112,21 @@ function Product() {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = React.useState(1);
   const {state} = useLocation();
-  const {id,title,price,pic,specification} = state;
+  const {id,title,price,mainPicture,specification,altPictures} = state;
   // description,size
-  console.log("id",pic)
 
     const images = [
         {
-          original: "./cool-man-sweatshirt.png",
-          thumbnail: "./cool-man-sweatshirt.png",
+          original: mainPicture,
+          thumbnail: mainPicture,
         },
         {
-          original: "./man-hd.png",
-          thumbnail: "./man-hd.png",
+          original: altPictures[0],
+          thumbnail: altPictures[0],
         },
         {
-          original: "./man-tshirt.png",
-          thumbnail: "./man-tshirt.png",
+          original: altPictures[1],
+          thumbnail: altPictures[1]
         },
       ];
       const handleAddtocart = () => {
@@ -136,7 +135,7 @@ function Product() {
           title,
           price,
           quantity,
-          pic
+          pic: mainPicture,
         }))
         toast.success("Added to cart successfully")
       }
