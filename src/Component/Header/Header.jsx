@@ -30,22 +30,22 @@ const Slide = styled.div`
   height: 36px;
   background-color:#212121;
 `;
-const Members = styled.div`
-display: flex;
-justify-content: flex-end;
-padding-right: 50px ;
-background-color: #F4F5F7;
-height: 30px;
-`;
+// const Members = styled.div`
+// display: flex;
+// justify-content: flex-end;
+// padding-right: 50px ;
+// background-color: #F4F5F7;
+// height: 30px;
+// `;
 
-const Content =styled.div`
-font:12px roboto;
-padding: 7px 5px;
-&:hover{
-  cursor: pointer;
-  color: gray;
-}
-`;
+// const Content =styled.div`
+// font:12px roboto;
+// padding: 7px 5px;
+// &:hover{
+//   cursor: pointer;
+//   color: gray;
+// }
+// `;
 
 const Menu =  styled.div`
 display:flex;
@@ -346,13 +346,13 @@ function Header() {
     <HeaderContent>
     <Wrapper>
       <Slide><SlideShow /></Slide>
-      <Members>
+      {/* <Members>
         <Content>India</Content>
         <Content>Contact Us</Content>
         <Content>Student Discount</Content>
         <Content>Rewards</Content>
         <Content>Help</Content>
-      </Members>
+      </Members> */}
       <Menu>
         <MobileMenu>
         <FiMenu onClick={toggleSidebar} style={{width:"25px",height:"25px"}}/>

@@ -33,12 +33,12 @@ font-weight: 800;
 
 
 `;
-const Price = styled.div`
+// const Price = styled.div`
 
-`;
-const Size = styled.div`
+// `;
+// const Size = styled.div`
 
-`;
+// `;
 const Frame = styled.div`
 padding: 10px;
 :hover{
@@ -83,10 +83,10 @@ function Whatsnew(props) {
             <Service>
             <div>                
             <Title>{e.title}</Title>
-            <Size>{e.size}</Size>
-            <Price>₹ {e.price}</Price>
+            {/* <Size>{e.size}</Size> */}
+            {/* <Price>₹ {e.price}</Price> */}
             </div>
-            <BiCart style={{marginTop:"35px",height:"25px",width:"25px"}}/>
+            <BiCart style={{marginTop:"20px",height:"25px",width:"25px"}}/>
             </Service>
             </Frame>
          ))}

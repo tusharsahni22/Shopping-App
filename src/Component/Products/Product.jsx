@@ -22,7 +22,7 @@ width: 100%;
 const Title = styled.div`
 font-size: 1rem;
 font-weight: bold;
-padding: 25px 0;
+padding: 25px 0 5px 0;
 `;
 const Heading = styled.div`
 font-size: 2.25rem;
@@ -47,10 +47,19 @@ grid-template-columns: repeat(3, minmax(0, 1fr));
 `;
 const Price = styled.div`
 font-weight: bold;
+text-decoration: line-through;
 `;
-const Size = styled.div`
+const DiscountedPrice = styled.div`
+color: #ff0000;
+`;
+const Discounted = styled.div`
+display: flex;
+gap: 15px;
+`;
 
-`;
+// const Size = styled.div`
+
+// `;
 const Frame = styled.div`
 padding: 10px;
 
@@ -92,13 +101,17 @@ viewProduct().then((res)=>{
 }).catch((err)=>console.log(err))
 },[])
 
+const discoutPrice = (pricetoConvert)=>{
+  return pricetoConvert - 0.1675 * pricetoConvert;
+}
+
 
   return (
     <Wrapper>
       <Heading>{MHeading1}</Heading>
       <SubHeadings>{SubHeading}</SubHeadings>
       <Container>
-      <SideBar data={[{category:"Size",type:["Small","Medium","Large","X Large","XXL"]},{category:"Colours",type:["White","Black","Blue","Warm White","Grey"]},{category:"Category",type:["Tshits","Sweatshirt","Hoddies"]}]}/>
+      <SideBar data={[{category:"Size",type:["Small","Medium","Large","X Large","XXL"]},{category:"Colours",type:["White","Black"]},{category:"Category",type:["Tshits","Sweatshirt","Hoddies"]}]}/>
       <Services>
         <ProductItems >
         {data.map((e)=>(
@@ -116,10 +129,14 @@ viewProduct().then((res)=>{
             <Service>
             <div>                
             <Title>{e.title}</Title>
-            <Size>{e.size}</Size>
+            <Discounted>
             <Price>₹{e.price}</Price>
+            <DiscountedPrice>₹{discoutPrice(e.price)}</DiscountedPrice>
+
+            </Discounted>
+
             </div>
-            <BiCart className='Bicart' style={{marginTop:"35px",height:"25px",width:"25px",padding:"10px",borderRadius:"20px",':hover': {backgroundColor:"#80808057",cursor:"pointer"}}}/>
+            <BiCart className='Bicart' style={{marginTop:"20px",height:"25px",width:"25px",padding:"10px",borderRadius:"20px",':hover': {backgroundColor:"#80808057",cursor:"pointer"}}}/>
             </Service>
             </Frame>
          ))}
