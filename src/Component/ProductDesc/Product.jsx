@@ -223,6 +223,10 @@ function Product() {
       original: altPictures[1],
       thumbnail: altPictures[1],
     },
+    {
+      original: altPictures[2],
+      thumbnail: altPictures[2],
+    },
   ];
   const handleAddtocart = () => {
     dispatch(
