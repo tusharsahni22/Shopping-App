@@ -207,7 +207,7 @@ function Product() {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = React.useState(1);
   const { state } = useLocation();
-  const { id, title, price, mainPicture, specification, altPictures } = state;
+  const { id, title, price, mainPicture, altPictures,description } = state;
   // description,size
 
   const images = [
@@ -323,7 +323,7 @@ function Product() {
           <Description>Description </Description>
 
           <div>
-            The {title} {specification}
+            The {title} {description}
             <br />
             <br />
             <br />
