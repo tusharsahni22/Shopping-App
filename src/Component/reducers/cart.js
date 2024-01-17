@@ -36,7 +36,7 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            const { id, title, price, image,quantity,pic } = action.payload;
+            const { id, title, price, image,quantity,pic,size } = action.payload;
             const product = state.cart.find((item) => item.id === id);
             const total= price*quantity;
             
@@ -52,7 +52,8 @@ export const cartSlice = createSlice({
                     image,
                     quantity,
                     total,
-                    pic
+                    pic,
+                    size
                 });
             }
 
@@ -63,7 +64,6 @@ export const cartSlice = createSlice({
         removeFromCart: (state, action) => {
             const  id  = action.payload;
             const product = state.cart.find((item) => item.id === id);
-            console.log("pra",product)
             // if product then remove from cart
 
             if (product) {

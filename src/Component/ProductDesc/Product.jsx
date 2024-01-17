@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { IoCartOutline } from "react-icons/io5";
 import { MdFavoriteBorder } from "react-icons/md";
@@ -206,6 +206,8 @@ const Discount = styled(CiDiscount1)`
 function Product() {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = React.useState(1);
+  const [size, setSize] = React.useState("s"); // ["S","M","L","XL","XXL"]
+  const [color,setColor] = React.useState("white")
   const { state } = useLocation();
   const { id, title, price, mainPicture, altPictures,description } = state;
   // description,size
@@ -228,6 +230,16 @@ function Product() {
       thumbnail: altPictures[2],
     },
   ];
+  const colorToIndexMap = {
+    'black': 0,
+    'white': 1,
+    'red': 2,
+    'blue':3
+    // Add more colors as needed
+  };
+  useEffect(()=>{
+
+  },[color])
   const handleAddtocart = () => {
     dispatch(
       addToCart({
@@ -235,6 +247,7 @@ function Product() {
         title,
         price,
         quantity,
+        size,
         pic: mainPicture,
       })
     );
@@ -255,6 +268,7 @@ function Product() {
             showNav={false}
             showPlayButton={false}
             items={images}
+            startIndex={colorToIndexMap[color]}
           />
         </Section1>
         <Section2>
@@ -289,18 +303,18 @@ function Product() {
           </Specification>
           <Text>Color </Text>
           <Colour>
-            <MainColour style={{ backgroundColor: "black" }} />
-            <MainColour style={{ backgroundColor: "white" }} />
-            <MainColour style={{ backgroundColor: "red" }} />
-            <MainColour style={{ backgroundColor: "blue" }} />
+            <MainColour onClick={()=>{setColor("black")}} style={{ backgroundColor: "black" }} />
+            <MainColour onClick={()=>{setColor("white")}}style={{ backgroundColor: "white" }} />
+            <MainColour onClick={()=>{setColor("red")}}style={{ backgroundColor: "red" }} />
+            <MainColour onClick={()=>{setColor("blue")}} style={{ backgroundColor: "blue" }} />
           </Colour>
           <Text>Size </Text>
           <Size>
-            <MainSizes>S</MainSizes>
-            <MainSizes>M</MainSizes>
-            <MainSizes>L</MainSizes>
-            <MainSizes>XL</MainSizes>
-            <MainSizes>XXL</MainSizes>
+            <MainSizes onClick={()=>{setSize("s")}} style={{ color: size==="s"?"white":"black",backgroundColor: size === "s" ? "black" : "transparent" }}>S</MainSizes>
+            <MainSizes onClick={()=>{setSize("m")}} style={{color: size==="m"?"white":"black",backgroundColor: size === "m" ? "black" : "transparent" }}>M</MainSizes>
+            <MainSizes onClick={()=>{setSize("l")}} style={{color: size==="l"?"white":"black",backgroundColor: size === "l" ? "black" : "transparent" }}>L</MainSizes>
+            <MainSizes onClick={()=>{setSize("xl")}} style={{color: size==="xl"?"white":"black",backgroundColor: size === "xl" ? "black" : "transparent" }}>XL</MainSizes>
+            <MainSizes onClick={()=>{setSize("xxl")}} style={{color: size==="xxl"?"white":"black",backgroundColor: size === "xxl" ? "black" : "transparent" }}>XXL</MainSizes>
           </Size>
           <Text>Quantity</Text>
 

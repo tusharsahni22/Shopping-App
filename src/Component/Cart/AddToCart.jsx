@@ -124,6 +124,8 @@ font-weight: bold;
 const TotalPrice = styled.div`
 margin-left: auto;
 `;
+const Size = styled.div`
+`;
 const Remove = styled.div`
 color: #212121;
 margin-top: 60px;
@@ -216,6 +218,7 @@ function App({toggleAddtocart}) {
           <Details>
             <Name>{e.title}</Name>
             <Price>₹{e.price}</Price>
+            <Size>Size : {e.size.toUpperCase()}</Size>
             <Quantity>
               <Minus onClick={()=>{handleQuantityMinus(e.id)}}>-</Minus>
               <Countq>{e.quantity}</Countq>
