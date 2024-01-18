@@ -206,10 +206,10 @@ const Discount = styled(CiDiscount1)`
 function Product() {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = React.useState(1);
-  const [size, setSize] = React.useState("s"); // ["S","M","L","XL","XXL"]
-  const [color,setColor] = React.useState("white")
+  const [size, setSize] = React.useState("s");
+  const [color,setColor] = React.useState("black")
   const { state } = useLocation();
-  const { id, title, price, mainPicture, altPictures,description } = state;
+  const { id, title, price, mainPicture, altPictures,description,colorToIndexMap } = state;
   // description,size
 
   const images = [
@@ -230,13 +230,13 @@ function Product() {
       thumbnail: altPictures[2],
     },
   ];
-  const colorToIndexMap = {
-    'black': 0,
-    'white': 1,
-    'red': 2,
-    'blue':3
-    // Add more colors as needed
-  };
+  // const colorToIndexMap = {
+  //   'black': 0,
+  //   'white': 1,
+  //   'red': 2,
+  //   'blue':3
+  //   // Add more colors as needed
+  // };
   useEffect(()=>{
 
   },[color])
@@ -245,9 +245,10 @@ function Product() {
       addToCart({
         id,
         title,
-        price,
+        price:discountPrice(price),
         quantity,
         size,
+        color,
         pic: mainPicture,
       })
     );
@@ -268,7 +269,7 @@ function Product() {
             showNav={false}
             showPlayButton={false}
             items={images}
-            startIndex={colorToIndexMap[color]}
+            startIndex={colorToIndexMap[color]||0}
           />
         </Section1>
         <Section2>
@@ -290,6 +291,7 @@ function Product() {
           </Offers>
           <Description>Specification </Description>
           <Specification>
+            {/* {specification.maps} */}
             <ul>
               <br/>   
               <li>Full Sleeves</li>

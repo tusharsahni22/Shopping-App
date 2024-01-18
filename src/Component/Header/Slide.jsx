@@ -22,13 +22,13 @@ const SlideShow = () => {
   return (
     <Slide {...properties} duration="3000" transitionDuration="300">
       <EachSlide>
-        We Ship Worldwide! InkBox Tattos Everywhere
+        We Ship All over India! Streetswear Everywhere
       </EachSlide>
       <EachSlide>
-       Buy 3, Get 25% off
+       Buy 2, Get 10% off.
       </EachSlide>
       <EachSlide>
-       Take 30% Select Style.
+      Buy 3, Get 20% off.
       </EachSlide>
     </Slide>
   );

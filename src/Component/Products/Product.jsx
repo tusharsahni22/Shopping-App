@@ -96,7 +96,7 @@ function Product() {
 
 useEffect(()=>{
 viewProduct().then((res)=>{
-  console.log(res.data)
+  console.log("data",res.data)
   setData(res.data)
 }).catch((err)=>console.log(err))
 },[])
@@ -123,8 +123,9 @@ const discoutPrice = (pricetoConvert)=>{
               mainPicture:e.mainPicture,
               altPictures:e.altPictures,
               specification:e.specification,
-              description:e.description
-              }} )}}>
+              description:e.description,
+              colorToIndexMap:e.colorToIndexMap.reduce((res,cur)=>{return {...cur,...res}},{})
+              }})}}>
             <Img src={e.mainPicture} />   
             <Service>
             <div>                
@@ -132,9 +133,7 @@ const discoutPrice = (pricetoConvert)=>{
             <Discounted>
             <Price>₹{e.price}</Price>
             <DiscountedPrice>₹{discoutPrice(e.price)}</DiscountedPrice>
-
             </Discounted>
-
             </div>
             <BiCart className='Bicart' style={{marginTop:"20px",height:"25px",width:"25px",padding:"10px",borderRadius:"20px",':hover': {backgroundColor:"#80808057",cursor:"pointer"}}}/>
             </Service>
