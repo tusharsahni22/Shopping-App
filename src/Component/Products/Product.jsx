@@ -84,15 +84,6 @@ function Product() {
   const [data,setData] = React.useState([])
   const location = useLocation();
   const {MHeading1,SubHeading} = location.state || {}
-//   const dummyData = [
-//     // {pic:"cool-man-sweatshirt.png",title:"Forgettable",size:"4x4 Inches",price:"21"},
-//     // {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
-//     // {pic:"man-hd.png",title:"The Marvels Emblem",size:"4x4 Inches",price:"21"},
-//     // {pic:"whatsnew2.jpg",title:"Photon",size:"4x4 Inches",price:"21"},
-//     // {pic:"man-tshirt.png",title:"Ms. Marvel",size:"4x4 Inches",price:"21"},
-//     // {pic:"whatsnew3.jpg",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
-//     // {pic:"whatsnew1.jpg",title:"We're a Team",size:"4x4 Inches",price:"21"}
-// ]
 
 useEffect(()=>{
 viewProduct().then((res)=>{
@@ -102,7 +93,8 @@ viewProduct().then((res)=>{
 },[])
 
 const discoutPrice = (pricetoConvert)=>{
-  return pricetoConvert - 0.1675 * pricetoConvert;
+  const discountedPrice=pricetoConvert - 0.1675 * pricetoConvert;
+  return Math.round(discountedPrice);
 }
 
 

@@ -151,7 +151,7 @@ const MainColour = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 60%;
-  border: 1px solid black;
+  border: 1px solid rgb(232, 232, 232);
 
   &:hover {
     cursor: pointer;
@@ -209,7 +209,7 @@ function Product() {
   const [size, setSize] = React.useState("s");
   const [color,setColor] = React.useState("black")
   const { state } = useLocation();
-  const { id, title, price, mainPicture, altPictures,description,colorToIndexMap } = state;
+  const { id, title, price, mainPicture, altPictures,description,colorToIndexMap,specification } = state;
   // description,size
 
   const images = [
@@ -255,7 +255,8 @@ function Product() {
     toast.success("Added to cart successfully");
   };
   const discountPrice = (pricetoConvert) => {
-    return pricetoConvert - 0.1675 * pricetoConvert;
+    const discountedPrice=pricetoConvert - 0.1675 * pricetoConvert;
+    return Math.round(discountedPrice);
   };
 
   return (
@@ -291,17 +292,7 @@ function Product() {
           </Offers>
           <Description>Specification </Description>
           <Specification>
-            {/* {specification.maps} */}
-            <ul>
-              <br/>   
-              <li>Full Sleeves</li>
-              <li>Crew Neck</li>
-              <li>Regular Fit</li>
-              <li>Printed</li>
-              <li>Cotton Blend</li>
-              <li>Natural Stretch</li>
-              <li>FABRIC: 100% Cotton</li>
-            </ul>
+            {specification.map((e,id)=><ul key={id}><li>{e}</li></ul>)}            
           </Specification>
           <Text>Color </Text>
           <Colour>

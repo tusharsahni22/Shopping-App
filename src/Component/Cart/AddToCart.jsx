@@ -205,7 +205,7 @@ function App({toggleAddtocart}) {
 
   return (
     <> 
-      <Overlay />
+      <Overlay onClick={()=>{toggleAddtocart()}} />
       <Sidebar >
         <Head><LeftArrow onClick={()=>{toggleAddtocart()}}/>
         <Text>Keep Shoping </Text>
