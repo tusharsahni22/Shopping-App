@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
 });
 
 export const viewProduct = () => {
-  return axiosInstance.post("/viewProduct").then((result) => {
+  return axiosInstance.get("/viewProduct").then((result) => {
     return result;
   }).catch((err) => {
     console.log("Error in viewProduct", err);
