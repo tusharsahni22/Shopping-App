@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from '../Header';
+// import Header from '../Header';
 import Footer from '../Footer';
 import ProductDesc from "./Product"
 
@@ -11,7 +11,7 @@ padding: 3% 10% 0 10% ;
 function Index() {
   return (
     <div>
-    <Header/>
+    {/* <Header/> */}
     <Wrapper>
     <ProductDesc/>
     </Wrapper>

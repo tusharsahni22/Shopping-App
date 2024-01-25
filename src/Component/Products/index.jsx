@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from '../Header';
+// import Header from '../Header';
 import Footer from '../Footer';
 import Product from './Product'
 
@@ -13,7 +13,7 @@ function Index() {
   return (
     <div>
 
-    <Header/>
+    {/* <Header/> */}
     <Wrapper>
     <Product/>
     </Wrapper>

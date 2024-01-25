@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { getProfileInformation, updateProfileInformation } from '../Services/profile';
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { doLogout } from '../Services/auth';
 import { useNavigate } from 'react-router-dom';
 

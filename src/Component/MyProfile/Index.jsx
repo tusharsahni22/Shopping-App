@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../Header'
+// import Header from '../Header'
 import Footer from '../Footer'
 import Head from './Head'
 import styled from 'styled-components'
@@ -15,7 +15,7 @@ function Index() {
     console.log("m",favorites,OrderHistoryTab,YourProfileTab)
     return (
         <Wrapper>
-            <Header />
+            {/* <Header /> */}
             <Head state={favorites} OrderHistoryTab={OrderHistoryTab} YourProfileTab={YourProfileTab}/>
             <Footer />
         </Wrapper>

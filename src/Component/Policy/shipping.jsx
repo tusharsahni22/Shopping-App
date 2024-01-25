@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../Header";
+// import Header from "../Header";
 import Footer from "../Footer";
 
 const Wrapper = styled.div`
@@ -20,7 +20,7 @@ text-align: center;
 function Index() {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <Wrapper>
         <Title>Shipping policy</Title>
         <br />
