@@ -37,20 +37,30 @@ height: 1px;
 margin-top: 30px;
 width: 100%;
 `;
-function SideBar({data}) {
+function SideBar({data,setFilter}) {
+  // const [checkbox,setCheckbox] = React.useState(false)
+  // checked={checkbox[key] || false}
+  
+  const setFilterValue=(event,key,category)=>{
+    // setCheckbox(prevCheckboxes => ({
+    //   ...prevCheckboxes,
+    //   [key]: !prevCheckboxes[key]
+    // }))
+    setFilter({ "filterOn": category, type: event.target.getAttribute("data-value") });
+  }
   
   return (
     <Wrapper>
       <Heading>Filters</Heading>
-      {data.map((e,key)=>(   
-      <Data key={e.key}> 
+      {data.map((e)=>(   
+      <Data key={e._id}> 
       <Line/>     
-      <Category >{e.category}</Category>
+      <Category>{e.category}</Category>
       
       {e.type.map((f,key)=>(
         <Checkbox key={key}>
-        <input type='checkbox'/>
-      <Type >{f}</Type>
+        <input data-value={f} onClick={(e)=>{setFilter({"filterOn":e.category,type:e.target.getAttribute("data-value")})}}type='checkbox'/>
+      <Type data-value={f} onClick={(event)=>{setFilterValue(event,key,e.category)}} >{f.charAt(0).toUpperCase()+ f.slice(1)}</Type>
         </Checkbox>
       ))}
       

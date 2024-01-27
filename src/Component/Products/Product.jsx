@@ -81,16 +81,48 @@ max-width: 340px;
 
 function Product() {
   const navigate = useNavigate();
-  const [data,setData] = React.useState([])
+
+  const [filter,setFilter] = React.useState("")
+  const [filterData,setFilterData] = React.useState([])
   const location = useLocation();
   const {MHeading1,SubHeading} = location.state || {}
 
+  const filterDataBySelector = (filter,data)=>{
+    // console.log("firsttttt",data)
+  
+    switch(filter.filterOn){
+      case "Size": {
+        const dataBySize = data.filter((e) => e.size.includes(filter.type.toLowerCase().charAt(0)));
+        setFilterData(dataBySize);
+        break;
+      }
+      case "Colours":{
+        const dataByColor = data.filter((e)=>e.color.includes(filter.type))
+        setFilterData(dataByColor)
+        break;
+      }
+      case "Category":{
+      const dataByCategory = data.filter((e)=>e.category===filter.type)
+      setFilterData(dataByCategory)
+      break;
+      }
+      default:{
+      const allData = data
+      setFilterData(allData)
+      }
+    }
+
+
+  }
+
 useEffect(()=>{
 viewProduct().then((res)=>{
-  console.log("data",res.data)
-  setData(res.data)
+  filterDataBySelector(filter , res.data)
 }).catch((err)=>console.log(err))
-},[])
+
+
+},[filter])
+
 
 const discoutPrice = (pricetoConvert)=>{
   const discountedPrice=pricetoConvert - 0.1675 * pricetoConvert;
@@ -103,10 +135,10 @@ const discoutPrice = (pricetoConvert)=>{
       <Heading>{MHeading1}</Heading>
       <SubHeadings>{SubHeading}</SubHeadings>
       <Container>
-      <SideBar data={[{category:"Size",type:["Small","Medium","Large","X Large","XXL"]},{category:"Colours",type:["White","Black"]},{category:"Category",type:["Tshits","Sweatshirt","Hoddies"]}]}/>
+      <SideBar data={[{category:"Size",type:["small","medium","large","x large","xxl"]},{category:"Colours",type:["white","black"]},{category:"Category",type:["t-shirt","sweatshirt","hoodie"]}]} setFilter={setFilter}/>
       <Services>
         <ProductItems >
-        {data.map((e)=>(
+        {filterData.map((e)=>(
             <Frame key={e._id} onClick={()=>{navigate("/product-description",{state:{
               id:e._id,
               price:e.price,
