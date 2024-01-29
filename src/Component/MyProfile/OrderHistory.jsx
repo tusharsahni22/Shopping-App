@@ -6,10 +6,9 @@ const Wrapper = styled.div`
 padding: 0 10%;
 `;
 const Box = styled.div`
-height: 250px;
 padding: 40px 60px;
 margin: 60px 0;
-
+border-radius: 15px;
 box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
 `;
 const Details = styled.div`

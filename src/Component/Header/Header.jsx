@@ -259,7 +259,7 @@ width: 155px;
   display: flex;
   flex-direction: column;
   background-color: white;
-  top: 128px;
+  top: 110px;
   right:185px;
   width: 180px;
   padding: 0 15px;
