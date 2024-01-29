@@ -11,15 +11,17 @@ const Head = styled.div`
 
   `;
 const Logo = styled.img`
+width: 260px;
+height: 50px;
   `;  
 
 function Index() {
   return (
     <Wrapper>
       <Head>
-        <Logo src="./logo.jpg"/>
+        <Logo src="./brand.png"/>
       </Head>
-        <Checkout />
+      <Checkout />
     </Wrapper>
   )
 }

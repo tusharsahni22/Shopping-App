@@ -4,6 +4,7 @@ import { BsArrowLeft } from 'react-icons/bs';
 // import SliderComponent from './Slider';
 import { useSelector,useDispatch  } from 'react-redux';
 import { removeFromCart,updateQuantity } from '../reducers/cart';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = styled.div`
   position: fixed;
@@ -98,6 +99,7 @@ margin: 20px 0;
 display:flex;
 align-items: center;
 justify-content: center;
+cursor: pointer;
 `;
 const CartItems = styled.div`
 display:flex;
@@ -183,12 +185,13 @@ align-items: center;
 
 function App({toggleAddtocart}) {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   
   const product = useSelector((state) => state.cart)
   const total = useSelector((state) => state.total)
   const totalItems = 0 || parseInt(useSelector((state) => state.totalItems))
   const handleproduct = ()=>{
-    console.log("product",product,"total",total,"totalItems",totalItems)
+    navigate("/checkout")
   }
   const handleRemoveFromCart = (id)=>{
     dispatch(removeFromCart(id))
@@ -250,7 +253,7 @@ function App({toggleAddtocart}) {
             <div style={{fontWeight:"bold"}}>Total</div>
             <Price>₹{total}</Price>
           </SubTotal>
-        <BuyButton onClick={handleproduct}>Buy Now</BuyButton>
+        <BuyButton onClick={()=>handleproduct()}>Buy Now</BuyButton>
         </Total>
       </Sidebar>
     </>

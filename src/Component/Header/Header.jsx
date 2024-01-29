@@ -7,7 +7,7 @@ import { BiUserCircle,BiLogOutCircle } from 'react-icons/bi';
 import { FiMenu } from 'react-icons/fi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import {FaUpload} from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import AddToCart from "../Cart/AddToCart";
 import { useEffect, useState } from "react";
 import SignupPage from "../Auth";
@@ -309,6 +309,12 @@ padding-right: 10px;
 `;
 
 function Header() {
+
+  const location = useLocation();
+  
+  if (location.pathname === '/checkout') {
+    return null;
+  }
   const navigate = useNavigate();
   const totalItems = parseInt(useSelector((state) => state.totalItems)) || ""
 
