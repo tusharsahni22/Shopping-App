@@ -63,9 +63,21 @@ justify-content: space-between;
 max-width: 340px;
 
 `;
+const Welcome = styled.div`
+font-size: 30px;
+color: var(--contentTextColor);
+font-weight: 400;
+letter-spacing: 0.025em;
+color: #000000;
+margin-top: 15px;
+margin-bottom: 30px;
+width: 100%;
+text-align: center;
+
+`;
 
 
-function Favorites() {
+function Favorites({name}) {
   const navigate = useNavigate();
   const dummyData = [
     {pic:"whatsnew1.jpg",title:"Forgettable",size:"4x4 Inches",price:"21"},
@@ -79,6 +91,7 @@ function Favorites() {
 
   return (
     <Wrapper>
+      <Welcome> Good Evening {name.split(" ")[0]}!</Welcome>
        <Heading>Favorites</Heading>
       <Container>
       <Services>

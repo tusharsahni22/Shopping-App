@@ -6,18 +6,21 @@ import { MdFavoriteBorder,MdOutlinePassword } from "react-icons/md";
 import { SlHandbag } from "react-icons/sl";
 import {IoPowerOutline}from "react-icons/io5"
 import { doLogout } from '../Services/auth';
+import { useNavigate } from 'react-router-dom';
 import OrderHistory from './OrderHistory';
 import Favorites from './Favorites';
 import Profile from "./Profile"
 import Clock from "./clock";
 
 const Wrapper = styled.div`
-padding: 0 10%;
+padding: 0 5%;
 display: flex;
+gap: 50px;
+margin: 0 0 100px 0px;
 `;
 const Head = styled.div`
-margin: 70px 0 0 0 ;
-width: 275px;
+// margin: 70px 0 0 0 ;
+width: 560px;
 box-shadow: 0 2px 10px #0000001f;
 border-radius: 25px;
 display: flex;
@@ -39,7 +42,10 @@ text-decoration: ${props => props.selected ? 'underline' : 'none'};
 `;
 const ProfileBar =styled.div`
 display:flex;
+border-radius: 25px;
 padding: 15px;
+box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
+height: 65px;
 `;
 const Name =styled.div`
 margin: 8px 0 5px;
@@ -63,13 +69,20 @@ const Ganta =styled(CiClock2)`
 margin-right: 10px;
 `;
 function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
+  
+    const  navigate  = useNavigate()
     const [selectedTitle, setSelectedTitle] = useState(state || OrderHistoryTab || YourProfileTab ||'Your Profile');
+    const [name, setName] = useState('...');
+    const handleLogout = () => {
+      navigate("/")
+      doLogout()
+  }
    
   return (
     <Wrapper>
         <Head>
           <ProfileBar>
-            <Profilepic/>
+            <Profilepic src='./whatsnew3.jpg'/>
             <div>
               <Name>Tushar Sahni</Name>
               <div style={{display:"flex"}}><Ganta /><Clock/></div>
@@ -80,13 +93,13 @@ function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
             <Title selected={selectedTitle === 'Delivery Address'} onClick={() => setSelectedTitle('Delivery Address')}><CiLocationOn />Delivery Address</Title> 
             <Title selected={selectedTitle === 'Favorites'} onClick={() => setSelectedTitle('Favorites')}><MdFavoriteBorder />Favorites</Title>
             <Title selected={selectedTitle === 'Change Password'} onClick={() => setSelectedTitle('Change Password')}><MdOutlinePassword />Change Password</Title>
-            <Title selected={selectedTitle === 'Logout'} onClick={() =>{doLogout()}}><IoPowerOutline />Logout</Title>
+            <Title selected={selectedTitle === 'Logout'} onClick={() =>{handleLogout()}}><IoPowerOutline />Logout</Title>
         </Head>
-        {selectedTitle === 'Your Profile'? <Profile/> : null}
-        {selectedTitle === 'Order History'? <OrderHistory/> : null}
-        {selectedTitle === 'Favorites'? <Favorites/> : null}
-        {selectedTitle === 'Delivery Address'? <Favorites/> : null}
-        {selectedTitle === 'Change Password'? <Favorites/> : null}
+        {selectedTitle === 'Your Profile'? <Profile setName={setName}/> : null}
+        {selectedTitle === 'Order History'? <OrderHistory name={name}/> : null}
+        {selectedTitle === 'Favorites'? <Favorites name={name}/> : null}
+        {/* {selectedTitle === 'Delivery Address'? <Favorites/> : null}
+        {selectedTitle === 'Change Password'? <Favorites/> : null} */}
 
 
     </Wrapper>
