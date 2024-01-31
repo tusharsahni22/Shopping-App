@@ -84,7 +84,7 @@ function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
           <ProfileBar>
             <Profilepic src='./whatsnew3.jpg'/>
             <div>
-              <Name>Tushar Sahni</Name>
+              <Name>{name}</Name>
               <div style={{display:"flex"}}><Ganta /><Clock/></div>
             </div>
           </ProfileBar>

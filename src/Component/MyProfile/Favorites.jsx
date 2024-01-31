@@ -1,15 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom';
-import { BiCart } from 'react-icons/bi';
 
 
 const Wrapper = styled.div`
-padding: 0 10%;
+// padding: 0 10%;
+width: 100%;
 `;
 const Container = styled.div`
 display: flex;
-margin-bottom: 30px;
+padding: 40px 10px;
+margin: 60px 0;
+border-radius: 15px;
+box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
 `;
 const Services = styled.div`
 display: flex;
@@ -19,14 +22,9 @@ display: flex;
 width: 100%;
 `;
 const Title = styled.div`
-font-size: 1rem;
-font-weight: bold;
-padding: 25px 0;
-`;
-const Heading = styled.div`
-font-size: 2.25rem;
-font-weight: bold;
-padding: 25px 0;
+font-size: 12px;
+padding: 2px 0;
+text-align: center;
 `;
 const ProductItems = styled.div`
 /* margin-top: 50px; */
@@ -40,14 +38,18 @@ grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 `;
 const Price = styled.div`
-font-weight: bold;
+text-align: center;
+font-weight: 700;
+font-size: 12px;
 `;
 const Size = styled.div`
 
 `;
 const Frame = styled.div`
-padding: 10px;
-
+    box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 15px 15px 15px;
 `;
 const Img =styled.img`
 /* width: 340px;
@@ -59,7 +61,7 @@ max-height: 340px;
 `;
 const Service = styled.div`
 display: flex;
-justify-content: space-between;
+flex-direction: column;
 max-width: 340px;
 
 `;
@@ -75,37 +77,60 @@ width: 100%;
 text-align: center;
 
 `;
+const BiCart = styled.div`
+font-size: 12px;
+
+cursor: pointer;
+display: inline-block;
+min-height: 14px;
+outline: 0;
+border: none;
+vertical-align: baseline;
+background: black;
+color: white;
+margin: 0;
+padding: 10px;
+text-transform: none;
+text-shadow: none;
+font-weight: 700;
+font-size: 12px;
+line-height: 14px;
+font-style: normal;
+text-align: center;
+text-decoration: none;
+`
 
 
 function Favorites({name}) {
   const navigate = useNavigate();
   const dummyData = [
-    {pic:"whatsnew1.jpg",title:"Forgettable",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew3.jpg",title:"The Marvels Emblem",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew2.jpg",title:"Photon",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew1.jpg",title:"Ms. Marvel",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew3.jpg",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
-    {pic:"whatsnew1.jpg",title:"We're a Team",size:"4x4 Inches",price:"21"}
+    {pic:"whatsnew1.jpg",title:"Forgettable",size:"s",price:"21"},
+    {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"m",price:"21"},
+    {pic:"whatsnew3.jpg",title:"The Marvels Emblem",size:"l",price:"21"},
+    {pic:"whatsnew2.jpg",title:"Photon",size:"xl",price:"21"},
+    {pic:"whatsnew1.jpg",title:"Ms. Marvel",size:"m",price:"21"},
+    {pic:"whatsnew3.jpg",title:"Caption Marvel",size:"s",price:"21"},
+    {pic:"whatsnew1.jpg",title:"We're a Team",size:"xl",price:"21"}
 ]
 
   return (
     <Wrapper>
       <Welcome> Good Evening {name.split(" ")[0]}!</Welcome>
-       <Heading>Favorites</Heading>
       <Container>
       <Services>
         <ProductItems onClick={()=>{navigate("/product-description")}}>
         {dummyData.map((e)=>(
             <Frame key={e.key}>
+            <Title>{e.title}</Title>
             <Img src={e.pic} />   
+            <Price>Rs. {e.price}</Price>
             <Service>
             <div>                
-            <Title>{e.title}</Title>
-            <Size>{e.size}</Size>
-            <Price>${e.price} USD</Price>
+            
+            <Size>Size:{e.size}</Size>
+            
             </div>
-            <BiCart className='Bicart' style={{marginTop:"35px",height:"25px",width:"25px",padding:"10px",borderRadius:"20px",':hover': {backgroundColor:"#80808057",cursor:"pointer"}}}/>
+            <BiCart>Add to cart</BiCart>
             </Service>
             </Frame>
          ))}
