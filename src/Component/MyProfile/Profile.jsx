@@ -115,7 +115,7 @@ text-align: center;
 
 
 function Profile(props) { 
-    const [name, setName] = React.useState('')
+    const [name, setName] = React.useState('Guest')
     const [email, setEmail] = React.useState('')
     const [mobilenumber, setMobileNo] = React.useState('')
 
@@ -147,7 +147,7 @@ function Profile(props) {
   return (<>
     <Wrapper>
   <ToastContainer />
-  <Welcome>Good Evening {name.split(" ")[0]}!</Welcome>
+  <Welcome>Good Evening {name?.split(" ")[0]}!</Welcome>
   <Card>
         <div style={{display:'flex',justifyContent:"space-between"}}>
         <div>

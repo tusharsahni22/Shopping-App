@@ -115,7 +115,7 @@ function Favorites({name}) {
 
   return (
     <Wrapper>
-      <Welcome> Good Evening {name.split(" ")[0]}!</Welcome>
+      <Welcome> Good Evening {name?.split(" ")[0]}!</Welcome>
       <Container>
       <Services>
         <ProductItems onClick={()=>{navigate("/product-description")}}>
