@@ -123,7 +123,8 @@ function Profile(props) {
     useEffect(() => {
         getProfileInformation().then((res) => {
             setName(res.data.name)
-            props.setName(res.data.name)
+            console.log("data",res.data)
+            props.setUserData(res.data)
             setEmail(res.data.email)
             setMobileNo(res.data.mobilenumber)
         })
@@ -147,7 +148,7 @@ function Profile(props) {
   return (<>
     <Wrapper>
   <ToastContainer />
-  <Welcome>Good Evening {name?.split(" ")[0]}!</Welcome>
+  <Welcome> {props.greeting}! {name?.split(" ")[0]}</Welcome>
   <Card>
         <div style={{display:'flex',justifyContent:"space-between"}}>
         <div>

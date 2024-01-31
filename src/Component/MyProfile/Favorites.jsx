@@ -10,7 +10,7 @@ width: 100%;
 const Container = styled.div`
 display: flex;
 padding: 40px 10px;
-margin: 60px 0;
+// margin: 60px 0;
 border-radius: 15px;
 box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
 `;
@@ -43,6 +43,8 @@ font-weight: 700;
 font-size: 12px;
 `;
 const Size = styled.div`
+text-align: center;
+font-size: 12px;
 
 `;
 const Frame = styled.div`
@@ -101,21 +103,23 @@ text-decoration: none;
 `
 
 
-function Favorites({name}) {
+function Favorites({name,greeting}) {
   const navigate = useNavigate();
+  
+  
   const dummyData = [
-    {pic:"whatsnew1.jpg",title:"Forgettable",size:"s",price:"21"},
-    {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"m",price:"21"},
-    {pic:"whatsnew3.jpg",title:"The Marvels Emblem",size:"l",price:"21"},
-    {pic:"whatsnew2.jpg",title:"Photon",size:"xl",price:"21"},
-    {pic:"whatsnew1.jpg",title:"Ms. Marvel",size:"m",price:"21"},
-    {pic:"whatsnew3.jpg",title:"Caption Marvel",size:"s",price:"21"},
-    {pic:"whatsnew1.jpg",title:"We're a Team",size:"xl",price:"21"}
+    {pic:"whatsnew1.jpg",title:"Forgettable",size:"s",price:"2100"},
+    {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"m",price:"2199"},
+    {pic:"whatsnew3.jpg",title:"The Marvels Emblem",size:"l",price:"1990"},
+    {pic:"whatsnew2.jpg",title:"Photon",size:"xl",price:"1299"},
+    {pic:"whatsnew1.jpg",title:"Ms. Marvel",size:"m",price:"990"},
+    {pic:"whatsnew3.jpg",title:"Caption Marvel",size:"s",price:"2199"},
+    {pic:"whatsnew1.jpg",title:"We're a Team",size:"xl",price:"1499"}
 ]
 
   return (
     <Wrapper>
-      <Welcome> Good Evening {name?.split(" ")[0]}!</Welcome>
+      <Welcome> {greeting}! {name?.split(" ")[0]}</Welcome>
       <Container>
       <Services>
         <ProductItems onClick={()=>{navigate("/product-description")}}>
@@ -123,13 +127,9 @@ function Favorites({name}) {
             <Frame key={e.key}>
             <Title>{e.title}</Title>
             <Img src={e.pic} />   
-            <Price>Rs. {e.price}</Price>
-            <Service>
-            <div>                
-            
-            <Size>Size:{e.size}</Size>
-            
-            </div>
+            <Price>₹ {e.price}</Price>
+            <Service>            
+            <Size>Size:  {e.size.toLocaleUpperCase()}</Size>
             <BiCart>Add to cart</BiCart>
             </Service>
             </Frame>

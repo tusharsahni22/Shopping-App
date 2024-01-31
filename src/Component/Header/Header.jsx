@@ -343,6 +343,11 @@ function Header() {
   const toggleSidebar = () => {
     setSidebar(!sidebar)
   };
+  const handleLogout = () => {
+    doLogout();
+    setLoggedIN(false);
+    navigate("/")
+  }
   return (
     <>
     {AddCartToggle? <AddToCart toggleAddtocart={toggleAddtocart}/> :""}
@@ -376,8 +381,7 @@ function Header() {
           <ProfileMenu>
             <ProfileOption onClick={()=>{navigate("/myprofile",{state:{YourProfileTab:"Your Profile"}})}}><UserIcon/> My Profile</ProfileOption>
             <ProfileOption onClick={()=>{navigate("/myprofile",{state:{OrderHistoryTab:"Order History"}})}}><OrderHistory/>Order History</ProfileOption>
-            <ProfileOption onClick={()=>{doLogout()}}
-            ><Logout/>LogOut</ProfileOption>
+            <ProfileOption onClick={()=>{handleLogout()}}><Logout/>LogOut</ProfileOption>
           </ProfileMenu>
           </MyProFile>
           </Usericon>:

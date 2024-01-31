@@ -11,6 +11,8 @@ import OrderHistory from './OrderHistory';
 import Favorites from './Favorites';
 import Profile from "./Profile"
 import Clock from "./clock";
+import MyAddress from './myAddress';
+import ChangePassword from './changePassword';
 
 const Wrapper = styled.div`
 padding: 0 5%;
@@ -68,11 +70,14 @@ margin-right: 20px;
 const Ganta =styled(CiClock2)`
 margin-right: 10px;
 `;
+
 function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
   
     const  navigate  = useNavigate()
+    const hour = new Date().getHours();
+    const greeting = hour < 12 ? 'Good Morning' : (hour < 18 ? 'Good Afternoon' : 'Good Evening');
     const [selectedTitle, setSelectedTitle] = useState(state || OrderHistoryTab || YourProfileTab ||'Your Profile');
-    const [name, setName] = useState('...');
+    const [userData, setUserData] = useState({name:"Guest"})
     const handleLogout = () => {
       navigate("/")
       doLogout()
@@ -84,7 +89,7 @@ function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
           <ProfileBar>
             <Profilepic src='./whatsnew3.jpg'/>
             <div>
-              <Name>{name}</Name>
+              <Name>{userData.name|| "Guest"}</Name>
               <div style={{display:"flex"}}><Ganta /><Clock/></div>
             </div>
           </ProfileBar>
@@ -95,11 +100,11 @@ function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
             <Title selected={selectedTitle === 'Change Password'} onClick={() => setSelectedTitle('Change Password')}><MdOutlinePassword />Change Password</Title>
             <Title selected={selectedTitle === 'Logout'} onClick={() =>{handleLogout()}}><IoPowerOutline />Logout</Title>
         </Head>
-        {selectedTitle === 'Your Profile'? <Profile setName={setName}/> : null}
-        {selectedTitle === 'Order History'? <OrderHistory name={name}/> : null}
-        {selectedTitle === 'Favorites'? <Favorites name={name}/> : null}
-        {/* {selectedTitle === 'Delivery Address'? <Favorites/> : null}
-        {selectedTitle === 'Change Password'? <Favorites/> : null} */}
+        {selectedTitle === 'Your Profile'? <Profile setUserData={setUserData} greeting={greeting}/> : null}
+        {selectedTitle === 'Order History'? <OrderHistory name={userData.name} greeting={greeting}/> : null}
+        {selectedTitle === 'Favorites'? <Favorites name={userData.name} greeting={greeting}/> : null}
+        {selectedTitle === 'Delivery Address'? <MyAddress name={userData.name} greeting={greeting}/> : null}
+        {selectedTitle === 'Change Password'? <ChangePassword name={userData.name} email={userData.email} greeting={greeting}/> : null}
 
 
     </Wrapper>

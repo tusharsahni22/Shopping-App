@@ -7,7 +7,7 @@ width: 100%;
 `;
 const Box = styled.div`
 padding: 40px 60px;
-margin: 60px 0;
+// margin: 60px 0;
 border-radius: 15px;
 box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
 `;
@@ -83,11 +83,11 @@ text-align: center;
 
 
 
-function OrderHistory({name}) {
+function OrderHistory({name, greeting}) {
   return (
     <Wrapper>
       
-  <Welcome> Good Evening {name.split(" ")[0]}!</Welcome>
+      <Welcome> {greeting}! {name?.split(" ")[0]}</Welcome>
       <Box>
       <Details>
         <Ids>
