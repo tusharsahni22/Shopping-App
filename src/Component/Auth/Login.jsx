@@ -113,7 +113,7 @@ const Already = styled.div`
 text-align: center;
 `;
 
-function Login({SwitchLogin,toggleSignup}) {
+function Login({SwitchLogin,toggleLogin}) {
   const [email, setEmail] =useState("");
   const [password, setPassword] =useState("");
 
@@ -133,7 +133,7 @@ function Login({SwitchLogin,toggleSignup}) {
     // clear the states 
     clearForm()
     // close the window
-    toggleSignup();
+    toggleLogin();
     }
     else{
       toast.error("Invalid Credentials");
@@ -151,7 +151,7 @@ function Login({SwitchLogin,toggleSignup}) {
         <Header>
                 <div></div>
                 <Text>Welcome Back! Log In</Text>
-                <Close onClick={()=>{toggleSignup()}}/> 
+                <Close onClick={()=>{toggleLogin()}}/> 
             </Header>
             <Field>
             <Email>Email</Email>

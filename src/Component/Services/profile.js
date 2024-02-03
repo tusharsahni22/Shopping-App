@@ -15,7 +15,7 @@ axiosInstance.interceptors.request.use((config) => {
 
 
 export const getProfileInformation = async()=> {
-    return await axiosInstance.get("/getUser").then((result) => {
+    return await axiosInstance.get("/getProfile").then((result) => {
         return result;
     }).catch((err) => {
        console.log("Error in getProfileInformation",err);
@@ -24,7 +24,7 @@ export const getProfileInformation = async()=> {
 
 export const updateProfileInformation = (data)=> {
     
-    return axiosInstance.post("/updateUser",data).then((result) => {
+    return axiosInstance.post("/updateProfile",data).then((result) => {
         return result;
     }).catch((err) => {
        console.log("Error in updateProfileInformation",err);

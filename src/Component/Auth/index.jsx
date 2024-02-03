@@ -6,14 +6,14 @@ import Signup from './Signup';
 
 
 
-function Index({toggleSignup}) {
+function Index({toggleLogin}) {
     const [login, setLogin] = React.useState(false);
     const SwitchLogin = () => {
         setLogin(!login);
     }
   return (
     <>
-    {login?<Login SwitchLogin={SwitchLogin} toggleSignup={toggleSignup}/>:<Signup SwitchLogin={SwitchLogin} toggleSignup={toggleSignup}/>}
+    {login?<Signup SwitchLogin={SwitchLogin} toggleLogin={toggleLogin}/>:<Login SwitchLogin={SwitchLogin} toggleLogin={toggleLogin}/>}
     </>
   )
 }

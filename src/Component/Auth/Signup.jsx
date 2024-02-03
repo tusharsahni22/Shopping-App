@@ -113,7 +113,7 @@ color: #212121;
 }
 `;
 
-function SignupPage({toggleSignup,SwitchLogin}) {
+function SignupPage({toggleLogin,SwitchLogin}) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   
@@ -149,7 +149,7 @@ function SignupPage({toggleSignup,SwitchLogin}) {
       <Header>
             <div></div>
             <Text>Sign Up Now!</Text>
-            <Close onClick={()=>{toggleSignup()}}/> 
+            <Close onClick={()=>{toggleLogin()}}/> 
         </Header>
         <Field>
         <Email>Email</Email>

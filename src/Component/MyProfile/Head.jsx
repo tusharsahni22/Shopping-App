@@ -53,7 +53,7 @@ const Name =styled.div`
 margin: 8px 0 5px;
     font-size: 20px;
     font-weight: 400;
-letter-spacing: 0.025em
+letter-spacing: 0.025em;
 
 `;
 // const Time =styled.div`

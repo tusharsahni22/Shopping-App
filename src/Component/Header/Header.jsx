@@ -10,7 +10,7 @@ import {FaUpload} from "react-icons/fa";
 import { useNavigate,useLocation } from "react-router-dom";
 import AddToCart from "../Cart/AddToCart";
 import { useEffect, useState } from "react";
-import SignupPage from "../Auth";
+import LoginPage from "../Auth";
 import Sidebar from "./Sidebar";
 import { doLogout, isUserLoggedIn } from "../Services/auth";
 import { useSelector } from "react-redux";
@@ -30,23 +30,6 @@ const Slide = styled.div`
   height: 36px;
   background-color:#212121;
 `;
-// const Members = styled.div`
-// display: flex;
-// justify-content: flex-end;
-// padding-right: 50px ;
-// background-color: #F4F5F7;
-// height: 30px;
-// `;
-
-// const Content =styled.div`
-// font:12px roboto;
-// padding: 7px 5px;
-// &:hover{
-//   cursor: pointer;
-//   color: gray;
-// }
-// `;
-
 const Menu =  styled.div`
 display:flex;
 justify-content: space-between;
@@ -319,9 +302,9 @@ function Header() {
   const totalItems = parseInt(useSelector((state) => state.totalItems)) || ""
 
   const [AddCartToggle, setAddCartToggle] = useState(false);
-  const [signup, setSignup] = useState(false);
+  const [login, setLogin] = useState(false);
   const [sidebar, setSidebar] = useState(false);
-  const [LoggedIN, setLoggedIN] = useState(false);
+  const [isLoggedIN, setIsLoggedIN] = useState(false);
 
   const handleHover=(event)=>{
     event.stopPropagation();
@@ -331,39 +314,34 @@ function Header() {
   }
 
   useEffect(() => {
-    setLoggedIN(isUserLoggedIn());
-  }, [signup]);
+    setIsLoggedIN(isUserLoggedIn());
+  }, [login]);
 
   const toggleAddtocart = () => {
     setAddCartToggle(!AddCartToggle);
   };
-  const toggleSignup = () => {
-    setSignup(!signup)
+  const toggleLogin = () => {
+    setLogin(!login)
   };
   const toggleSidebar = () => {
     setSidebar(!sidebar)
   };
-  const handleLogout = () => {
-    doLogout();
-    setLoggedIN(false);
+  const handleLogout = (e) => {
+    e.stopPropagation();
+    setIsLoggedIN(false);
     navigate("/")
+    doLogout();
   }
   return (
     <>
     {AddCartToggle? <AddToCart toggleAddtocart={toggleAddtocart}/> :""}
-    {signup?<SignupPage toggleSignup={toggleSignup} /> :""}
+    {login?<LoginPage toggleLogin={toggleLogin} /> :""}
     {sidebar?<Sidebar toggleSidebar={toggleSidebar} /> :""}
     
     <HeaderContent>
     <Wrapper>
       <Slide><SlideShow /></Slide>
-      {/* <Members>
-        <Content>India</Content>
-        <Content>Contact Us</Content>
-        <Content>Student Discount</Content>
-        <Content>Rewards</Content>
-        <Content>Help</Content>
-      </Members> */}
+
       <Menu>
         <MobileMenu>
         <FiMenu onClick={toggleSidebar} style={{width:"25px",height:"25px"}}/>
@@ -375,17 +353,17 @@ function Header() {
         <IoIosSearch style={{height:"26px",width:"20px"}}/>
         </Search>
         <User>
-        {LoggedIN?<Usericon>
+        {isLoggedIN?<Usericon>
           <UserIcon />
           <MyProFile>MY ACCOUNT 
           <ProfileMenu>
             <ProfileOption onClick={()=>{navigate("/myprofile",{state:{YourProfileTab:"Your Profile"}})}}><UserIcon/> My Profile</ProfileOption>
             <ProfileOption onClick={()=>{navigate("/myprofile",{state:{OrderHistoryTab:"Order History"}})}}><OrderHistory/>Order History</ProfileOption>
-            <ProfileOption onClick={()=>{handleLogout()}}><Logout/>LogOut</ProfileOption>
+            <ProfileOption onClick={(e)=>{handleLogout(e)}}><Logout/>LogOut</ProfileOption>
           </ProfileMenu>
           </MyProFile>
           </Usericon>:
-        <Usericon onClick={toggleSignup}>
+        <Usericon onClick={toggleLogin}>
           <UserIcon />
           <TagLine>JOIN & GET 20% OFF </TagLine>
           </Usericon>}
