@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import styled from 'styled-components'
 import { CiClock2,CiLocationOn} from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
@@ -13,6 +13,7 @@ import Profile from "./Profile"
 import Clock from "./clock";
 import MyAddress from './myAddress';
 import ChangePassword from './changePassword';
+import { getProfileInformation } from '../Services/profile';
 
 const Wrapper = styled.div`
 padding: 0 5%;
@@ -74,14 +75,22 @@ margin-right: 10px;
 function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
   
     const  navigate  = useNavigate()
+    const [profileInformation, setProfileInformation] = useState({name:"Guest"}) // [{}
     const hour = new Date().getHours();
     const greeting = hour < 12 ? 'Good Morning' : (hour < 18 ? 'Good Afternoon' : 'Good Evening');
     const [selectedTitle, setSelectedTitle] = useState(state || OrderHistoryTab || YourProfileTab ||'Your Profile');
-    const [userData, setUserData] = useState({name:"Guest"})
     const handleLogout = () => {
       navigate("/")
       doLogout()
   }
+  useEffect(() => {
+    getProfileInformation().then((res) => {
+        setProfileInformation(res.data)
+    }).catch((err) => {
+            console.log("err",err)
+        })
+    
+    }, [])
    
   return (
     <Wrapper>
@@ -89,7 +98,7 @@ function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
           <ProfileBar>
             <Profilepic src='./whatsnew3.jpg'/>
             <div>
-              <Name>{userData.name|| "Guest"}</Name>
+              <Name>{profileInformation.name|| "Guest"}</Name>
               <div style={{display:"flex"}}><Ganta /><Clock/></div>
             </div>
           </ProfileBar>
@@ -100,11 +109,11 @@ function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
             <Title selected={selectedTitle === 'Change Password'} onClick={() => setSelectedTitle('Change Password')}><MdOutlinePassword />Change Password</Title>
             <Title selected={selectedTitle === 'Logout'} onClick={() =>{handleLogout()}}><IoPowerOutline />Logout</Title>
         </Head>
-        {selectedTitle === 'Your Profile'? <Profile setUserData={setUserData} greeting={greeting}/> : null}
-        {selectedTitle === 'Order History'? <OrderHistory name={userData.name} greeting={greeting}/> : null}
-        {selectedTitle === 'Favorites'? <Favorites name={userData.name} greeting={greeting}/> : null}
-        {selectedTitle === 'Delivery Address'? <MyAddress name={userData.name} greeting={greeting}/> : null}
-        {selectedTitle === 'Change Password'? <ChangePassword name={userData.name} email={userData.email} greeting={greeting}/> : null}
+        {selectedTitle === 'Your Profile'? <Profile greeting={greeting} profileInformation={profileInformation}/> : null}
+        {selectedTitle === 'Order History'? <OrderHistory name={profileInformation.name} greeting={greeting}/> : null}
+        {selectedTitle === 'Favorites'? <Favorites name={profileInformation.name} greeting={greeting}/> : null}
+        {selectedTitle === 'Delivery Address'? <MyAddress name={profileInformation.name} greeting={greeting}/> : null}
+        {selectedTitle === 'Change Password'? <ChangePassword name={profileInformation.name} email={profileInformation.email} greeting={greeting}/> : null}
 
 
     </Wrapper>

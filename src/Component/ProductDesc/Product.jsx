@@ -12,6 +12,7 @@ import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { CiDiscount1 } from "react-icons/ci";
 import { FcDisclaimer } from "react-icons/fc";
+import { addFavorite } from "../Services/profile";
 
 const Wrapper = styled.div``;
 const Upper = styled.div`
@@ -134,8 +135,6 @@ const CartIcon = styled(IoCartOutline)`
 `;
 const FavoriteIcon = styled(MdFavoriteBorder)`
   &:hover {
-    background-color: black;
-    color: white;
     border-radius: 50%;
     cursor: pointer;
   }
@@ -259,6 +258,14 @@ function Product() {
     return Math.round(discountedPrice);
   };
 
+  const handleFavorite = ()=>{
+    addFavorite({"productId":id}).then((res)=>{
+      if(res.status===200){
+        toast.success("Added to favorites")
+      }}).catch(()=>{toast.error("Something went wrong")})}
+  
+  
+
   return (
     <Wrapper>
       <ToastContainer />
@@ -346,10 +353,10 @@ function Product() {
           <AddtoCart onClick={handleAddtocart}>
             <CartIcon /> Add to Cart
           </AddtoCart>
-          <Favorite>
-            <FavoriteIcon />
+          <Favorite onClick={()=>{handleFavorite()}}>
+            <FavoriteIcon onClick={()=>{handleFavorite()}}/>
             Favorite
-          </Favorite>
+          </Favorite >
         </Section2>
       </Upper>
       <Whatsnew title={"Best Seller"} />

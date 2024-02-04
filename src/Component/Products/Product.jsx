@@ -4,6 +4,7 @@ import SideBar from "../SideBar/SideBar"
 import { BiCart } from 'react-icons/bi';
 import { useNavigate ,useLocation } from 'react-router-dom';
 import { viewProduct } from "../Services/product";
+
 const Wrapper = styled.div`
 width: 100%;
 
@@ -88,12 +89,13 @@ function Product() {
   const {MHeading1,SubHeading} = location.state || {}
 
   const filterDataBySelector = (filter,data)=>{
-    // console.log("firsttttt",data)
+    console.log("firsttttt",filter)
   
     switch(filter.filterOn){
       case "Size": {
-        const dataBySize = data.filter((e) => e.size.includes(filter.type.toLowerCase().charAt(0)));
+        const dataBySize = data.filter((e) => e.size.includes(filter.type.toLowerCase()));
         setFilterData(dataBySize);
+        console.log("first",filter.type.toLowerCase().substring(0,3))
         break;
       }
       case "Colours":{
@@ -119,8 +121,6 @@ useEffect(()=>{
 viewProduct().then((res)=>{
   filterDataBySelector(filter , res.data)
 }).catch((err)=>console.log(err))
-
-
 },[filter])
 
 

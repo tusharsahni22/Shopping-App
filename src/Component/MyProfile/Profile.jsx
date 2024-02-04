@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { getProfileInformation, updateProfileInformation } from '../Services/profile';
+import {updateProfileInformation } from '../Services/profile';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -69,19 +69,7 @@ border: none;
     cursor: pointer;
 }
 `;
-const Cancel = styled.button`
-width: 100px;
-height: 40px;
-border: 1px solid #000000;
-border-radius: 5px;
-background-color: #FFFFFF;
-font-size: 15px;
-font-weight: 500;
-color: #000000;
-&:hover{
-    cursor: pointer;
-}
-`;
+
 
 const SaveAndCancel = styled.div`
 display: flex;
@@ -118,20 +106,29 @@ function Profile(props) {
     const [name, setName] = React.useState('Guest')
     const [email, setEmail] = React.useState('')
     const [mobilenumber, setMobileNo] = React.useState('')
+    const [dob, setDob] = React.useState("")
+    const [gender, setGender] = React.useState("")
+
+    const formatDate = (date) => {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed in JavaScript
+        const year = date.getFullYear();
+      
+        return `${year}-${month}-${day}`;
+      };
 
 
-    useEffect(() => {
-        getProfileInformation().then((res) => {
-            setName(res.data.name)
-            console.log("data",res.data)
-            props.setUserData(res.data)
-            setEmail(res.data.email)
-            setMobileNo(res.data.mobilenumber)
-        })
+    useEffect(() => {  
+            setName(props.profileInformation.name)
+            setEmail(props.profileInformation.email)
+            setMobileNo(props.profileInformation.mobilenumber)
+            setDob(formatDate(new Date(props.profileInformation.dob)))
+            setGender(props.profileInformation.gender)
+        
     },[])
 
     const handleSave = () => {
-        const data = {name,mobilenumber}
+        const data = {name,mobilenumber,dob,gender}
         updateProfileInformation(data).then((res) => {
            if(res.status === 200){
             toast.success("Profile Updated Successfully")
@@ -163,19 +160,18 @@ function Profile(props) {
         <Email>E-Mail Address</Email>
         <InputField value={email} placeholder='Enter your email' type='email' disabled/>
         <Dob>Birthdate</Dob>
-        <InputField placeholder='Enter your Birthdate' type='date' />
+        <InputField onChange={(e)=>{setDob(e.target.value)}} type='date'  value={dob} />
         <Gender>Gender</Gender>
         <RadioButtons>
-            <input type='radio' name='Male'/>
+            <input type='radio' name='gender' value='Male' checked={gender === 'Male'} onChange={()=>{setGender("Male")}}/>
             <label>Male</label>
-            <input type='radio' name='Female'/>
+            <input type='radio' name='gender' value='Female' checked={gender === 'Female'} onChange={()=>{setGender("Female")}} />
             <label>Female</label>
-            <input type='radio' name='Other'/>
+            <input type='radio' name='gender' value='Other' checked={gender === 'Other'} onChange={()=>{setGender("Other")}}/>
             <label>Other</label>
         </RadioButtons>
         <Buttons>
             <SaveAndCancel>
-            <Cancel>Cancel</Cancel>
             <Save onClick={handleSave}>Save</Save>
             </SaveAndCancel>
         </Buttons>

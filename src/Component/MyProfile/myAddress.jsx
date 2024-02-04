@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { LiaEdit } from "react-icons/lia";
 import { HiOutlineMapPin } from "react-icons/hi2";
+import { updateProfileInformation } from '../Services/profile';
+import { ToastContainer,toast } from 'react-toastify';
 
 const Wrapper = styled.div`
 width: 100%;
@@ -36,7 +38,7 @@ height: 280px;
 border-radius: 10px;
 box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
 min-width: 165px;
-min-height: 150px;
+min-height: 320px;
 `;
 const EditIcon = styled(LiaEdit)`
 font-size: 20px;
@@ -151,20 +153,44 @@ const dummyData = [{
 
 function MyAddress({name, greeting}) {
     const [edit, setEdit] = React.useState(false)
+    const [address, setAddress] = React.useState({
+        name:"",
+        address:"",
+        landmark:"",
+        state:"",
+        city:"",
+        pincode:"",
+        phoneNo:""
+    })
+    const handleAddressSave =()=>{
+        updateProfileInformation({address}).then((res)=>{
+            if(res.status === 200){
+                toast.success("Profile Updated Successfully")
+            }}).catch(()=>{
+                toast.error("Profile Update Failed")
+            })
+        
+        console.log("first",address)
+        setAddress({name:"",address:"",landmark:"",state:"",city:"",pincode:"",phoneNo:""})
+        setEdit(!edit)
+    }
   return (
+
     <Wrapper>
+        <ToastContainer />
       <Welcome> {greeting}! {name?.split(" ")[0]}</Welcome>
         <Card>
         <Box>
                 {edit?<div style={{marginTop:"41px",display:"flex",flexDirection:"column"}}><Addressdetails>
-                    <Name value={"Tushar Sahni"} disabled={!edit}/>
-                    <Address as="textarea" value={"House no nhi batauga Sector 5 Sahibabad Ghaziabad"} disabled={!edit}/>
-                    <Address as="textarea" value={"Rajendra Nagar Near Dav Public School"} disabled={!edit}/>
-                    <Pincode value={"UP"} disabled={!edit}/>
-                    <State value={"UP"} disabled={!edit}/>
-                    <Mobile style={{marginBottom:"19px"}} value={"9876543210"} disabled={!edit}/>
+                    <Name  placeholder='Name' onChange={(e)=>{setAddress({...address,"name":e.target.value})}} value={address.name} disabled={!edit}/>
+                    <Address placeholder='Full address' as="textarea" onChange={(e)=>{setAddress({...address,"address":e.target.value})}} value={address.address} disabled={!edit}/>
+                    <Address placeholder='Landmark' as="textarea" onChange={(e)=>{setAddress({...address,"landmark":e.target.value})}} value={address.landmark} disabled={!edit}/>
+                    <Address placeholder='City' as="textarea" onChange={(e)=>{setAddress({...address,"city":e.target.value})}} value={address.city} disabled={!edit}/>
+                    <State placeholder='State' onChange={(e)=>{setAddress({...address,"state":e.target.value})}} value={address.state} disabled={!edit}/>
+                    <Pincode placeholder='Pincode' onChange={(e)=>{setAddress({...address,"pincode":e.target.value})}} value={address.pincode} disabled={!edit}/>
+                    <Mobile placeholder='Mobile Number' style={{marginBottom:"19px"}} onChange={(e)=>{setAddress({...address,"phoneNo":e.target.value})}} value={address.phoneNo} disabled={!edit}/>
                 </Addressdetails>
-                <Save onClick={()=>{setEdit(!edit)}}>Save</Save>
+                <Save onClick={()=>{handleAddressSave()}}>Save</Save>
                 </div>:
                 <Addnew>
                     <HiOutlineMapPin style={{fontSize:"25px"}} onClick={()=>{setEdit(!edit)}}  />

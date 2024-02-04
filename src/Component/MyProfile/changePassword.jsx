@@ -1,6 +1,8 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components'
 import { TbLockUp } from "react-icons/tb";
+import { ToastContainer, toast } from 'react-toastify';
+import { changePassword } from '../Services/profile';
 const Wrapper = styled.div`
 width: 100%;
 `;
@@ -74,7 +76,7 @@ font-size: 15px;
 line-height: 1.2!important;
 height: 18px;
 font-weight: 400;
-letter-spacing: 0.025em;arent;
+letter-spacing: 0.025em;
 margin-bottom: 10px;
 `;
 
@@ -97,18 +99,46 @@ margin-top: 30px;
 
 
 function ChangePassword({name, greeting,email}) {
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleUpdatePassword = () => {
+    if(password === '' || confirmPassword === ''){
+      setError('Please enter password and confirm password')
+      return;
+    }
+    if(password !== confirmPassword){
+      setError('Password and confirm password do not match')
+      return;
+    }
+    setError('');
+    changePassword({password})
+      .then((res) => {
+        if(res.status === 200){
+          toast.success('Password updated successfully')
+          setPassword('')
+          setConfirmPassword('')
+        }
+      })
+      .catch(() => {
+        toast.error('Error updating password')
+      });
+  }
   return (
     <Wrapper>
+      <ToastContainer/>
       <Welcome> {greeting}! {name?.split(" ")[0]}</Welcome>
         <Card>
         <LockIcon/>
         <Title>Update your Password for</Title>
         <Email>{email||"email"}</Email>
         <TagName>New Password</TagName>
-        <Input type='password' placeholder='Enter New Password'/>
+        <Input type='password' placeholder='Enter New Password' value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
         <TagName>Confirm New Password</TagName>
-        <Input type='password' placeholder='Confirm New Password'/>
-        <Button>Update Password</Button>
+        <Input type='password' placeholder='Confirm New Password' value={confirmPassword} onChange={(e)=>{setConfirmPassword(e.target.value)}}/>
+        {error}
+        <Button onClick={handleUpdatePassword}>Update Password</Button>
         </Card>
     </Wrapper>
   )

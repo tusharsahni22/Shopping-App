@@ -31,3 +31,33 @@ export const updateProfileInformation = (data)=> {
     });
 
 }
+export const getFavorite = async()=> {
+    return await axiosInstance.get("/favorites").then((result) => {
+        return result;
+    }).catch((err) => {
+       console.log("Error in getFavorite",err);
+    });
+}
+export const addFavorite = async(data)=> {
+    return await axiosInstance.post("/favorites",data).then((result) => {
+        return result;
+    }).catch((err) => {
+       console.log("Error in addFavorite",err);
+    });
+}
+export const removeFavorite = async(data)=> {
+    console.log("first",data)
+    return await axiosInstance.delete("/favorites",{data}).then((result) => {
+        return result;
+    }).catch((err) => {
+       console.log("Error in removeFavorite",err);
+    });
+}
+
+export const changePassword = async (data) => {
+    return axiosInstance.post("/changepassword",data).then((result) => {
+        return result;
+    }).catch((err) => {
+       console.log("Error in change-password",err);
+    });
+}
