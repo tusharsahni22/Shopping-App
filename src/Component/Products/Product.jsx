@@ -135,7 +135,7 @@ const discoutPrice = (pricetoConvert)=>{
       <Heading>{MHeading1}</Heading>
       <SubHeadings>{SubHeading}</SubHeadings>
       <Container>
-      <SideBar data={[{category:"Size",type:["small","medium","large","x large","xxl"]},{category:"Colours",type:["white","black"]},{category:"Category",type:["t-shirt","sweatshirt","hoodie"]}]} setFilter={setFilter}/>
+      <SideBar data={[{category:"Size",type:["small","medium","large","xl","xxl"]},{category:"Colours",type:["white","black"]},{category:"Category",type:["t-shirt","sweatshirt","hoodie"]}]} setFilter={setFilter}/>
       <Services>
         <ProductItems >
         {filterData.map((e)=>(
