@@ -153,7 +153,7 @@ const dummyData = [{
 
 function MyAddress({name, greeting}) {
     const [edit, setEdit] = React.useState(false)
-    const [address, setAddress] = React.useState({
+    const [address, setAddress] = React.useState([{
         name:"",
         address:"",
         landmark:"",
@@ -161,7 +161,7 @@ function MyAddress({name, greeting}) {
         city:"",
         pincode:"",
         phoneNo:""
-    })
+}])
     const handleAddressSave =()=>{
         updateProfileInformation({address}).then((res)=>{
             if(res.status === 200){

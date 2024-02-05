@@ -30,15 +30,8 @@ justify-content: space-between;
 const Title = styled.div`
 margin-top: 25px;
 font-weight: 800;
-
-
 `;
-// const Price = styled.div`
 
-// `;
-// const Size = styled.div`
-
-// `;
 const Frame = styled.div`
 padding: 10px;
 :hover{
@@ -75,16 +68,14 @@ function Whatsnew(props) {
   return (
     <Wrapper>
         <Heading>{props.title}</Heading>
-        <Products >
+        <Products>
         {dummyData.map((e)=>(
-            <Frame key={e.key} >
+            <Frame key={e._id} >
               <FavoriteIcon/>
             <Img loading='lazy' onClick={()=>{navigate("/products")}} src={e.pic} />   
             <Service>
             <div>                
             <Title>{e.title}</Title>
-            {/* <Size>{e.size}</Size> */}
-            {/* <Price>₹ {e.price}</Price> */}
             </div>
             <BiCart style={{marginTop:"20px",height:"25px",width:"25px"}}/>
             </Service>

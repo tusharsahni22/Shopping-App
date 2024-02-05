@@ -68,10 +68,6 @@ outline: none;
 border: none;
 color: white;
 margin: 10px;
-placeholderTextColor:white
-&::placeholder {
-        color: white;
-    }
 `;
 const AllRight = styled.div`
 background-color:#212121;
@@ -104,7 +100,7 @@ function Footer() {
        <Title>Be the first to know</Title>
        <Message>Receive email updates about our latest collaborations, new products & exclusive discounts.</Message>
        <InputDiv>
-       <Input placeholder="Enter Email" placeholderTextColor="white"/>
+       <Input placeholder="Enter Email"/>
        <GoArrowRight style={{color:"white",margin:"10px 0px -3px -7px"}}/>
        </InputDiv>
        </Column>
@@ -113,8 +109,6 @@ function Footer() {
        <Option>About Us</Option>
        <Option>Promotional Deals</Option>
        <Option>Reviews</Option>
-       {/* <Option>Carrer</Option>
-       <Option>Press</Option> */}
        </Column>
 
        <Column>

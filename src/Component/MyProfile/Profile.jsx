@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import {updateProfileInformation } from '../Services/profile';
+import {getProfileInformation, updateProfileInformation } from '../Services/profile';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -119,12 +119,15 @@ function Profile(props) {
 
 
     useEffect(() => {  
-            setName(props.profileInformation.name)
-            setEmail(props.profileInformation.email)
-            setMobileNo(props.profileInformation.mobilenumber)
-            setDob(formatDate(new Date(props.profileInformation.dob)))
-            setGender(props.profileInformation.gender)
-        
+        getProfileInformation().then((res) => {
+            setName(res.data.name)
+            setEmail(res.data.email)
+            setMobileNo(res.data.mobilenumber)
+            setDob(formatDate(new Date(res.data.dob)))
+            setGender(res.data.gender)
+        }).catch((err) => {
+                console.log("err",err)
+            })
     },[])
 
     const handleSave = () => {
