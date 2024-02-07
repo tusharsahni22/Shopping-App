@@ -207,11 +207,11 @@ function Checkout() {
       <TwoField>
         <InputContainer>
       <Input type="text" required placeholder=" "  />
-      <PlaceholderLabel >First Name</PlaceholderLabel>
+      <PlaceholderLabel >Name</PlaceholderLabel>
     </InputContainer>
     <InputContainer>
       <Input type="text" required placeholder=" "  />
-      <PlaceholderLabel >Last Name</PlaceholderLabel>
+      <PlaceholderLabel >Phone Number</PlaceholderLabel>
     </InputContainer>
       </TwoField>
       <InputContainer>
@@ -226,17 +226,18 @@ function Checkout() {
       <TwoField>
       <InputContainer>
       <Input type="text" required placeholder=" "  />
-      <PlaceholderLabel >State</PlaceholderLabel>
-      </InputContainer>
-      <InputContainer>
-      <Input type="text" required placeholder=" "  />
       <PlaceholderLabel >City</PlaceholderLabel>
       </InputContainer>
-      </TwoField>
       <InputContainer>
       <Input type="text" required placeholder=" "  />
-      <PlaceholderLabel >Phone Number</PlaceholderLabel>
-    </InputContainer>
+      <PlaceholderLabel >Pincode</PlaceholderLabel>
+      </InputContainer>
+      </TwoField>
+
+      <InputContainer>
+      <Input type="text" required placeholder=" "  />
+      <PlaceholderLabel >State</PlaceholderLabel>
+      </InputContainer>
       </AddressForm>
     <ProcedToPay>Proceed to pay</ProcedToPay>
     </Left>

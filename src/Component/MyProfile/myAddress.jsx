@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { LiaEdit } from "react-icons/lia";
 import { HiOutlineMapPin } from "react-icons/hi2";
-import { updateProfileInformation } from '../Services/profile';
+import { MdDeleteOutline } from "react-icons/md";
+import { addAddress, getProfileInformation, removeAddress } from '../Services/profile';
 import { ToastContainer,toast } from 'react-toastify';
 
 const Wrapper = styled.div`
@@ -40,6 +41,16 @@ box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
 min-width: 165px;
 min-height: 320px;
 `;
+const Options =styled.div`
+display: flex;
+justify-content: flex-end;  
+gap 10px
+`;
+const DeleteIcon = styled(MdDeleteOutline)`
+font-size: 20px;
+align-self: end;
+`;
+
 const EditIcon = styled(LiaEdit)`
 font-size: 20px;
 align-self: end;
@@ -125,33 +136,10 @@ cursor: pointer;
 `;
 
 
-const dummyData = [{
-    name: "Home",
-    address: "123, Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    locality:"Rajendra Nagar Near Dav Public School",
-    pincode: "201005",
-    state: "UP",
-    mobile: "9876543210"
-},
-{
-    name: "Home",
-    address: "123, Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    locality:"Rajendra Nagar Near Dav Public School",
-    pincode: "201005",
-    state: "UP",
-    mobile: "9876543210"
-},
-{
-    name: "Tushar Sahni",
-    address: "House no nhi batauga Sector 5 Sahibabad Ghaziabad",
-    locality: "Rajendra Nagar Near Dav Public School",
-    pincode: "201005",
-    state: "UP",
-    mobile: "9876543210"
-}]
 
 
 function MyAddress({name, greeting}) {
+    const [triggerRefetch, setTriggerRefetch] = React.useState(false)
     const [edit, setEdit] = React.useState(false)
     const [address, setAddress] = React.useState([{
         name:"",
@@ -161,9 +149,11 @@ function MyAddress({name, greeting}) {
         city:"",
         pincode:"",
         phoneNo:""
-}])
+    }])
+    const [addressList, setAddressList] = React.useState([])
+    
     const handleAddressSave =()=>{
-        updateProfileInformation({address}).then((res)=>{
+        addAddress({address}).then((res)=>{
             if(res.status === 200){
                 toast.success("Profile Updated Successfully")
             }}).catch(()=>{
@@ -173,9 +163,32 @@ function MyAddress({name, greeting}) {
         console.log("first",address)
         setAddress({name:"",address:"",landmark:"",state:"",city:"",pincode:"",phoneNo:""})
         setEdit(!edit)
+        setTriggerRefetch(!triggerRefetch)
+        console.log("first",triggerRefetch)
     }
-  return (
+    const handleDelete = (id)=>{
+        removeAddress({"addressId":id}).then((res)=>{
+            console.log("first",id)
+            if(res.status === 200){
+                toast.success("Profile Updated Removed")
+            }}).catch(()=>{
+                toast.error("Profile Update Failed")
+            })
+        setTriggerRefetch(!triggerRefetch)
+        console.log("first",triggerRefetch)
+    }
 
+    useEffect(()=>{
+        console.log("first",triggerRefetch)
+        getProfileInformation().then((res)=>{
+            console.log("first",res.data.address)
+            setAddressList(res.data.address)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    },[triggerRefetch])
+
+  return (
     <Wrapper>
         <ToastContainer />
       <Welcome> {greeting}! {name?.split(" ")[0]}</Welcome>
@@ -197,16 +210,20 @@ function MyAddress({name, greeting}) {
                     <Button onClick={()=>{setEdit(!edit)}}>Add New Address</Button>
                 </Addnew>}
             </Box>
-            {dummyData.map((e)=>(
+            {addressList.map((e)=>(
             <Box key={e._id}>
-                <EditIcon onClick={()=>{setEdit(!edit)}}></EditIcon>
+                <Options>
+                    <EditIcon onClick={()=>{setEdit(!edit)}}></EditIcon>
+                    <DeleteIcon onClick={()=>{handleDelete(e._id)}} />
+                </Options>
                 <Addressdetails>
                     <Name value={e.name} disabled={!edit}/>
                     <Address as="textarea" value={e.address} disabled={!edit}/>
-                    <Address as="textarea" value={e.locality} disabled={!edit}/>
-                    <Pincode value={e.pincode} disabled={!edit}/>
+                    <Address as="textarea" value={e.landmark} disabled={!edit}/>
+                    <Address as="textarea" value={e.city} disabled={!edit}/>
                     <State value={e.state} disabled={!edit}/>
-                    <Mobile value={e.mobile} disabled={!edit}/>
+                    <Pincode value={e.pincode} disabled={!edit}/>
+                    <Mobile value={e.phoneNo} disabled={!edit}/>
                 </Addressdetails>
                 {edit?<Save>Save</Save>:""}
             </Box>

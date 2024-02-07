@@ -106,7 +106,7 @@ function Profile(props) {
     const [name, setName] = React.useState('Guest')
     const [email, setEmail] = React.useState('')
     const [mobilenumber, setMobileNo] = React.useState('')
-    const [dob, setDob] = React.useState("")
+    const [dob, setDob] = React.useState("1990-01-01")
     const [gender, setGender] = React.useState("")
 
     const formatDate = (date) => {
@@ -132,6 +132,7 @@ function Profile(props) {
 
     const handleSave = () => {
         const data = {name,mobilenumber,dob,gender}
+        console.log("first",data)
         updateProfileInformation(data).then((res) => {
            if(res.status === 200){
             toast.success("Profile Updated Successfully")
@@ -175,7 +176,7 @@ function Profile(props) {
         </RadioButtons>
         <Buttons>
             <SaveAndCancel>
-            <Save onClick={handleSave}>Save</Save>
+            <Save onClick={()=>handleSave()}>Save</Save>
             </SaveAndCancel>
         </Buttons>
         </Card>

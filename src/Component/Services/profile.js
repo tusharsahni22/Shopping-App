@@ -31,6 +31,22 @@ export const updateProfileInformation = (data)=> {
     });
 
 }
+export const addAddress = async(data)=> {
+    return await axiosInstance.post("/addAddress",data).then((result) => {
+        return result;
+    }).catch((err) => {
+       console.log("Error in addAddress",err);
+    });
+}
+export const removeAddress = async(data)=> {
+    return await axiosInstance.post("/removeAddress",data).then((result) => {
+        console.log("first",result)
+        return result;
+    }).catch((err) => {
+       console.log("Error in removeAddress",err);
+    });
+}
+
 export const getFavorite = async()=> {
     return await axiosInstance.get("/favorites").then((result) => {
         return result;
@@ -60,4 +76,13 @@ export const changePassword = async (data) => {
     }).catch((err) => {
        console.log("Error in change-password",err);
     });
+}
+
+export const getOrderDetails = async ()=>{
+    return axiosInstance.get("/orders").then((result)=>{
+        console.log("first",result)
+        return result
+    }).catch((err)=>{
+        console.log("error for getting orders",err)
+    })
 }

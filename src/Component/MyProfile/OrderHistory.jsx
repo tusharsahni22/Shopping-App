@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import {RiArrowDropRightLine} from "react-icons/ri";
+import { getOrderDetails } from '../Services/profile';
 
 const Wrapper = styled.div`
 width: 100%;
+
 `;
 const Box = styled.div`
 padding: 40px 60px;
@@ -19,7 +21,7 @@ const Ids = styled.div`
 display: flex;
 flex-direction: column;
 `;
-const Date = styled.div`
+const Datee = styled.div`
 margin-right: 20px;
 font-size: 15px !important;
 color: rgb(153,153,153);
@@ -45,6 +47,7 @@ margin: 20px 0;
 `;
 const Product = styled.div`
 display: flex;
+margin:0 0 20px 0;
 `;
 const Img = styled.img`
 width: 100px;
@@ -78,38 +81,67 @@ margin-top: 15px;
 margin-bottom: 30px;
 width: 100%;
 text-align: center;
-
+`;
+const OrderContainer = styled.div`
+height: 100vh;
+overflow-y: auto;
+gap: 20px;
+display: flex;
+flex-direction: column;
+padding: 10px 20px;
 `;
 
-
-
 function OrderHistory({name, greeting}) {
+  const [orderList, setOrderList] = React.useState([])
+  const [OrderDetailsExpanded, setOrderDetailsExpanded] = React.useState(false)
+  const convertToDateFormat = (data) => {
+    const date = new Date(data);
+    const dateString = date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    return dateString;
+  }
+  useEffect(()=>{
+    getOrderDetails().then((res)=>{
+      setOrderList(res.data)
+      console.log("first",res.data)
+      console.log("first",orderList)
+    }).catch((err)=>{
+      console.log("error while getting order",err)
+    })
+  },[])
+
   return (
     <Wrapper>
       
       <Welcome> {greeting}! {name?.split(" ")[0]}</Welcome>
-      <Box>
+      <OrderContainer style={{height:"100vh",overflowY:"auto"}}>
+      {orderList.map((order)=>(
+      <Box key={order._id}>
       <Details>
         <Ids>
         <div style={{display:"flex"}}>
-        <Date>Order Place on:</Date>
-        <DateText>January 06 2024</DateText>
+        <Datee>Order Place on:</Datee>
+        <DateText>{convertToDateFormat(order.createdAt)}</DateText>
         </div>
         <div style={{display:"flex"}}>
         <OrderId>Order Id: </OrderId>
-        <OrderIdText>123456789</OrderIdText>
+        <OrderIdText>{order._id}</OrderIdText>
         </div>
         </Ids>
-        <OrderDetails>Order Details 
+        <OrderDetails onClick={()=>{setOrderDetailsExpanded(!OrderDetailsExpanded)}}>Order Details 
         <SideArrow />
         </OrderDetails>
       </Details>
       <Line></Line>
-      <Product>
-        <Img/>
-        <Title>Nector Maroon Hakoba Shirt - Maroon / {"S"}</Title>
-      </Product>
+      {order.items.map((item)=>(
+      <Product key={item._id}>
+        <Img src={item.product.mainPicture}/>
+        <Title>{item.product.title} / {"S"}</Title>
+      </Product>))}
+      {OrderDetailsExpanded ? <div>Order Details</div> : null }
       </Box>
+      ))}
+      {/* {orderList.length===0 && <div style={{textAlign:"center",marginTop:"20px"}}>No Orders Found</div>} */}
+      </OrderContainer>
     </Wrapper>
   )
 }
