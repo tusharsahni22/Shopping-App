@@ -76,34 +76,37 @@ export const cartSlice = createSlice({
             }
             storeCartItems(state.cart,state.totalItems,state.total);
         },
-        updateQuantity:(state,action)=>{
-            const {id,quantity,size,color}=action.payload;
-            const product = state.cart.find((item)=>item.id===id && item.size===size && item.color===color);
-            if(quantity===1){
-                const total=product.price*product.quantity+quantity*product.price;
-            if(product){
-                product.quantity=parseInt(product.quantity)+1;
-                product.total=total;
-                state.totalItems=parseInt(state.totalItems)+1;
-                state.total += product.price;
-            }}
-            if(quantity===-1){
-                const total=product.price*product.quantity-product.price;
-                if(product){
-                    product.quantity=parseInt(product.quantity)-1;
-                    product.total=total;
-                    state.totalItems=parseInt(state.totalItems)-1;
-                    state.total-=product.price;
-                }}
-
-            if (product && product.quantity === 0) {
+        updateQuantity: (state, action) => {
+            const {id, quantity, size, color} = action.payload;
+            const product = state.cart.find((item) => item.id === id && item.size === size && item.color === color);
+        
+            if (quantity === 1) {
+                const total = product.price * product.quantity + quantity * product.price;
+                if (product) {
+                    product.quantity = parseInt(product.quantity) + 1;
+                    product.total = total;
+                    state.totalItems = parseInt(state.totalItems) + 1;
+                    state.total += product.price;
+                }
+            }
+        
+            if (quantity === -1 && product) {
+                if (product.quantity > 1) {
+                    const total = product.price * product.quantity - product.price;
+                    product.quantity = parseInt(product.quantity) - 1;
+                    product.total = total;
+                    state.totalItems = parseInt(state.totalItems) - 1;
+                    state.total -= product.price;
+                } else {
+                    // Remove item from cart if quantity is 1
                     state.cart = state.cart.filter((item) => item.id !== id || item.size !== size || item.color !== color);
                     state.totalItems = parseInt(state.totalItems) - 1;
                     state.total -= product.price;
                 }
-                
-                storeCartItems(state.cart,state.totalItems,state.total);
             }
+        
+            storeCartItems(state.cart, state.totalItems, state.total);
+        }
 
     },
 });
