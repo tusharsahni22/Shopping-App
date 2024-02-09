@@ -59,9 +59,9 @@ function SideBar({data,setFilter}) {
       
       {e.type.map((f)=>(
         <Checkbox key={f._id}>
-        <input data-value={f} onClick={(e)=>{setFilter({"filterOn":e.category,type:e.target.getAttribute("data-value")})}}type='checkbox'/>
-      <Type data-value={f} onClick={(event)=>{setFilterValue(event,e.category)}} >{f.charAt(0).toUpperCase()+ f.slice(1)}</Type>
-        </Checkbox>
+        <input data-value={f} onClick={(event)=>{setFilterValue(event, f, e.category)}} type='checkbox'/>
+      <Type data-value={f} onClick={(event)=>{setFilterValue(event,f,e.category)}} >{f.charAt(0).toUpperCase()+ f.slice(1)}</Type>
+      </Checkbox>
       ))}
       
       </Data>

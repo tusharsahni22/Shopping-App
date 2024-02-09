@@ -193,16 +193,18 @@ function App({toggleAddtocart}) {
   const handleproduct = ()=>{
     navigate("/checkout")
   }
-  const handleRemoveFromCart = (id)=>{
-    dispatch(removeFromCart(id))
+  const handleRemoveFromCart = (id,size,color)=>{
+    console.log("first",id,size,color)
+    const data ={id,size,color}
+    dispatch(removeFromCart(data))
 
   }
-  const handleQuantityMinus = (id)=>{
-    const data ={"quantity":-1,id}    
+  const handleQuantityMinus = (id,size,color)=>{
+    const data ={"quantity":-1,id,size,color}    
       dispatch(updateQuantity(data))
   }
-  const handleQuantityPlus = (id)=>{
-    const data ={"quantity":1,id}    
+  const handleQuantityPlus = (id,size,color)=>{
+    const data ={"quantity":1,id,size,color}    
     dispatch(updateQuantity(data))
   }
 
@@ -228,14 +230,14 @@ function App({toggleAddtocart}) {
             <Size>Size : {e.size.toUpperCase()}</Size>
             <Color>Colour : {e.color.toUpperCase()}</Color>
             <Quantity>
-              <Minus onClick={()=>{handleQuantityMinus(e.id)}}>-</Minus>
+              <Minus onClick={()=>{handleQuantityMinus(e.id,e.size,e.color)}}>-</Minus>
               <Countq>{e.quantity}</Countq>
-              <Plus onClick={()=>{handleQuantityPlus(e.id)}}>+</Plus>
+              <Plus onClick={()=>{handleQuantityPlus(e.id,e.size,e.color)}}>+</Plus>
             </Quantity>
           </Details>
           <TotalPrice>
             <PriceTotal>₹{e.total}</PriceTotal>
-            <Remove onClick={()=>{handleRemoveFromCart(e.id)}}>Remove</Remove>
+            <Remove onClick={()=>{handleRemoveFromCart(e.id,e.size,e.color)}}>Remove</Remove>
           </TotalPrice>
         </CartItems>
         ))}

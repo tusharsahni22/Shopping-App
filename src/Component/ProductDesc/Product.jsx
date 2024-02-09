@@ -305,8 +305,8 @@ function Product() {
           <Colour>
             <MainColour onClick={()=>{setColor("black")}} style={{ backgroundColor: "black" }} />
             <MainColour onClick={()=>{setColor("white")}}style={{ backgroundColor: "white" }} />
-            <MainColour onClick={()=>{setColor("red")}}style={{ backgroundColor: "red" }} />
-            <MainColour onClick={()=>{setColor("blue")}} style={{ backgroundColor: "blue" }} />
+            {/* <MainColour onClick={()=>{setColor("red")}}style={{ backgroundColor: "red" }} /> */}
+            {/* <MainColour onClick={()=>{setColor("blue")}} style={{ backgroundColor: "blue" }} /> */}
           </Colour>
           <Text>Size </Text>
           <Size>

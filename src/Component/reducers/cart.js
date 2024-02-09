@@ -36,8 +36,8 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            const { id, title, price, image,quantity,pic,size,color } = action.payload;
-            const product = state.cart.find((item) => item.id === id);
+            const { id, title, price, image, quantity, pic, size, color } = action.payload;
+            const product = state.cart.find((item) => item.id === id && item.size === size && item.color === color);
             const total= price*quantity;
             
             if (product) {
@@ -63,20 +63,22 @@ export const cartSlice = createSlice({
             storeCartItems(state.cart,state.totalItems,state.total);
         },
         removeFromCart: (state, action) => {
-            const  id  = action.payload;
-            const product = state.cart.find((item) => item.id === id);
+            const  {id,size,color}  = action.payload;
+            console.log("first",id,size,color)
+            const product = state.cart.find((item)=>item.id===id && item.size===size && item.color===color);
             // if product then remove from cart
+            console.log("first",product)
 
             if (product) {
-                state.cart = state.cart.filter((item) => item.id !== id);
+                state.cart = state.cart.filter((item) => item.id !== id || item.size !== size || item.color !== color);
                 state.totalItems=parseInt(state.totalItems)-parseInt(product.quantity);
                 state.total -= product.total;
             }
             storeCartItems(state.cart,state.totalItems,state.total);
         },
         updateQuantity:(state,action)=>{
-            const {id,quantity}=action.payload;
-            const product = state.cart.find((item)=>item.id===id);
+            const {id,quantity,size,color}=action.payload;
+            const product = state.cart.find((item)=>item.id===id && item.size===size && item.color===color);
             if(quantity===1){
                 const total=product.price*product.quantity+quantity*product.price;
             if(product){
@@ -93,6 +95,13 @@ export const cartSlice = createSlice({
                     state.totalItems=parseInt(state.totalItems)-1;
                     state.total-=product.price;
                 }}
+
+            if (product && product.quantity === 0) {
+                    state.cart = state.cart.filter((item) => item.id !== id || item.size !== size || item.color !== color);
+                    state.totalItems = parseInt(state.totalItems) - 1;
+                    state.total -= product.price;
+                }
+                
                 storeCartItems(state.cart,state.totalItems,state.total);
             }
 
