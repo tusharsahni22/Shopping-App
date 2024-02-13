@@ -68,14 +68,6 @@ function Index() {
             </li>
             <br />
             <li>
-            Kindly allow 7 days for the return to be processed and the amount to be shown in your bank account.
-            </li>
-            <br />
-            <li>
-            Kindly allow 7 days for the return to be processed and the amount to be shown in your bank account.
-            </li>
-            <br />
-            <li>
               Website: streetswear’s site, which can be accessed via this URL:
               www.streetswear.in
             </li>
