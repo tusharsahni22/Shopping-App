@@ -1,8 +1,8 @@
 import React from 'react'
-import { BiCart } from 'react-icons/bi';
+// import { BiCart } from 'react-icons/bi';
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom';
-import { MdOutlineFavoriteBorder } from "react-icons/md";
+// import { MdOutlineFavoriteBorder } from "react-icons/md";
 
 const Wrapper = styled.div`
 margin-bottom: 100px;
@@ -24,7 +24,7 @@ margin-top: 50px;
 `;
 const Service = styled.div`
 display: flex;
-justify-content: space-between;
+justify-content: center;
 
 `;
 const Title = styled.div`
@@ -44,15 +44,15 @@ width: 190px;
 height: 240px;
 
 `;
-const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
-  position: relative;
-  top: 31px;
-  left: 165px;
-  color: white;
-  &:hover{
-    color: red;
-  }
-`;
+// const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
+//   position: relative;
+//   top: 31px;
+//   left: 165px;
+//   color: white;
+//   &:hover{
+//     color: red;
+//   }
+// `;
 
 function Whatsnew(props) {
     const dummyData = [
@@ -71,14 +71,13 @@ function Whatsnew(props) {
         <Products>
         {dummyData.map((e)=>(
             <Frame key={e._id} >
-              <FavoriteIcon/>
+              {/* <FavoriteIcon/> */}
             <Img loading='lazy' onClick={()=>{navigate("/products")}} src={e.pic} />   
             <Service>
-            <div>                
+                           
             <Title>{e.title}</Title>
-            </div>
-            <BiCart style={{marginTop:"20px",height:"25px",width:"25px"}}/>
-            </Service>
+         
+             </Service>
             </Frame>
          ))}
         </Products>

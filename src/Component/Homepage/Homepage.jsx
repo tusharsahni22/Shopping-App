@@ -18,7 +18,7 @@ function Homepage() {
       <Banner url={"./FREE KEYCHAIN WITH EVERY ORDER.jpg"}/>
       <Mainservice url={[{data:"./Mainserice/1.jpg"},{data:"./Mainserice/2.jpg"},{data:"./Mainserice/3.jpg"},{data:"./Mainserice/4.jpg"}]}/>
       <Poster url={"./Poster.jpg"}/>
-      <TwoService url2={"./service1.jpg"} url1={"./service2.jpg"} buy1={"Shop Now"} buy2={"Shop Nail Art Strips"}/>
+      <TwoService url2={"./service1.jpg"} url1={"./service2.jpg"} buy1={"Shop Now"} buy2={"Shop Now"}/>
       <Padding>
       <Whatsnew title={"New In"}/>
       </Padding>

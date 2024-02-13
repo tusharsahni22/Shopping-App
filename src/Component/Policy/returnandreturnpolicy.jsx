@@ -35,28 +35,44 @@ function Index() {
           <ul>
             <br />
             <li>
-              Company: when this policy mentions “Company,” “we,” “us,” or
-              “our,” it refers to streetswear, that is responsible for your
-              information under this Return & Refund Policy.
+              We offer 7 days hassle-free returns & exchange from the date of delivery and a further 5-7 days for the returned product(s) to reach us. We also offer reverse pick-up services. A reverse shipment fee of Rs 10 will be deducted at the time of refund per order, regardless of the number of items within that order. This means that if an order contains multiple items, only a single deduction of Rs 10 will be made for the entire order, not on each individual clothing item.
             </li>
             <br />
 
             <li>
-              Customer: refers to the company, organization or person that signs
-              up to use the streetswear Innovations Private Limited Service to
-              manage the relationships with your consumers or service users.
+            Pick-up will be attempted twice. If the courier company is unable to pick up the shipment. You will have to send the shipment back to the company address. Reverse Pick Up is subject to the availability of the service in your area pin code.
             </li>
             <br />
             <li>
-              Device: any internet connected device such as a phone, tablet,
-              computer or any other device that can be used to visit streetswear
-              and use the services.
+            Please return your product(s) in the same condition as it was shipped. If the products are returned in poor condition or have clearly been worn, a refund would not be provided.
             </li>
             <br />
             <li>
-              Service: refers to the service provided by streetswear as
-              described in the relative terms (if available) and on this
-              platform.
+            Kindly allow 7 days for the return to be processed and the amount to be shown in your bank account.
+            </li>
+            <br />
+            <li> 
+            Shipping Charges are Non-Refundable
+            </li>
+            <br />
+            <li>
+            You can get in touch with us about any issues at our customer support portal by dropping a mail on support@streetswear.in All queries will be solved between Monday-Sunday, 10 am- 8 pm. All pending queries will be solved on priority the next day. 
+            </li>
+            <br />
+            <li>
+            Please note that we do not solve customer queries on any social media. 
+            </li>
+            <br />
+            <li>
+              Cancellations will only be possible till the order has not been dispatched from our warehouse.
+            </li>
+            <br />
+            <li>
+            Kindly allow 7 days for the return to be processed and the amount to be shown in your bank account.
+            </li>
+            <br />
+            <li>
+            Kindly allow 7 days for the return to be processed and the amount to be shown in your bank account.
             </li>
             <br />
             <li>
@@ -71,32 +87,9 @@ function Index() {
             <br />
           </ul>
           <br />
-          <TitleBold> Return & Refund Policy </TitleBold>
+          <TitleBold> REFUNDS FOR FREE PRODUCT DEALS </TitleBold>
           <br />
-          <br />
-          Thanks for shopping at streetswear. We appreciate the fact that you
-          like to buy the stuff we build. We also want to make sure you have a
-          rewarding experience while you’re exploring, evaluating, and
-          purchasing our products. As with any shopping experience, there are
-          terms and conditions that apply to transactions at streetswear. We’ll
-          be as brief as our attorneys will allow. The main thing to remember is
-          that by placing an order or making a purchase at streetswear, you
-          agree to the terms set forth below along with streetswear’s Privacy
-          Policy.
-          <br />
-          <br />
-          streetswear goes to great lengths to ensure that all orders are
-          fulfilled accurately and on time and are of the highest quality.
-          Accordingly, streetswear accepts returns and will refund
-          payment/initiate returns (Depending on the users preference) if and
-          when customers are disappointed by streetswear merchandise for one of
-          the following reasons: 1. The Merchandise itself is flawed - This
-          includes - incorrect sizing, damaged fabric or a product with any
-          manufacturing defect. 2. The product has been delivered after 10
-          working days (Without streetswear informing the customer in advance).
-          3. The design of the final product is different from the final design
-          requested by the customer. As a rule, streetswear does not encourage
-          returns/replacements for any reason apart from those stated above.
+          <br />Any items purchased during a BOGO Sale (Buy 1 Get 1 Free) or any such promotions wherein free products are included, such orders will not be eligible for any returns.
           <br />
           <br />
           <TitleBold> Your Consent </TitleBold>

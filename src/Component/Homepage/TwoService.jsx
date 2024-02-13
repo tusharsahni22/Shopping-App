@@ -24,7 +24,7 @@ margin-top: 0.75rem;
 `;
 const BuyButton = styled.div`
 font-size: 15px;
-margin: 25px 0 0 15px;
+margin: 25px 0 0 0px;
 font-weight: bold;
 letter-spacing: 1.25px;
 &:hover{

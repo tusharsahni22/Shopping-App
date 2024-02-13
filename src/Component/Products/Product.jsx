@@ -89,8 +89,6 @@ function Product() {
   const {MHeading1,SubHeading} = location.state || {}
 
   const filterDataBySelector = (filter,data)=>{
-    console.log("firsttttt",filter)
-  
     switch(filter.filterOn){
       case "Size": {
         const dataBySize = data.filter((e) => e.size.includes(filter.type.toLowerCase()));
@@ -123,6 +121,11 @@ viewProduct().then((res)=>{
 }).catch((err)=>console.log(err))
 },[filter])
 
+// let colorToIndexMap = {
+//   'white': 'url_to_white_image',
+//   'black': 'url_to_black_image',
+//   // add more colors and their corresponding images
+// }
 
 const discoutPrice = (pricetoConvert)=>{
   const discountedPrice=pricetoConvert - 0.1675 * pricetoConvert;
