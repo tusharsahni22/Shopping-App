@@ -68,8 +68,15 @@ function Index() {
             </li>
             <br />
             <li>
-              Website: streetswear’s site, which can be accessed via this URL:
-              www.streetswear.in
+              Website: streetswear’s site, which can be accessed via this link: 
+              <a
+                href="https://www.streetswear.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{paddingLeft:"5px"}}
+              >
+               streetswear.in
+              </a>
             </li>
             <br />
             <li>
