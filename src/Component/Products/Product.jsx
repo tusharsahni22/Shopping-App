@@ -87,6 +87,7 @@ function Product() {
   const [filterData,setFilterData] = React.useState([])
   const location = useLocation();
   const {MHeading1,SubHeading} = location.state || {}
+  // const [colorToIndexMap,setColorToIndexMap] = React.useState({})
 
   const filterDataBySelector = (filter,data)=>{
     switch(filter.filterOn){
@@ -97,9 +98,26 @@ function Product() {
         break;
       }
       case "Colours":{
-        const dataByColor = data.filter((e)=>e.color.includes(filter.type))
-        setFilterData(dataByColor)
-        break;
+        const dataByColor = data.map((e) => {
+          if (e.color.includes(filter.type)) {
+            const colorToIndex = e.colorToIndexMap.reduce((res, cur) => { return { ...cur, ...res } }, {});
+              const index = colorToIndex[filter.type];
+              console.log("first",index)
+              let newMainPicture = e.mainPicture;
+              if (index === 0) {
+                  newMainPicture = e.mainPicture;
+              } else if (index >= 2 && e.altPictures.length >= index ) {
+                  newMainPicture = e.altPictures[index-1];
+              }
+              return {
+                  ...e,
+                  mainPicture: newMainPicture
+              };
+          }
+          return e;
+      });
+      setFilterData(dataByColor);
+      break;
       }
       case "Category":{
       const dataByCategory = data.filter((e)=>e.category===filter.type)
@@ -117,15 +135,21 @@ function Product() {
 
 useEffect(()=>{
 viewProduct().then((res)=>{
+  console.log("first",res.data)
   filterDataBySelector(filter , res.data)
+  // console.log("first",res.data[0].mainPicture)
+  // // eslint-disable-next-line dot-notation
+  // setColorToIndexMap["white"] = res.data[0].mainPicture
 }).catch((err)=>console.log(err))
 },[filter])
 
-// let colorToIndexMap = {
-//   'white': 'url_to_white_image',
+// const  colorToIndexMap = {
+//   'white': './man-hd.png',
 //   'black': 'url_to_black_image',
 //   // add more colors and their corresponding images
 // }
+
+
 
 const discoutPrice = (pricetoConvert)=>{
   const discountedPrice=pricetoConvert - 0.1675 * pricetoConvert;
