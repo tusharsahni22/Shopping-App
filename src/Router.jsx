@@ -1,15 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './Component/Header/Header'
-// const Product = React.lazy(() => import('./Component/Products'))
-// const ProductDesc = React.lazy(() => import('./Component/ProductDesc/Index'))
-// const Homepage = React.lazy(() => import('./Component/Homepage'))
-// const MyProfile = React.lazy(() => import('./Component/MyProfile/Index'))
-// const Checkout = React.lazy(() => import('./Component/Checkout'))
-// const ReturnandRefund = React.lazy(() => import("./Component/Policy/returnandreturnpolicy"))
-// const Shipping = React.lazy(() => import("./Component/Policy/shipping"))
-// const TermandCondition = React.lazy(() => import("./Component/Policy/termsandservices"))
-// const Privacy = React.lazy(() => import("./Component/Policy/Privacy"))
 import Product from './Component/Products'
 import ProductDesc from './Component/ProductDesc/Index'
 import Homepage from './Component/Homepage'
@@ -20,6 +11,7 @@ import ReturnandRefund from "./Component/Policy/returnandreturnpolicy"
 import Shipping from "./Component/Policy/shipping"
 import TermandCondition from "./Component/Policy/termsandservices"
 import Privacy from "./Component/Policy/Privacy";
+import Admin from './Component/Admin';
 // import PrivateRoutes from './Component/PrivateRoute'
 function Router () {
   return (
@@ -35,6 +27,7 @@ function Router () {
         <Route path='/policy/terms-of-service' element={<TermandCondition/>}/>
         <Route path='/policy/privacy-policy' element={<Privacy/>}/>
         <Route path='/checkout' element={<Checkout/>} />
+        <Route path='/admin' element={<Admin/>} />
         {/* <Route path='/myprofile' element={<PrivateRoutes/>} /> */}
         <Route path='/myprofile' element={<MyProfile/>} />
       </Routes>
