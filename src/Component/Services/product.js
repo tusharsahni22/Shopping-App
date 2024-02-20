@@ -16,15 +16,18 @@ export const viewProduct = () => {
 }
 
 export const uploadProduct = (data) => {
-  console.log("first",data.altPicture)
+  console.log("first",data)
   const formData = new FormData();
   const file = data.pic[0];
   formData.append('pic', file);
-  const altPictures = data.altPicture.slice(0, 3);
+  const altPictures = data.altPictures.slice(0, 3);
 
   altPictures.forEach((file) => {
   formData.append('altpicture',file);
   });
+  // delete data.pic;
+  // delete data.altPictures;
+  console.log("firstafter remove",data)
   formData.append('product', JSON.stringify(data));
   
   return axiosInstance.post("/uploadnewproduct",formData,{headers: {

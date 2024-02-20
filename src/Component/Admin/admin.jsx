@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import DynamicInput from './dynamicInput'
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ImageUpload from './uploadImage';
 import MainImage from "./uploadImagemainPicture"
@@ -150,6 +150,22 @@ function Admin(props) {
     const [mainPicture, setMainPicture] = React.useState([])
     const [altPictures, setAltPictures] = React.useState([])
 
+    const clearState = () => {
+        setTitle('')
+        setSpecification([])
+        setPrice(0)
+        setPriceAfterDiscount(0)
+        setDescription("")
+        setCategory("")
+        setColor([])
+        setSize("")
+        setStocks([{black:0},{white:0}])
+        setColourToIndexMap([{black:0},{white:0}])
+        setMainPicture([])
+        setAltPictures([])
+    }
+    
+
     const handleSubmit = () => {
         const data = {
             title,
@@ -162,12 +178,16 @@ function Admin(props) {
             size,
             stock:stocks,
             colorToIndexMap:colourToIndexMap,
-            altPicture:altPictures,
+            altPictures,
             pic:mainPicture
         }
         console.log("first",data)
         uploadProduct(data).then((res)=>{
-            console.log("res",res)  
+            console.log("res",res)
+            if(res.status === 200){
+              toast.success("Product uploaded successfully")
+              clearState()
+            }  
         }).catch((err)=>{
             console.log("err",err)
         })
