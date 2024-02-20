@@ -15,3 +15,26 @@ export const viewProduct = () => {
   });
 }
 
+export const uploadProduct = (data) => {
+  console.log("first",data.altPicture)
+  const formData = new FormData();
+  const file = data.pic[0];
+  formData.append('pic', file);
+  const altPictures = data.altPicture.slice(0, 3);
+
+  altPictures.forEach((file) => {
+  formData.append('altpicture',file);
+  });
+  formData.append('product', JSON.stringify(data));
+  
+  return axiosInstance.post("/uploadnewproduct",formData,{headers: {
+    'Content-Type': 'multipart/form-data'
+    
+  }
+  }).then((result) => {
+    return result;
+  }).catch((err) => {
+    console.log("Error in uploadProduct", err);
+  });
+}
+
