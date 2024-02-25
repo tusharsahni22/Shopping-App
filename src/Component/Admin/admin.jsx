@@ -146,7 +146,7 @@ function Admin(props) {
     const [color, setColor] = React.useState([])
     const [size, setSize] = React.useState("")
     const [stocks, setStocks] = React.useState([{black:0},{white:0}])
-    const [colourToIndexMap, setColourToIndexMap] = React.useState([{black:0},{white:0}])
+    const [colourToIndexMap, setColourToIndexMap] = React.useState([{white:0},{black:0}])
     const [mainPicture, setMainPicture] = React.useState([])
     const [altPictures, setAltPictures] = React.useState([])
 
@@ -160,11 +160,11 @@ function Admin(props) {
         setColor([])
         setSize("")
         setStocks([{black:0},{white:0}])
-        setColourToIndexMap([{black:0},{white:0}])
+        setColourToIndexMap([{white:0},{black:0}])
         setMainPicture([])
         setAltPictures([])
     }
-    
+
 
     const handleSubmit = () => {
         const data = {
@@ -181,12 +181,11 @@ function Admin(props) {
             altPictures,
             pic:mainPicture
         }
-        console.log("first",data)
         uploadProduct(data).then((res)=>{
-            console.log("res",res)
             if(res.status === 200){
               toast.success("Product uploaded successfully")
               clearState()
+              window.location.reload()
             }  
         }).catch((err)=>{
             console.log("err",err)
@@ -274,7 +273,7 @@ function Admin(props) {
         <label>Black</label>
         <input placeholder='Enter the Index' type='number' onChange={(e) => {
     const updatedMapIndex = colourToIndexMap.map((prev , index) => 
-      index === 0 // replace 0 with the index of the object you want to update
+      index === 1 // replace 0 with the index of the object you want to update
         ? {...prev, black: e.target.value }
         : prev
     );
@@ -285,7 +284,7 @@ function Admin(props) {
         <label>White</label>
         <input placeholder='Enter the quantity' type='number' onChange={(e) => {
     const updatedMapIndex = colourToIndexMap.map((prev , index) => 
-      index === 1 // replace 0 with the index of the object you want to update
+      index === 0 // replace 0 with the index of the object you want to update
         ? {...prev, white: e.target.value }
         : prev
     );

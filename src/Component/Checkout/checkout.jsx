@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux';
+import { getProfileInformation } from '../Services/profile';
 
 const Wrapper = styled.div`
 display: flex;
@@ -83,9 +84,10 @@ const PlaceholderLabel = styled.label`
   color: #999;
 `;
 const Products = styled.div`
-height: 450px;
+height: auto;
 `;
-const Reward = styled.div`
+const PaymentMode = styled.div`
+margin-top: 20px;
 `;
 const Line = styled.div`
 height: 1px;
@@ -187,23 +189,112 @@ padding: 0 15px;
 overflow-y: scroll;
 overflow-x: hidden;
 `;
+const TwoField1 = styled.div`
+display: flex;
+/* width: 100%; */
+gap: 10px;
+`;
 
+const PreviouslySavedAddress = styled.div`
+  padding: 10px;
+  margin: 20px 0;
+  text-align: center;
+  color: #4A4A4A;
+  height: 287px;
+  overflow-y: scroll;
+`;
+const Addresses = styled.div`
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #D2D6DC;
+  border-radius: 5px;
+  display: flex;
+  // flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: center;
+  text-align: left;
+`;
+const UseThisAddress = styled.div`
+  background-color: #F2F2F2;
+  padding: 5px;
+  border-radius: 5px;
+  color: #4A4A4A;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: #D2D6DC;
+  }
+`;
 
 
 
 function Checkout() { 
   const product = useSelector((state) => state.cart)
   const total = useSelector((state) => state.total)
+  const [address, setAddress] = React.useState([])
+  const [selectedAddress, setSelectedAddress] = React.useState(null)
+  const [addNewAddress, setAddNewAddress] = React.useState(false)
+  const [selectedPayment, setSelectedPayment] = React.useState(null)
+
+
+  useEffect(() => {
+    getProfileInformation().then((res) => {
+      console.log("first",res.data.address)
+      setAddress(res.data.address)
+    }).catch((err) => {
+      console.log("Error in getProfileInformation",err);
+    });
+  }, [])
+
+  const handlePlaceOrder = () => {
+    const products = product.map((e) => ({
+      product: e.id,
+      total: total,
+    }))
+    const data = {
+      products: products,
+      address: selectedAddress,
+      payment: selectedPayment
+    }
+
+    console.log("data",data)
+  }
   
   return (
     <Wrapper>
       <Left>
-      <Head>Information {'>'} Shipping {' > '}Payment</Head>
+        <Head>Information {'>'} Shipping {' > '}Payment</Head>
       <CheckoutTagLine>
         <PaymentGateWayLogo src="./PhonePe.svg"/>
       </CheckoutTagLine>
       <AddressForm>
-      <h7>Shipping Address</h7>
+        {address?.length > 0 && addNewAddress? <Addresses onClick={()=>{setAddNewAddress(false)}}>Use Previously saved address</Addresses> : <Addresses>Previously saved address</Addresses>}
+        {address?.length > 0 && !addNewAddress ?
+      <PreviouslySavedAddress>
+          {address?.map((e) => (
+            <Addresses key={e._id}>
+              <div>
+              <p>{e.name}</p>
+              <p>{e.address}</p>
+              <p>{e.landmark}</p>
+              <p>{e.pincode}</p>
+              <p>{e.city} {e.state}</p>
+              <p>{e.phoneNo}</p>
+              </div>
+             <UseThisAddress   
+             style={{background: selectedAddress?._id === e._id ? "black" : "",
+                    color: selectedAddress?._id === e._id ? "white" : ""}} 
+                    onClick={()=>{setSelectedAddress(e)}}>Use this address</UseThisAddress>
+ 
+            </Addresses>
+          ))}
+          </PreviouslySavedAddress>:""}
+
+          <Addresses onClick={()=>{setAddNewAddress(true)}}>Add new address</Addresses>
+      {address?.length === 0 || addNewAddress ? 
+      <div>
+      
       <TwoField>
         <InputContainer>
       <Input type="text" required placeholder=" "  />
@@ -238,8 +329,8 @@ function Checkout() {
       <Input type="text" required placeholder=" "  />
       <PlaceholderLabel >State</PlaceholderLabel>
       </InputContainer>
+      </div>:""}
       </AddressForm>
-    <ProcedToPay>Proceed to pay</ProcedToPay>
     </Left>
     <Right>
     <Products>
@@ -261,7 +352,19 @@ function Checkout() {
         </AllCartItems>
        
     </Products>
-    <Reward></Reward>
+    <Line></Line>
+    <PaymentMode>
+      <div style={{fontSize:"16px",margin:"20px 0 20px 0"}}>Payment Mode</div>
+      <TwoField1>
+      <input onChange={(e)=>{setSelectedPayment(e.target.value)}} type="radio" name="payment" value="online" />
+      <label>Pay online</label>
+      </TwoField1>
+      <TwoField1>
+      <input onChange={(e)=>{setSelectedPayment(e.target.value)}} type="radio" name="payment" value="cash" />
+      <label>Cash on delivery</label>
+      </TwoField1>
+      
+    </PaymentMode>
     <Line></Line>
     <Total>
       <div style={{display:"flex",justifyContent:"space-between"}}>
@@ -275,6 +378,7 @@ function Checkout() {
       </Total>
       <Line></Line>
       <Total/>
+      <ProcedToPay onClick={handlePlaceOrder}>Proceed to pay</ProcedToPay>
     </Right>
     </Wrapper>
   )

@@ -237,7 +237,6 @@ function Product() {
   //   // Add more colors as needed
   // };
   useEffect(()=>{
-
   },[color])
   const handleAddtocart = () => {
     dispatch(
@@ -277,7 +276,7 @@ function Product() {
             showNav={false}
             showPlayButton={false}
             items={images}
-            startIndex={colorToIndexMap[color]||0}
+            startIndex={parseInt(colorToIndexMap[color])}
           />
         </Section1>
         <Section2>
