@@ -250,10 +250,10 @@ function Checkout() {
   const handlePlaceOrder = () => {
     const products = product.map((e) => ({
       product: e.id,
-      total: total,
+      total,
     }))
     const data = {
-      products: products,
+      products,
       address: selectedAddress,
       payment: selectedPayment
     }
