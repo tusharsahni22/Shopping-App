@@ -165,7 +165,7 @@ const discoutPrice = (pricetoConvert)=>{
       <SideBar data={[{category:"Size",type:["small","medium","large","xl","xxl"]},{category:"Colours",type:["white","black"]},{category:"Category",type:["t-shirt","sweatshirt","hoodie"]}]} setFilter={setFilter}/>
       <Services>
         <ProductItems >
-        {filterData.map((e)=>(
+        {filterData?.map((e)=>(
             <Frame key={e._id} onClick={()=>{navigate("/product-description",{state:{
               id:e._id,
               price:e.price,
