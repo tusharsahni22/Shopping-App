@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux';
 import { getProfileInformation } from '../Services/profile';
+import OtpVerificationPage from './OtpVerificationPage';
 
 const Wrapper = styled.div`
 display: flex;
@@ -236,6 +237,7 @@ function Checkout() {
   const [selectedAddress, setSelectedAddress] = React.useState(null)
   const [addNewAddress, setAddNewAddress] = React.useState(false)
   const [selectedPayment, setSelectedPayment] = React.useState(null)
+  const [OtpPage,setOtpPage]=React.useState(false)
 
 
   useEffect(() => {
@@ -252,17 +254,21 @@ function Checkout() {
       product: e.id,
       total,
     }))
+    
     const data = {
       products,
       address: selectedAddress,
       payment: selectedPayment
     }
+    
+    setOtpPage(true)
 
     console.log("data",data)
   }
   
   return (
     <Wrapper>
+      {OtpPage?<OtpVerificationPage mobile={selectedAddress.phoneNo} setOtpPage={setOtpPage}/>:""}
       <Left>
         <Head>Information {'>'} Shipping {' > '}Payment</Head>
       <CheckoutTagLine>

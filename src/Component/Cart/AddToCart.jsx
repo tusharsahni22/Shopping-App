@@ -191,6 +191,7 @@ function App({toggleAddtocart}) {
   const total = useSelector((state) => state.total)
   const totalItems = 0 || parseInt(useSelector((state) => state.totalItems))
   const handleproduct = ()=>{
+    toggleAddtocart()
     navigate("/checkout")
   }
   const handleRemoveFromCart = (id,size,color)=>{
