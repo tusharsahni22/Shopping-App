@@ -22,8 +22,8 @@ const LoginForm = styled.form`
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  width: 480px;
-  height: 550px;
+  width: 450px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   outline: 1px solid black;
@@ -96,19 +96,32 @@ const Lable = styled.div`
 
 function OtpVerificationPage(props) {
   const [otp, setOtp] = useState("");
+  const [counter, setCounter] = useState(60);
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    if (counter > 0) {
+      const timer = setTimeout(() => setCounter(counter - 1), 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setDisabled(false);
+    }
+  }, [counter]);
 
   const clearForm = () => {
     setOtp("");
-    props.setOtpPage(false)
+    props.setOtpPage(false);
   };
 
   useEffect(() => {
     const data = { phone: props.mobile }
-    console.log("first", data)
-    otpgenration(data).then((res) => {
-      if(res.status === 200){
-        console.log("otp sent")
-      }})
+    if (!sessionStorage.getItem('otpGenerated')) {
+      otpgenration(data).then((res) => {
+        if(res.status === 200){
+          toast.success("otp sent successfully")
+        }})
+      sessionStorage.setItem('otpGenerated', 'true');
+    }
   }, []);
 
   const handleSubmit=()=>{
@@ -117,10 +130,22 @@ function OtpVerificationPage(props) {
     otpverification(data).then((res) => {
       if(res.status === 200){
         clearForm()
+        sessionStorage.removeItem('otpGenerated');
+        sessionStorage.setItem('otpVerification',true);
         toast.success("otp verfied successfully")
-        console.log("otp verfied successfully")
       }})
   }
+
+  const handleResendOtp = () => {
+    setCounter(60);
+    setDisabled(true);
+    const data = { phone: props.mobile }
+    otpgenration(data).then((res) => {
+      if(res.status === 200){
+        toast.success("otp sent successfully")
+      }})
+  }
+
   
   return (
     <Overlay>
@@ -148,7 +173,9 @@ function OtpVerificationPage(props) {
           <Line />
         </Field>
         <Already>
-          Didn&apos;t received otp? <Span>Resend</Span>
+          Didn&apos;t received otp? <Span onClick={handleResendOtp} style={{ color: disabled ? 'gray' : 'black' }}>
+      {disabled ? `Resend in ${counter} seconds` : 'Resend'}
+    </Span>
         </Already>
       </LoginForm>
     </Overlay>

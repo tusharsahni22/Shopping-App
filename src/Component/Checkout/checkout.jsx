@@ -1,34 +1,38 @@
-import React, { useEffect } from 'react'
-import styled from 'styled-components'
-import { useSelector } from 'react-redux';
-import { getProfileInformation } from '../Services/profile';
-import OtpVerificationPage from './OtpVerificationPage';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { getProfileInformation } from "../Services/profile";
+import OtpVerificationPage from "./OtpVerificationPage";
+import { placeNewOrder } from "../Services/Checkout";
+import { v4 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
+import { Oval } from "react-loader-spinner";
 
 const Wrapper = styled.div`
-display: flex;
-/* padding: 0 5%; */
-justify-content: center;
-gap: 5%;
-width: 100%;
-`; 
+  display: flex;
+  /* padding: 0 5%; */
+  justify-content: center;
+  gap: 5%;
+  width: 100%;
+`;
 const Left = styled.div`
   background-color: white;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   padding: 5%;
 `;
 const Right = styled.div``;
 const Head = styled.div`
-letter-spacing: 4px;
-margin-bottom: 40px;
+  letter-spacing: 4px;
+  margin-bottom: 40px;
 `;
 
-const CheckoutTagLine  = styled.div`
-height : 100px;
-position: relative;
-border: 1px solid black;
-margin-top: 20px;
-&::before {
-    content: 'EXPRESS CHECKOUT';
+const CheckoutTagLine = styled.div`
+  height: 100px;
+  position: relative;
+  border: 1px solid black;
+  margin-top: 20px;
+  &::before {
+    content: "EXPRESS CHECKOUT";
     position: absolute;
     top: -10px;
     left: 29%;
@@ -36,9 +40,9 @@ margin-top: 20px;
   }
 `;
 const AddressForm = styled.div`
-display: flex;
-flex-direction: column;
-margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
 `;
 const InputContainer = styled.div`
   position: relative;
@@ -47,21 +51,21 @@ const InputContainer = styled.div`
   gap: 10px;
 `;
 const TwoField = styled.div`
-display: flex;
-justify-content: space-between;
-/* width: 100%; */
-gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  /* width: 100%; */
+  gap: 10px;
 `;
 const Input = styled.input`
-margin: 5px 0;
-height: 25px;
-padding: 15px 0 0 10px;
-width: 100%;
-border-radius: 5px;
-border: none;
-outline: 1px solid black;
+  margin: 5px 0;
+  height: 25px;
+  padding: 15px 0 0 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  outline: 1px solid black;
 
-&:placeholder-shown + label,
+  &:placeholder-shown + label,
   &:empty + label {
     font-size: 12px;
     cursor: text;
@@ -85,129 +89,128 @@ const PlaceholderLabel = styled.label`
   color: #999;
 `;
 const Products = styled.div`
-height: auto;
+  height: auto;
 `;
 const PaymentMode = styled.div`
-margin-top: 20px;
+  margin-top: 20px;
 `;
 const Line = styled.div`
-height: 1px;
-background-color: gray;
-margin-top: 10px;
-margin-bottom: 10px;
-padding: 0 15px;
+  height: 1px;
+  background-color: gray;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0 15px;
 `;
 const Total = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-padding: 0 15px;
-margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 15px;
+  margin-bottom: 10px;
 `;
 const TotalText = styled.div`
-font-weight: bold;
-font-size: 20px;
-color: gray;
-margin-bottom: 10px;
-margin-top: 10px;
-text-align: right;
+  font-weight: bold;
+  font-size: 20px;
+  color: gray;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  text-align: right;
 `;
 const TotalPrice = styled.div`
-font-weight: bold;
-font-size: 16px;
-color: black;
-margin-bottom: 10px;
-margin-top: 10px;
-text-align: right;
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  text-align: right;
 `;
 
 const Shipping = styled.div`
-font-weight: bold;
-font-size: 20px;
-color: gray;
-margin-bottom: 10px;
-text-align: right;
+  font-weight: bold;
+  font-size: 20px;
+  color: gray;
+  margin-bottom: 10px;
+  text-align: right;
 `;
 const ShippingPrice = styled.div`
-font-weight: bold;
-font-size: 16px;
-color: gray;
-margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: gray;
+  margin-bottom: 10px;
 `;
 const PaymentGateWayLogo = styled.img`
-width: 100%;
-height: 100%;
+  width: 100%;
+  height: 100%;
 `;
 const ProcedToPay = styled.div`
-width: 190px;
-height: 60px;
-background-color: black;
-color: white;
-font-weight: 700 !important;
-border: 1px transparent solid;
-border-radius: 5px;
-font-size: 15px;
-display: flex;
-justify-content: center;
-align-items: center;  
-margin-top: 20px;
+  width: 190px;
+  height: 60px;
+  background-color: black;
+  color: white;
+  font-weight: 700 !important;
+  border: 1px transparent solid;
+  border-radius: 5px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 `;
 const CartItems = styled.div`
-display:flex;
-gap: 10px;
-/* padding: 0 25px; */
-margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  /* padding: 0 25px; */
+  margin-top: 20px;
 `;
 const Image = styled.img`
-height: 100px;
-width: 100px;
-background-color: #D2D6DC;
-border-radius: 5px;
+  height: 100px;
+  width: 100px;
+  background-color: #d2d6dc;
+  border-radius: 5px;
 `;
 const Details = styled.div`
-display:flex;
-flex-direction: column;
-justify-content: space-between;
-margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 15px;
 `;
 const Name = styled.div`
-margin-top: 10px;
-font-weight: bold;
+  margin-top: 10px;
+  font-weight: bold;
 `;
-const Size = styled.div`
-`;
+const Size = styled.div``;
 const Color = styled.div`
-margin: 0 0 10px 0;
+  margin: 0 0 10px 0;
 `;
 // const Price = styled.div`
 // `;
 const PriceTotal = styled.div`
-margin-left: auto;
+  margin-left: auto;
 `;
 const AllCartItems = styled.div`
-height: 50vh;
-padding: 0 15px;
-overflow-y: scroll;
-overflow-x: hidden;
+  height: 50vh;
+  padding: 0 15px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 const TwoField1 = styled.div`
-display: flex;
-/* width: 100%; */
-gap: 10px;
+  display: flex;
+  /* width: 100%; */
+  gap: 10px;
 `;
 
 const PreviouslySavedAddress = styled.div`
   padding: 10px;
   margin: 20px 0;
   text-align: center;
-  color: #4A4A4A;
+  color: #4a4a4a;
   height: 287px;
   overflow-y: scroll;
 `;
 const Addresses = styled.div`
   margin-top: 10px;
   padding: 10px;
-  border: 1px solid #D2D6DC;
+  border: 1px solid #d2d6dc;
   border-radius: 5px;
   display: flex;
   // flex-direction: column;
@@ -217,177 +220,288 @@ const Addresses = styled.div`
   text-align: left;
 `;
 const UseThisAddress = styled.div`
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   padding: 5px;
   border-radius: 5px;
-  color: #4A4A4A;
+  color: #4a4a4a;
   cursor: pointer;
-  
+
   &:hover {
-    background-color: #D2D6DC;
+    background-color: #d2d6dc;
   }
 `;
 
+function Checkout() {
+  const product = useSelector((state) => state.cart);
+  const total = useSelector((state) => state.total);
+  const [address, setAddress] = React.useState([]);
+  const [selectedAddress, setSelectedAddress] = React.useState(null);
+  const [addNewAddress, setAddNewAddress] = React.useState(false);
+  const [selectedPayment, setSelectedPayment] = React.useState("credit");
+  const [shippingCost, setShippingCost] = React.useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [OtpPage, setOtpPage] = React.useState(false);
 
-
-function Checkout() { 
-  const product = useSelector((state) => state.cart)
-  const total = useSelector((state) => state.total)
-  const [address, setAddress] = React.useState([])
-  const [selectedAddress, setSelectedAddress] = React.useState(null)
-  const [addNewAddress, setAddNewAddress] = React.useState(false)
-  const [selectedPayment, setSelectedPayment] = React.useState(null)
-  const [OtpPage,setOtpPage]=React.useState(false)
-
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getProfileInformation().then((res) => {
-      console.log("first",res.data.address)
-      setAddress(res.data.address)
-    }).catch((err) => {
-      console.log("Error in getProfileInformation",err);
-    });
-  }, [])
+    getProfileInformation()
+      .then((res) => {
+        console.log("first", res.data.address);
+        setAddress(res.data.address);
+      })
+      .catch((err) => {
+        console.log("Error in getProfileInformation", err);
+      });
+  }, []);
+
+  const handlePaymentChange = (e) => {
+    console.log("first", e.target.value);
+    if (e.target.value === "cash" && selectedPayment !== "cash") {
+      setShippingCost(shippingCost + 100);
+    } else if (e.target.value !== "cash" && selectedPayment === "cash") {
+      setShippingCost(shippingCost - 100);
+    }
+    setSelectedPayment(e.target.value);
+  };
+
+  const AfterOrderFunctions = () => {
+    navigate("/order-success");
+  };
 
   const handlePlaceOrder = () => {
     const products = product.map((e) => ({
-      product: e.id,
-      total,
-    }))
-    
+      productId: e.id,
+      quantity: e.quantity,
+      size: e.size,
+      color: e.color,
+    }));
     const data = {
       products,
       address: selectedAddress,
-      payment: selectedPayment
-    }
-    
-    setOtpPage(true)
+      paymentMode: selectedPayment,
+      total: total + shippingCost,
+      shippingCost,
+      orderId: uuid(),
+    };
 
-    console.log("data",data)
-  }
-  
+    console.log(products);
+    setIsLoading(true);
+    if (selectedPayment === "cash") {
+      setOtpPage(true);
+      if (sessionStorage.getItem("otpVerification") === "true") {
+        setIsLoading(true)
+        placeNewOrder(data)
+          .then((res) => {
+            if (res.status === 201) {
+              setIsLoading(false);
+              AfterOrderFunctions();
+            }
+          })
+          .catch((err) => {
+            console.log("Error in placeNewOrder", err);
+          });
+      }
+    } else { // if payment mode is online
+      AfterOrderFunctions();
+    }
+  };
+
   return (
     <Wrapper>
-      {OtpPage?<OtpVerificationPage mobile={selectedAddress.phoneNo} setOtpPage={setOtpPage}/>:""}
+      {OtpPage ? (
+        <OtpVerificationPage
+          mobile={selectedAddress.phoneNo}
+          setOtpPage={setOtpPage}
+        />
+      ) : (
+        ""
+      )}
+      {isLoading ? (
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
+          }}
+        >
+          <Oval
+            visible={true}
+            height="250"
+            width="250"
+            color="#4fa94d"
+            ariaLabel="oval-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>
+      ) : (
+        ""
+      )}
       <Left>
-        <Head>Information {'>'} Shipping {' > '}Payment</Head>
-      <CheckoutTagLine>
-        <PaymentGateWayLogo src="./PhonePe.svg"/>
-      </CheckoutTagLine>
-      <AddressForm>
-        {address?.length > 0 && addNewAddress? <Addresses onClick={()=>{setAddNewAddress(false)}}>Use Previously saved address</Addresses> : <Addresses>Previously saved address</Addresses>}
-        {address?.length > 0 && !addNewAddress ?
-      <PreviouslySavedAddress>
-          {address?.map((e) => (
-            <Addresses key={e._id}>
-              <div>
-              <p>{e.name}</p>
-              <p>{e.address}</p>
-              <p>{e.landmark}</p>
-              <p>{e.pincode}</p>
-              <p>{e.city} {e.state}</p>
-              <p>{e.phoneNo}</p>
-              </div>
-             <UseThisAddress   
-             style={{background: selectedAddress?._id === e._id ? "black" : "",
-                    color: selectedAddress?._id === e._id ? "white" : ""}} 
-                    onClick={()=>{setSelectedAddress(e)}}>Use this address</UseThisAddress>
- 
+        <Head>
+          Information {">"} Shipping {" > "}Payment
+        </Head>
+        <CheckoutTagLine>
+          <PaymentGateWayLogo src="./PhonePe.svg" />
+        </CheckoutTagLine>
+        <AddressForm>
+          {address?.length > 0 && addNewAddress ? (
+            <Addresses
+              onClick={() => {
+                setAddNewAddress(false);
+              }}
+            >
+              Use Previously saved address
             </Addresses>
-          ))}
-          </PreviouslySavedAddress>:""}
+          ) : (
+            <Addresses>Previously saved address</Addresses>
+          )}
+          {address?.length > 0 && !addNewAddress ? (
+            <PreviouslySavedAddress>
+              {address?.map((e) => (
+                <Addresses key={e._id}>
+                  <div>
+                    <p>{e.name}</p>
+                    <p>{e.address}</p>
+                    <p>{e.landmark}</p>
+                    <p>{e.pincode}</p>checked
+                    <p>
+                      {e.city} {e.state}
+                    </p>
+                    <p>{e.phoneNo}</p>
+                  </div>
+                  <UseThisAddress
+                    style={{
+                      background: selectedAddress?._id === e._id ? "black" : "",
+                      color: selectedAddress?._id === e._id ? "white" : "",
+                    }}
+                    onClick={() => {
+                      setSelectedAddress(e);
+                    }}
+                  >
+                    Use this address
+                  </UseThisAddress>
+                </Addresses>
+              ))}
+            </PreviouslySavedAddress>
+          ) : (
+            ""
+          )}
 
-          <Addresses onClick={()=>{setAddNewAddress(true)}}>Add new address</Addresses>
-      {address?.length === 0 || addNewAddress ? 
-      <div>
-      
-      <TwoField>
-        <InputContainer>
-      <Input type="text" required placeholder=" "  />
-      <PlaceholderLabel >Name</PlaceholderLabel>
-    </InputContainer>
-    <InputContainer>
-      <Input type="text" required placeholder=" "  />
-      <PlaceholderLabel >Phone Number</PlaceholderLabel>
-    </InputContainer>
-      </TwoField>
-      <InputContainer>
-      <Input type="text" required placeholder=" "  />
-      <PlaceholderLabel >Address</PlaceholderLabel>
-    </InputContainer>
-    <InputContainer>
-      <Input type="text" required placeholder=" "  />
-      <PlaceholderLabel >Appartments,Suits etc</PlaceholderLabel>
-    </InputContainer>
+          <Addresses
+            onClick={() => {
+              setAddNewAddress(true);
+            }}
+          >
+            Add new address
+          </Addresses>
+          {address?.length === 0 || addNewAddress ? (
+            <div>
+              <TwoField>
+                <InputContainer>
+                  <Input type="text" required placeholder=" " />
+                  <PlaceholderLabel>Name</PlaceholderLabel>
+                </InputContainer>
+                <InputContainer>
+                  <Input type="text" required placeholder=" " />
+                  <PlaceholderLabel>Phone Number</PlaceholderLabel>
+                </InputContainer>
+              </TwoField>
+              <InputContainer>
+                <Input type="text" required placeholder=" " />
+                <PlaceholderLabel>Address</PlaceholderLabel>
+              </InputContainer>
+              <InputContainer>
+                <Input type="text" required placeholder=" " />
+                <PlaceholderLabel>Appartments,Suits etc</PlaceholderLabel>
+              </InputContainer>
 
-      <TwoField>
-      <InputContainer>
-      <Input type="text" required placeholder=" "  />
-      <PlaceholderLabel >City</PlaceholderLabel>
-      </InputContainer>
-      <InputContainer>
-      <Input type="text" required placeholder=" "  />
-      <PlaceholderLabel >Pincode</PlaceholderLabel>
-      </InputContainer>
-      </TwoField>
+              <TwoField>
+                <InputContainer>
+                  <Input type="text" required placeholder=" " />
+                  <PlaceholderLabel>City</PlaceholderLabel>
+                </InputContainer>
+                <InputContainer>
+                  <Input type="text" required placeholder=" " />
+                  <PlaceholderLabel>Pincode</PlaceholderLabel>
+                </InputContainer>
+              </TwoField>
 
-      <InputContainer>
-      <Input type="text" required placeholder=" "  />
-      <PlaceholderLabel >State</PlaceholderLabel>
-      </InputContainer>
-      </div>:""}
-      </AddressForm>
-    </Left>
-    <Right>
-    <Products>
-    <AllCartItems>
-        {product.map((e)=>(
-       <CartItems key={e.id}>
-       <Image src={e.pic} />
-       <Details>
-         <Name>{e.title}</Name>
-         <Size>Size : {(e.size).toUpperCase()}</Size>
-         <Color>Colour : {e.color.charAt(0).toUpperCase() + e.color.slice(1)}</Color>
-       </Details>
-       <TotalPrice>
-         <PriceTotal>₹{e.total}</PriceTotal>
-         
-       </TotalPrice>
-     </CartItems>
-        ))}
-        </AllCartItems>
-       
-    </Products>
-    <Line></Line>
-    <PaymentMode>
-      <div style={{fontSize:"16px",margin:"20px 0 20px 0"}}>Payment Mode</div>
-      <TwoField1>
-      <input onChange={(e)=>{setSelectedPayment(e.target.value)}} type="radio" name="payment" value="online" />
-      <label>Pay online</label>
-      </TwoField1>
-      <TwoField1>
-      <input onChange={(e)=>{setSelectedPayment(e.target.value)}} type="radio" name="payment" value="cash" />
-      <label>Cash on delivery</label>
-      </TwoField1>
-      
-    </PaymentMode>
-    <Line></Line>
-    <Total>
-      <div style={{display:"flex",justifyContent:"space-between"}}>
-      <Shipping>Shipping</Shipping>
-      <ShippingPrice>₹{0}</ShippingPrice>
-      </div>
-      <div style={{display:"flex",justifyContent:"space-between"}}>
-      <TotalText>Total</TotalText>
-      <TotalPrice>₹{total}</TotalPrice>
-      </div>
-      </Total>
-      <Line></Line>
-      <Total/>
-      <ProcedToPay onClick={handlePlaceOrder}>Proceed to pay</ProcedToPay>
-    </Right>
+              <InputContainer>
+                <Input type="text" required placeholder=" " />
+                <PlaceholderLabel>State</PlaceholderLabel>
+              </InputContainer>
+            </div>
+          ) : (
+            ""
+          )}
+        </AddressForm>
+      </Left>
+      <Right>
+        <Products>
+          <AllCartItems>
+            {product.map((e) => (
+              <CartItems key={e.id}>
+                <Image src={e.pic} />
+                <Details>
+                  <Name>{e.title}</Name>
+                  <Size>Size : {e.size.toUpperCase()}</Size>
+                  <Color>
+                    Colour :{" "}
+                    {e.color.charAt(0).toUpperCase() + e.color.slice(1)}
+                  </Color>
+                </Details>
+                <TotalPrice>
+                  <PriceTotal>₹{e.total}</PriceTotal>
+                </TotalPrice>
+              </CartItems>
+            ))}
+          </AllCartItems>
+        </Products>
+        <Line></Line>
+        <PaymentMode>
+          <div style={{ fontSize: "16px", margin: "20px 0 20px 0" }}>
+            Payment Mode
+          </div>
+          <TwoField1>
+            <input
+              onChange={handlePaymentChange}
+              type="radio"
+              name="payment"
+              value="credit"
+              defaultChecked
+            />
+            <label>Pay online</label>
+          </TwoField1>
+          <TwoField1>
+            <input
+              onChange={handlePaymentChange}
+              type="radio"
+              name="payment"
+              value="cash"
+            />
+            <label>Cash on delivery</label>
+          </TwoField1>
+        </PaymentMode>
+        <Line></Line>
+        <Total>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Shipping>Shipping</Shipping>
+            <ShippingPrice>₹{shippingCost}</ShippingPrice>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <TotalText>Total</TotalText>
+            <TotalPrice>₹{total + shippingCost}</TotalPrice>
+          </div>
+        </Total>
+        <Line></Line>
+        <Total />
+        <ProcedToPay onClick={handlePlaceOrder}>Proceed to pay</ProcedToPay>
+      </Right>
     </Wrapper>
-  )
+  );
 }
 
-export default Checkout
+export default Checkout;

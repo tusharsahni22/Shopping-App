@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: `${import.meta.env.VITE_API_BASE_URL}/api`,
+    baseURL: `${import.meta.env.VITE_API_BASE_URL_PROD}/api`,
     validateStatus: function (status) {
         return status >= 200 && status < 500; // default
     },
@@ -25,5 +25,13 @@ const axiosInstance = axios.create({
             return result;
         }).catch((err) => {
             console.log("Error in otpverification", err);
+        });
+    }
+
+    export const placeNewOrder = (data) =>{
+        return axiosInstance.post("/orders",data).then((result) => {
+            return result;
+        }).catch((err) => {
+            console.log("Error in placeNewOrder", err);
         });
     }

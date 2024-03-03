@@ -12,6 +12,7 @@ import Shipping from "./Component/Policy/shipping"
 import TermandCondition from "./Component/Policy/termsandservices"
 import Privacy from "./Component/Policy/Privacy";
 import Admin from './Component/Admin';
+import OrderSuccessPage from './Component/Checkout/OrderSuccessPage'
 // import PrivateRoutes from './Component/PrivateRoute'
 function Router () {
   return (
@@ -27,6 +28,7 @@ function Router () {
         <Route path='/policy/terms-of-service' element={<TermandCondition/>}/>
         <Route path='/policy/privacy-policy' element={<Privacy/>}/>
         <Route path='/checkout' element={<Checkout/>} />
+        <Route path='/order-success' element={<OrderSuccessPage/>} />
         <Route path='/admin' element={<Admin/>} />
         {/* <Route path='/myprofile' element={<PrivateRoutes/>} /> */}
         <Route path='/myprofile' element={<MyProfile/>} />
