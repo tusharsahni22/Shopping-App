@@ -12,7 +12,7 @@ import Shipping from "./Component/Policy/shipping"
 import TermandCondition from "./Component/Policy/termsandservices"
 import Privacy from "./Component/Policy/Privacy";
 import Admin from './Component/Admin';
-import OrderSuccessPage from './Component/Checkout/OrderSuccessPage'
+import OrderSuccessPage from './Component/OrderSuccessPage';
 // import PrivateRoutes from './Component/PrivateRoute'
 function Router () {
   return (
