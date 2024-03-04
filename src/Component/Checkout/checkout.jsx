@@ -241,6 +241,7 @@ function Checkout() {
   const [shippingCost, setShippingCost] = React.useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [OtpPage, setOtpPage] = React.useState(false);
+  const [otpVerification, setOtpVerification] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -256,7 +257,6 @@ function Checkout() {
   }, []);
 
   const handlePaymentChange = (e) => {
-    console.log("first", e.target.value);
     if (e.target.value === "cash" && selectedPayment !== "cash") {
       setShippingCost(shippingCost + 100);
     } else if (e.target.value !== "cash" && selectedPayment === "cash") {
@@ -269,55 +269,54 @@ function Checkout() {
     navigate("/order-success");
   };
 
-  const handlePlaceOrder = () => {
-    const products = product.map((e) => ({
-      productId: e.id,
-      quantity: e.quantity,
-      size: e.size,
-      color: e.color,
-    }));
-    const data = {
-      products,
-      address: selectedAddress,
-      paymentMode: selectedPayment,
-      total: total + shippingCost,
-      shippingCost,
-      orderId: uuid(),
-    };
-
-    console.log(products);
-    setIsLoading(true);
-    if (selectedPayment === "cash") {
-      setOtpPage(true);
-      if (sessionStorage.getItem("otpVerification") === "true") {
-        setIsLoading(true)
-        placeNewOrder(data)
-          .then((res) => {
-            if (res.status === 201) {
-              setIsLoading(false);
-              AfterOrderFunctions();
-            }
-          })
-          .catch((err) => {
-            console.log("Error in placeNewOrder", err);
-          });
-      }
-    } else { // if payment mode is online
-      AfterOrderFunctions();
+  useEffect(() => {
+    if (otpVerification) {
+      const products = product.map((e) => ({
+        productId: e.id,
+        quantity: e.quantity,
+        size: e.size,
+        color: e.color,
+      }));
+      const data = {
+        products,
+        address: selectedAddress,
+        paymentMode: selectedPayment,
+        total: total + shippingCost,
+        shippingCost,
+        orderId: uuid(),
+      };
+      setIsLoading(true);
+      placeNewOrder(data)
+        .then((res) => {
+          if (res.status === 201) {
+            setIsLoading(false);
+            AfterOrderFunctions();
+          }
+        })
+        .catch((err) => {
+          console.log("Error in placeNewOrder", err);
+        });
     }
-  };
+  }, [otpVerification]);
+
+  const handlePlaceOrder = () => {
+   if(selectedPayment === "cash"){
+     setOtpPage(true);
+  }else{
+    // setOtpPage(true);
+    // online payment gateway
+
+  }
+};
 
   return (
     <Wrapper>
-      {OtpPage ? (
+      {OtpPage?
         <OtpVerificationPage
           mobile={selectedAddress.phoneNo}
           setOtpPage={setOtpPage}
-        />
-      ) : (
-        ""
-      )}
-      {isLoading ? (
+          setOtpVerification={setOtpVerification}/> : "" }
+      {isLoading ?
         <div
           style={{
             position: "fixed",
@@ -328,17 +327,14 @@ function Checkout() {
         >
           <Oval
             visible={true}
-            height="250"
-            width="250"
+            height="130"
+            width="130"
             color="#4fa94d"
             ariaLabel="oval-loading"
             wrapperStyle={{}}
             wrapperClass=""
           />
-        </div>
-      ) : (
-        ""
-      )}
+        </div> : ""}
       <Left>
         <Head>
           Information {">"} Shipping {" > "}Payment

@@ -131,7 +131,7 @@ function OtpVerificationPage(props) {
       if(res.status === 200){
         clearForm()
         sessionStorage.removeItem('otpGenerated');
-        sessionStorage.setItem('otpVerification',true);
+        props.setOtpVerification(true)
         toast.success("otp verfied successfully")
       }})
   }

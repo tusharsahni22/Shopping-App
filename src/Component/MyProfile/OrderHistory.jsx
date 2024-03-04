@@ -135,7 +135,7 @@ function OrderHistory({name, greeting}) {
       {order.items.map((item)=>(
       <Product key={item._id}>
         <Img src={item.product.mainPicture}/>
-        <Title>{item.product.title} / {item.size.toUpperCase()} / {item.color.toUpperCase()} </Title>
+        <Title>{item.product.title} / {item?.size?.toUpperCase()} / {item?.color?.toUpperCase()} </Title>
       </Product>))}
       {OrderDetailsExpanded ? <div>Order Details</div> : null }
       </Box>
