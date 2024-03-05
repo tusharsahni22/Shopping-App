@@ -211,6 +211,10 @@ function Product() {
   const { id, title, price, mainPicture, altPictures,description,colorToIndexMap,specification } = state;
   // description,size
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const images = [
     {
       original: mainPicture,

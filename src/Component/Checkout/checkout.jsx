@@ -225,7 +225,6 @@ const UseThisAddress = styled.div`
   border-radius: 5px;
   color: #4a4a4a;
   cursor: pointer;
-
   &:hover {
     background-color: #d2d6dc;
   }
@@ -236,6 +235,7 @@ function Checkout() {
   const total = useSelector((state) => state.total);
   const [address, setAddress] = React.useState([]);
   const [selectedAddress, setSelectedAddress] = React.useState(null);
+  const [customerAddress, setCustomerAddress] = React.useState({});
   const [addNewAddress, setAddNewAddress] = React.useState(false);
   const [selectedPayment, setSelectedPayment] = React.useState("credit");
   const [shippingCost, setShippingCost] = React.useState(0);
@@ -247,9 +247,12 @@ function Checkout() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     getProfileInformation()
       .then((res) => {
-        console.log("first", res.data);
         setAddress({address:res.data.address,email:res.data.email});
       })
       .catch((err) => {
@@ -276,7 +279,7 @@ function Checkout() {
       }));
       const data = {
         products,
-        address: selectedAddress,
+        address: addNewAddress? customerAddress.address: selectedAddress,
         paymentMode: selectedPayment,
         total: total + shippingCost,
         shippingCost,
@@ -285,7 +288,6 @@ function Checkout() {
       setIsLoading(true);
       placeNewOrder(data)
         .then((res) => {
-          console.log("first",res)
           if (res.status === 201) {
             setIsLoading(false);
             setOrderSuccessDetails(res.data);
@@ -329,7 +331,7 @@ function Checkout() {
     <Wrapper>
       {OtpPage?
         <OtpVerificationPage
-          mobile={selectedAddress.phoneNo}
+          mobile={addNewAddress?customerAddress.address.phoneNo:selectedAddress.phoneNo}
           setOtpPage={setOtpPage}
           setOtpVerification={setOtpVerification}/> : "" }
       {isLoading ?
@@ -413,36 +415,36 @@ function Checkout() {
             <div>
               <TwoField>
                 <InputContainer>
-                  <Input type="text" required placeholder=" " />
+                  <Input type="text" required placeholder=" " onChange={(e)=>{setCustomerAddress({...customerAddress ,address:{...customerAddress.address,name:e.target.value}})}} />
                   <PlaceholderLabel>Name</PlaceholderLabel>
                 </InputContainer>
                 <InputContainer>
-                  <Input type="text" required placeholder=" " />
+                  <Input type="text" required placeholder=" " onChange={(e)=>{setCustomerAddress({...customerAddress ,address:{...customerAddress.address,phoneNo:e.target.value}})}} />
                   <PlaceholderLabel>Phone Number</PlaceholderLabel>
                 </InputContainer>
               </TwoField>
               <InputContainer>
-                <Input type="text" required placeholder=" " />
+                <Input type="text" required placeholder=" " onChange={(e)=>{setCustomerAddress({...customerAddress ,address:{...customerAddress.address,address:e.target.value}})}} />
                 <PlaceholderLabel>Address</PlaceholderLabel>
               </InputContainer>
               <InputContainer>
-                <Input type="text" required placeholder=" " />
+                <Input type="text" required placeholder=" " onChange={(e)=>{setCustomerAddress({...customerAddress ,address:{...customerAddress.address,landmark:e.target.value}})}} />
                 <PlaceholderLabel>Appartments,Suits etc</PlaceholderLabel>
               </InputContainer>
 
               <TwoField>
                 <InputContainer>
-                  <Input type="text" required placeholder=" " />
+                  <Input type="text" required placeholder=" " onChange={(e)=>{setCustomerAddress({...customerAddress ,address:{...customerAddress.address,city:e.target.value}})}} />
                   <PlaceholderLabel>City</PlaceholderLabel>
                 </InputContainer>
                 <InputContainer>
-                  <Input type="text" required placeholder=" " />
+                  <Input type="text" required placeholder=" " onChange={(e)=>{setCustomerAddress({...customerAddress ,address:{...customerAddress.address,pincode:e.target.value}})}} />
                   <PlaceholderLabel>Pincode</PlaceholderLabel>
                 </InputContainer>
               </TwoField>
 
               <InputContainer>
-                <Input type="text" required placeholder=" " />
+                <Input type="text" required placeholder=" "  onChange={(e)=>{setCustomerAddress({...customerAddress ,address:{...customerAddress.address,state:e.target.value}})}}/>
                 <PlaceholderLabel>State</PlaceholderLabel>
               </InputContainer>
             </div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { RxCodesandboxLogo } from "react-icons/rx";
-import { useLocation } from 'react-router';
+import { useLocation,useNavigate } from 'react-router';
 import { clearCart } from '../reducers/cart';
 import { useDispatch } from 'react-redux';
 
@@ -93,6 +93,7 @@ const Button = styled.button`
 
 function OrderSuccessPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { state } = useLocation();
   const { address , paymentMode , orderId, email} = state||{}
   useEffect(() => {
@@ -136,7 +137,7 @@ function OrderSuccessPage() {
         </div>
         
       </ContactDetails>
-      <Button>Continue Shopping</Button>
+      <Button onClick={()=>{navigate("/")}}>Continue Shopping</Button>
       
     </SuccessContainer>
   );

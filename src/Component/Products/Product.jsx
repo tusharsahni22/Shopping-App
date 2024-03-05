@@ -87,7 +87,11 @@ function Product() {
   const [filterData,setFilterData] = React.useState([])
   const location = useLocation();
   const {MHeading1,SubHeading} = location.state || {}
-  // const [colorToIndexMap,setColorToIndexMap] = React.useState({})
+  // const [colorToIndexMap,setColorToIndexMap] = React.useState({})  
+
+    useEffect(()=>{
+      window.scrollTo(0, 0);
+    },[])
 
   const filterDataBySelector = (filter,data)=>{
     switch(filter.filterOn){
@@ -142,14 +146,6 @@ viewProduct().then((res)=>{
   // setColorToIndexMap["white"] = res.data[0].mainPicture
 }).catch((err)=>console.log(err))
 },[filter])
-
-// const  colorToIndexMap = {
-//   'white': './man-hd.png',
-//   'black': 'url_to_black_image',
-//   // add more colors and their corresponding images
-// }
-
-
 
 const discoutPrice = (pricetoConvert)=>{
   const discountedPrice=pricetoConvert - 0.1675 * pricetoConvert;
