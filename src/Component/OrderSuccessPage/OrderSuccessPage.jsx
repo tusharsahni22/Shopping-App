@@ -108,7 +108,7 @@ function OrderSuccessPage() {
       <OrderNo>
       <OrderLogo />
       <div>
-      <p>Order #{orderId}</p>
+      <p>Order #<strong>{orderId}</strong></p>
       <Title>Thank you {address.name}!</Title>
       </div>
       </OrderNo>
