@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { RxCodesandboxLogo } from "react-icons/rx";
+import { useLocation } from 'react-router';
+import { clearCart } from '../reducers/cart';
+import { useDispatch } from 'react-redux';
 
 const SuccessContainer = styled.div`
 display: flex;
@@ -72,16 +75,40 @@ const Line = styled.div`
   border: 2px solid #f3f3f3;
   width: 100%;
 `;
+const Button = styled.button`
+  background-color: black;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  width: fit-content;
+  &:hover {
+    background-color: #333;
+  }
+`;
 
 function OrderSuccessPage() {
+  const dispatch = useDispatch();
+  const { state } = useLocation();
+  const { address , paymentMode , orderId, email} = state||{}
+  useEffect(() => {
+    window.scrollTo(0, 0);
+   dispatch(clearCart());
+    
+  },[]);
+
   return (
     <SuccessContainer>
       <Head>Order Placed</Head>
       <OrderNo>
       <OrderLogo />
       <div>
-      <p>Order #{"123"}</p>
-      <Title>Thank you {"name"}!</Title>
+      <p>Order #{orderId}</p>
+      <Title>Thank you {address.name}!</Title>
       </div>
       </OrderNo>
       <OrderUpdates>
@@ -94,20 +121,22 @@ function OrderSuccessPage() {
       <ContactDetails>
         <div style={{display:"flex", gap:"10px"}}>
         <Lable>Contact</Lable>
-        <Details>email@GRMIAL.COM</Details>
+        <Details>{email}</Details>
         </div>
         <Line/>
         <div style={{display:"flex", gap:"10px"}}>
         <Lable>Address</Lable>
-        <Details>Rajendra nahgae sector 2 sahibadbabd </Details>
+        <Details>{address.address} {address.landmark}</Details>
+        <Details>{address.pincode} {address.city} {address.state}</Details>
         </div>
         <Line/>
         <div style={{display:"flex", gap:"10px"}}>
-        <Lable>Payment</Lable>
-        <Details>Cash</Details>
+        <Lable>Payment Mode</Lable>
+        <Details>{paymentMode.toUpperCase()}</Details>
         </div>
         
       </ContactDetails>
+      <Button>Continue Shopping</Button>
       
     </SuccessContainer>
   );

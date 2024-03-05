@@ -78,7 +78,9 @@ const Span = styled.span`
   }
 `;
 
-const Close = styled(IoCloseOutline)``;
+const Close = styled(IoCloseOutline)`
+cursor: pointer;
+`;
 const Already = styled.div`
   text-align: center;
 `;
@@ -93,10 +95,16 @@ const Lable = styled.div`
   margin: 10px 0;
   text-align: center;
 `;
+const RedLable = styled.div`
+  color: red;
+  margin: 10px 0;
+  text-align: center;
+`;
 
 function OtpVerificationPage(props) {
   const [otp, setOtp] = useState("");
   const [counter, setCounter] = useState(60);
+  const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
@@ -126,14 +134,20 @@ function OtpVerificationPage(props) {
 
   const handleSubmit=()=>{
     const data = { phone: props.mobile, otp }
-    console.log("first", data)
     otpverification(data).then((res) => {
       if(res.status === 200){
         clearForm()
         sessionStorage.removeItem('otpGenerated');
         props.setOtpVerification(true)
         toast.success("otp verfied successfully")
-      }})
+      }
+      else{
+        toast.error("Incorrect otp, please try again")
+        setError("Incorrect otp, please try again")
+      }
+    
+    })
+      
   }
 
   const handleResendOtp = () => {
@@ -156,6 +170,7 @@ function OtpVerificationPage(props) {
           <Text>Otp Verification </Text>
           <Close onClick={()=>{props.setOtpPage(false)}}/>
         </Header>
+        <RedLable>{error}</RedLable>
         <Lable>please enter the otp sent on your {props.mobile}</Lable>
         <Field>
           <InputCode>

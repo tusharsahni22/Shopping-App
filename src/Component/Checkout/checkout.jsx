@@ -242,14 +242,15 @@ function Checkout() {
   const [isLoading, setIsLoading] = useState(false);
   const [OtpPage, setOtpPage] = React.useState(false);
   const [otpVerification, setOtpVerification] = React.useState(false);
+  const [orderSuccessDetails, setOrderSuccessDetails] = React.useState();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     getProfileInformation()
       .then((res) => {
-        console.log("first", res.data.address);
-        setAddress(res.data.address);
+        console.log("first", res.data);
+        setAddress({address:res.data.address,email:res.data.email});
       })
       .catch((err) => {
         console.log("Error in getProfileInformation", err);
@@ -263,10 +264,6 @@ function Checkout() {
       setShippingCost(shippingCost - 100);
     }
     setSelectedPayment(e.target.value);
-  };
-
-  const AfterOrderFunctions = () => {
-    navigate("/order-success");
   };
 
   useEffect(() => {
@@ -288,9 +285,10 @@ function Checkout() {
       setIsLoading(true);
       placeNewOrder(data)
         .then((res) => {
+          console.log("first",res)
           if (res.status === 201) {
             setIsLoading(false);
-            AfterOrderFunctions();
+            setOrderSuccessDetails(res.data);
           }
         })
         .catch((err) => {
@@ -298,6 +296,24 @@ function Checkout() {
         });
     }
   }, [otpVerification]);
+
+  useEffect(() => {
+    if (orderSuccessDetails) {
+      AfterOrderFunctions();
+    }
+  }, [orderSuccessDetails]); // Add orderSuccessDetails as a dependency
+  
+  const AfterOrderFunctions = () => {
+    // console.log(orderSuccessDetails);
+    navigate("/order-success",{state: {
+      orderId: orderSuccessDetails.orderId,
+      email: address.email,
+      paymentMode: orderSuccessDetails.paymentMode,
+      address: orderSuccessDetails.address,
+      total: orderSuccessDetails.total,
+      shippingCost: orderSuccessDetails.shippingCost,
+    }});
+  };
 
   const handlePlaceOrder = () => {
    if(selectedPayment === "cash"){
@@ -343,7 +359,7 @@ function Checkout() {
           <PaymentGateWayLogo src="./PhonePe.svg" />
         </CheckoutTagLine>
         <AddressForm>
-          {address?.length > 0 && addNewAddress ? (
+          {address.address?.length > 0 && addNewAddress ? (
             <Addresses
               onClick={() => {
                 setAddNewAddress(false);
@@ -354,9 +370,9 @@ function Checkout() {
           ) : (
             <Addresses>Previously saved address</Addresses>
           )}
-          {address?.length > 0 && !addNewAddress ? (
+          {address.address?.length > 0 && !addNewAddress ? (
             <PreviouslySavedAddress>
-              {address?.map((e) => (
+              {address.address?.map((e) => (
                 <Addresses key={e._id}>
                   <div>
                     <p>{e.name}</p>
