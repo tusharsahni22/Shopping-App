@@ -247,7 +247,7 @@ function Product() {
       addToCart({
         id,
         title,
-        price:discountPrice(price),
+        price:priceAfterDiscount,
         quantity,
         size,
         color,
