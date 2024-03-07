@@ -11,8 +11,6 @@ const Wrapper = styled.div`
 function Index() {
     const location = useLocation();
     const {favorites,OrderHistoryTab,YourProfileTab}=location.state;
-    console.log("m",favorites,OrderHistoryTab,YourProfileTab)
-
     
     return (
         <Wrapper>

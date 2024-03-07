@@ -147,10 +147,10 @@ viewProduct().then((res)=>{
 }).catch((err)=>console.log(err))
 },[filter])
 
-const discoutPrice = (pricetoConvert)=>{
-  const discountedPrice=pricetoConvert - 0.1675 * pricetoConvert;
-  return Math.round(discountedPrice);
-}
+// const discoutPrice = (pricetoConvert)=>{
+//   const discountedPrice=pricetoConvert - 0.1675 * pricetoConvert;
+//   return Math.round(discountedPrice);
+// }
 
 
   return (
@@ -179,7 +179,7 @@ const discoutPrice = (pricetoConvert)=>{
             <Title>{e.title}</Title>
             <Discounted>
             <Price>₹{e.price}</Price>
-            <DiscountedPrice>₹{discoutPrice(e.price)}</DiscountedPrice>
+            <DiscountedPrice>₹{e.priceAfterDiscount}</DiscountedPrice>
             </Discounted>
             </div>
             <BiCart className='Bicart' style={{marginTop:"20px",height:"25px",width:"25px",padding:"10px",borderRadius:"20px",':hover': {backgroundColor:"#80808057",cursor:"pointer"}}}/>

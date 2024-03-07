@@ -25,9 +25,6 @@ export const uploadProduct = (data) => {
   altPictures.forEach((file) => {
   formData.append('altpicture',file);
   });
-  // delete data.pic;
-  // delete data.altPictures;
-  console.log("firstafter remove",data)
   formData.append('product', JSON.stringify(data));
   
   return axiosInstance.post("/uploadnewproduct",formData,{headers: {

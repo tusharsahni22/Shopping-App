@@ -90,6 +90,57 @@ display: flex;
 flex-direction: column;
 padding: 10px 20px;
 `;
+const OrderSummary = styled.div`
+display: flex;
+flex-direction: column;
+padding: 20px 0;
+`;
+const SubTotalContainer = styled.div`
+display: flex;
+justify-content: space-between;
+`;
+const SubTotal = styled.div`
+font-size: 15px;
+font-weight: 700;
+`;
+const SubTotalAmount = styled.div`
+font-size: 15px;
+font-weight: 700;
+`;
+const ShippingContainer = styled.div`
+display: flex;
+justify-content: space-between;
+`;
+const Shipping = styled.div`
+font-size: 15px;
+font-weight: 700;
+`;
+const ShippingAmount = styled.div`
+font-size: 15px;
+font-weight: 700;
+`;
+const TotalContainer = styled.div`
+display: flex;
+justify-content: space-between;
+`;
+const Total = styled.div`
+font-size: 15px;
+font-weight: 700;
+`;
+const TotalAmount = styled.div`
+font-size: 15px;
+font-weight: 700;
+`;
+const ItemDetails = styled.div`
+font-size: 15px;
+font-weight: 700;
+margin: 20px 0;
+`;
+const Price = styled.div`
+font-size: 15px;
+font-weight: 700;
+margin: 10px 0 0 20px;
+`;
 
 function OrderHistory({name, greeting}) {
   const [orderList, setOrderList] = React.useState([])
@@ -102,8 +153,7 @@ function OrderHistory({name, greeting}) {
   useEffect(()=>{
     getOrderDetails().then((res)=>{
       setOrderList(res.data)
-      console.log("first",res.data)
-      console.log("first",orderList)
+      console.log("firstt",res.data)
     }).catch((err)=>{
       console.log("error while getting order",err)
     })
@@ -124,22 +174,50 @@ function OrderHistory({name, greeting}) {
         </div>
         <div style={{display:"flex"}}>
         <OrderId>Order Id: </OrderId>
-        <OrderIdText>{order._id}</OrderIdText>
+        <OrderIdText>{order.orderId}</OrderIdText>
         </div>
         </Ids>
-        <OrderDetails onClick={()=>{setOrderDetailsExpanded(!OrderDetailsExpanded)}}>Order Details 
+        <OrderDetails onClick={()=>{setOrderDetailsExpanded(!OrderDetailsExpanded)}}>{OrderDetailsExpanded ? "Hide Order Details" : "Show Order Details"} 
         <SideArrow />
         </OrderDetails>
       </Details>
       <Line></Line>
+      {OrderDetailsExpanded ? <ItemDetails>Items Details</ItemDetails> : null}
       {order.items.map((item)=>(
       <Product key={item._id}>
         <Img src={item.product.mainPicture}/>
+        <div style={{display:"flex",flexDirection:"column"}}>
         <Title>{item.product.title} / {item?.size?.toUpperCase()} / {item?.color?.toUpperCase()} </Title>
+        {OrderDetailsExpanded?<Price>Price  {item.product.price}</Price>:""}
+        </div>
       </Product>))}
-      {OrderDetailsExpanded ? <div>Order Details</div> : null }
+      {OrderDetailsExpanded ? <div>
+        <Line></Line>
+      <OrderSummary>
+        <SubTotalContainer>
+          <SubTotal>Subtotal</SubTotal>
+          <SubTotalAmount>₹ 1000</SubTotalAmount>
+        </SubTotalContainer>
+        <ShippingContainer>
+          <Shipping>Shipping</Shipping>
+          <ShippingAmount>₹ 100</ShippingAmount>
+        </ShippingContainer>
+        <Line/>
+        <TotalContainer>
+          <Total>Grand Total</Total>
+          <TotalAmount>₹ 1100</TotalAmount>
+        </TotalContainer>
+      </OrderSummary>
+      <Line/>
+      <ShippingContainer>
+        <Shipping>Shipping Address</Shipping>
+        <ShippingAmount>{order.address.address} {order.address.landmark} {order.address.pincode} {order.address.city} {order.address.state}</ShippingAmount>
+      </ShippingContainer>
+
+      </div> : null }
       </Box>
       ))}
+      
       {/* {orderList.length===0 && <div style={{textAlign:"center",marginTop:"20px"}}>No Orders Found</div>} */}
       </OrderContainer>
     </Wrapper>

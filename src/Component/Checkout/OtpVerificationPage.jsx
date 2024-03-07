@@ -171,7 +171,7 @@ function OtpVerificationPage(props) {
           <Close onClick={()=>{props.setOtpPage(false)}}/>
         </Header>
         <RedLable>{error}</RedLable>
-        <Lable>please enter the otp sent on your {props.mobile}</Lable>
+        <Lable>Please enter the otp sent on your {props.mobile}</Lable>
         <Field>
           <InputCode>
             <OtpInput
