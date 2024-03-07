@@ -208,7 +208,7 @@ function Product() {
   const [size, setSize] = React.useState("s");
   const [color,setColor] = React.useState("black")
   const { state } = useLocation();
-  const { id, title, price, mainPicture, altPictures,description,colorToIndexMap,specification } = state;
+  const { id, title, price,priceAfterDiscount, mainPicture, altPictures,description,colorToIndexMap,specification } = state;
   // description,size
 
   useEffect(() => {
@@ -256,9 +256,10 @@ function Product() {
     );
     toast.success("Added to cart successfully");
   };
-  const discountPrice = (pricetoConvert) => {
-    const discountedPrice=pricetoConvert - 0.1675 * pricetoConvert;
-    return Math.round(discountedPrice);
+  const discountPrice = (price,discountedPrice) => {
+    const discountedPriceper= (price-discountedPrice)/price*100;
+    console.log("discountedPriceper",discountedPriceper)
+    return Math.round(discountedPriceper);
   };
 
   const handleFavorite = ()=>{
@@ -287,8 +288,8 @@ function Product() {
           <Tittle>{title}</Tittle>
           <PriceFinal>
             <Price>₹{price}</Price>
-            <DiscountPrice>₹{discountPrice(price)}</DiscountPrice>
-            <SAVEtAGLINE>Save 16.75%</SAVEtAGLINE>
+            <DiscountPrice>₹{priceAfterDiscount}</DiscountPrice>
+            <SAVEtAGLINE>Save {discountPrice(price,priceAfterDiscount)}%</SAVEtAGLINE>
           </PriceFinal>
           <div>(Incl. of all taxes)</div>
           <Offers>

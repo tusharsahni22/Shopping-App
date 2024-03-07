@@ -165,6 +165,7 @@ viewProduct().then((res)=>{
             <Frame key={e._id} onClick={()=>{navigate("/product-description",{state:{
               id:e._id,
               price:e.price,
+              priceAfterDiscount:e.priceAfterDiscount,
               size:e.size,
               title:e.title,
               mainPicture:e.mainPicture,
