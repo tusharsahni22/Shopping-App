@@ -13,6 +13,7 @@ import TermandCondition from "./Component/Policy/termsandservices"
 import Privacy from "./Component/Policy/Privacy";
 import Admin from './Component/Admin';
 import OrderSuccessPage from './Component/OrderSuccessPage';
+import ProcessingOrder from './Component/Checkout/PaymentProcesscing';
 // import PrivateRoutes from './Component/PrivateRoute'
 function Router () {
   return (
@@ -29,6 +30,7 @@ function Router () {
         <Route path='/policy/privacy-policy' element={<Privacy/>}/>
         <Route path='/checkout' element={<Checkout/>} />
         <Route path='/order-success' element={<OrderSuccessPage/>} />
+        <Route path='/order/Processing-order/:id' element={<ProcessingOrder/>} />
         <Route path='/admin' element={<Admin/>} />
         {/* <Route path='/myprofile' element={<PrivateRoutes/>} /> */}
         <Route path='/myprofile' element={<MyProfile/>} />

@@ -35,3 +35,11 @@ const axiosInstance = axios.create({
             console.log("Error in placeNewOrder", err);
         });
     }
+
+    export const payOnline = (data) =>{
+        return axiosInstance.post("/payments",data).then((result) => {
+            return result;
+        }).catch((err) => {
+            console.log("Error in payOnline", err);
+        });
+    }

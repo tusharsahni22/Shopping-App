@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { getProfileInformation } from "../Services/profile";
 import OtpVerificationPage from "./OtpVerificationPage";
-import { placeNewOrder } from "../Services/Checkout";
+import { payOnline, placeNewOrder } from "../Services/Checkout";
 import { v4 as uuid } from "uuid";
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
@@ -321,9 +321,11 @@ function Checkout() {
    if(selectedPayment === "cash"){
      setOtpPage(true);
   }else{
-    // setOtpPage(true);
-    // online payment gateway
-
+    payOnline({amount:100,orderId:uuid()}).then((res)=>{
+      window.location.href = res.data
+    }).catch((err)=>{
+      console.log("err",err)
+    })
   }
 };
 
@@ -503,7 +505,7 @@ function Checkout() {
         <Total>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Shipping>Shipping</Shipping>
-            <ShippingPrice>₹{shippingCost}</ShippingPrice>
+            <ShippingPrice>{selectedPayment === "cash" ? `₹ ${shippingCost}`: "Free"}</ShippingPrice>
           </div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <TotalText>Total</TotalText>

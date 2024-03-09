@@ -13,6 +13,9 @@ background-color:#212121;
 display:flex;
 flex-direction: column;
 justify-content: space-between;
+@media (max-width: 768px) {
+  display: none;
+}
 `;
 
 const Wrapper=styled.div`

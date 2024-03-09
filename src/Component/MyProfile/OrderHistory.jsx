@@ -196,16 +196,16 @@ function OrderHistory({name, greeting}) {
       <OrderSummary>
         <SubTotalContainer>
           <SubTotal>Subtotal</SubTotal>
-          <SubTotalAmount>₹ 1000</SubTotalAmount>
+          <SubTotalAmount>{order.paymentMode==="cash"? `₹ ${order.total-100}`: order.total}</SubTotalAmount>
         </SubTotalContainer>
         <ShippingContainer>
           <Shipping>Shipping</Shipping>
-          <ShippingAmount>₹ 100</ShippingAmount>
+          <ShippingAmount>{order.paymentMode==="cash"? "₹ 100": "Free"}</ShippingAmount>
         </ShippingContainer>
         <Line/>
         <TotalContainer>
           <Total>Grand Total</Total>
-          <TotalAmount>₹ 1100</TotalAmount>
+          <TotalAmount>₹ {order.total}</TotalAmount>
         </TotalContainer>
       </OrderSummary>
       <Line/>

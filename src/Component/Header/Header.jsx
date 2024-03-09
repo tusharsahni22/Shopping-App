@@ -120,6 +120,7 @@ const Usericon= styled.div`
  `;
 const MobileMenu= styled.div`
   display: flex;
+  align-items: center;
   @media (min-width:1025px){
   display: none;
 }
@@ -128,6 +129,8 @@ const DropDown= styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px 10.5em 22px 10.5em;
+  @media (max-width:767px){
+    padding: 0 5%;
  `;
  
 

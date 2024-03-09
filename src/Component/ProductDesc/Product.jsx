@@ -213,6 +213,7 @@ function Product() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    console.log("first",state)
   }, []);
   
   const images = [
