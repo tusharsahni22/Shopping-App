@@ -16,6 +16,9 @@ const Sidebarr = styled.div`
   transition: transform 0.3s ease-in-out;
   /* transform: translateX(100%); */
   backdrop-filter: blur(5px);
+  @media (max-width: 767px) {
+    width: 60%;
+  }
 `;
 const SubTitle = styled.div`
   position: absolute;
