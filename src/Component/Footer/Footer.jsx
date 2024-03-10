@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom"
 const Container=styled.div`
 width:100%;
 height: 400px;
+padding: 0 5%;
 background-color:#212121;
 display:flex;
 flex-direction: column;
@@ -22,11 +23,12 @@ const Wrapper=styled.div`
 width:100%;
 height: 380px;
 background-color:#212121;
+margin: 30px 0;
 display:flex;
 `;
 
 const Column = styled.div`
-margin:30px;
+margin-left: 5%
 `;
 const Title = styled.div`
 color:white;
@@ -75,12 +77,12 @@ margin: 10px;
 const AllRight = styled.div`
 background-color:#212121;
 color:white;
-margin:0 30px;
+margin-left: 5%
 `;
 const Policy = styled.div`
 background-color:#212121;
 color:white;
-margin:0 30px;
+margin-left: 5%;
 display: flex;
 gap: 10px;
 align-items: center;

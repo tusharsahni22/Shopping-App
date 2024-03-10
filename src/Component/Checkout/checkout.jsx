@@ -321,7 +321,7 @@ function Checkout() {
    if(selectedPayment === "cash"){
      setOtpPage(true);
   }else{
-    payOnline({amount:100,orderId:uuid()}).then((res)=>{
+    payOnline({amount:total+shippingCost,orderId:uuid()}).then((res)=>{
       window.location.href = res.data
     }).catch((err)=>{
       console.log("err",err)

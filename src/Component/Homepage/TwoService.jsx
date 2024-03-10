@@ -8,6 +8,10 @@ display: flex;
 justify-content: space-between;
 margin-bottom: 100px;
 padding: 0 50px;
+@media (max-width: 767px) {
+  padding: 0px 0px;
+  margin-bottom: 50px;
+}
 `;
 const Service = styled.div`
 max-width: 50%;
@@ -38,6 +42,9 @@ width: 100%;
 &:hover{
   cursor: pointer;
 }
+@media (max-width: 767px) {
+  height: 250px;
+}
 `;
 const Img2 = styled.img`
 height: 410px;
@@ -47,6 +54,9 @@ width: 100%;
 &:hover{
   cursor: pointer;
 }
+@media (max-width: 767px) {
+  height: 250px;
+}
 `;
 function TwoService(props) {
   const navigate = useNavigate();
@@ -54,8 +64,8 @@ function TwoService(props) {
     <Wrapper>
         <Service onClick={()=>{navigate("/products")}}>
         <Img loading='lazy' src={props.url1}/>
-        <Title>Save *Big* on Halloween Ink</Title>
-        <Desc>We had free space on our site and Spirit Halloween immediately took over?</Desc>
+        <Title>Save *Big* on Holi Week </Title>
+        <Desc>Let the colors of Holi create a masterpiece of memories.</Desc>
         <div style={{display:"flex"}}>
         <BuyButton>{props.buy1} </BuyButton>
         <BsArrowRight style={{margin: "25px 0 0 15px"}}/>
@@ -63,8 +73,8 @@ function TwoService(props) {
         </Service>
         <Service onClick={()=>{navigate("/products")}}>
         <Img2 loading='lazy' src={props.url2}/>
-        <Title>Save *Big* on Halloween Ink</Title>
-        <Desc>We had free space on our site and Spirit Halloween immediately took over?</Desc>
+        <Title>Save Big on Holi Week</Title>
+        <Desc>Get ready to get painted red, blue, green, and yellow!</Desc>
         <div style={{display:"flex"}}>
         <BuyButton>{props.buy2} </BuyButton>
         <BsArrowRight style={{margin: "25px 0 0 15px"}} />

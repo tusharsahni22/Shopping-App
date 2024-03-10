@@ -39,7 +39,7 @@ export const cartSlice = createSlice({
             const { id, title, price, image, quantity, pic, size, color } = action.payload;
             const product = state.cart.find((item) => item.id === id && item.size === size && item.color === color);
             const total= price*quantity;
-            
+                     
             if (product) {
                 // convert to int
                 product.quantity=parseInt(product.quantity)+parseInt(quantity);
@@ -60,6 +60,7 @@ export const cartSlice = createSlice({
 
             state.totalItems=parseInt(state.totalItems)+parseInt(quantity);
             state.total += total;
+            
             storeCartItems(state.cart,state.totalItems,state.total);
         },
         removeFromCart: (state, action) => {

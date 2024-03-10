@@ -75,7 +75,7 @@ padding: 6px 0;
 }
 `;
 const ImgMob = styled.img`
-width:260px;
+width:160px;
 height:60px;
 padding: 0px 10px;
 &:hover{
@@ -94,6 +94,10 @@ margin: 0 10px;
 display: flex;
 @media(max-width:1024px){
 padding :1px 4px 0 0;
+}
+@media(max-width:768px){
+  margin: 0 0;
+  padding :1px 0px 0 0;
 }
  `;
  const TagLine= styled.div`
@@ -130,7 +134,8 @@ const DropDown= styled.div`
   justify-content: space-between;
   padding: 10px 10.5em 22px 10.5em;
   @media (max-width:767px){
-    padding: 0 5%;
+    // padding: 0 5%;
+    padding: 10px 5% 10px 5%;
  `;
  
 
@@ -376,7 +381,7 @@ function Header() {
         
       </Menu>
       <DropDown>
-        <Option><Text>New
+        {/* <Option><Text>New
         <Div>
         <Section>
           <Title>WHATS NEW?</Title>
@@ -393,15 +398,8 @@ function Header() {
           <Element>Extra-Large Tattoos</Element>
           <Element>New Tattoos</Element>
         </Section>
-        <Section>
-          <Title>WHATS NEW?</Title>
-          <Element>Nail</Element>
-          <Element>Pro Kit</Element>
-          <Element>Extra-Large Tattoos</Element>
-          <Element>New Tattoos</Element>
-        </Section>
         </Div>
-      </Text></Option>
+      </Text></Option> */}
         <Option><Text>Hoddies<Div>
           <Section>
           <Title>By Size</Title>

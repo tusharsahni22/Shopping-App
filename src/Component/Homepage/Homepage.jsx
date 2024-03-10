@@ -7,9 +7,14 @@ import Whatsnew from "./Whatsnew";
 
 const Wrapper =  styled.div`
 padding: 0px 5% 100px;
+
 `;
 const Padding = styled.div`
 padding: 0 50px;
+@media (max-width: 767px) {
+  padding: 0px 0px;
+  margin-bottom: 50px;
+}
 `;
 
 function Homepage() {
