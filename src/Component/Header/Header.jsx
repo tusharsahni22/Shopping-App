@@ -145,6 +145,7 @@ const DropDown= styled.div`
   `;
 const Text= styled.div`
 margin-right: 5px;
+text-align: center;
 &:hover{
   ${Div}{
   display: flex;
@@ -400,8 +401,8 @@ function Header() {
         </Section>
         </Div>
       </Text></Option> */}
-        <Option><Text>Hoddies<Div>
-          <Section>
+        <Option><Text onClick={()=>{navigate("/products")}}>New Drops<Div>
+          {/* <Section>
           <Title>By Size</Title>
           <Element  data-value="By Size" onClick={handleHover}>Small</Element>
           <Element  data-value="By Size" onClick={handleHover}>Medium</Element>
@@ -415,9 +416,9 @@ function Header() {
           <Element data-value="By Category" onClick={handleHover}>Hoodies</Element>
           <Element data-value="By Category" onClick={handleHover}>Best Seller</Element>
           <Element data-value="By Category" onClick={handleHover}>Shop All</Element>
-          </Section>
+          </Section> */}
         </Div></Text></Option>
-        <Option><Text>Sweatshirts<Div>
+        <Option><Text>Best Seller<Div>
         <Section>
           <Title>By Size</Title>
           <Element data-value="By Size" onClick={handleHover}>Small</Element>
@@ -434,7 +435,7 @@ function Header() {
           <Element data-value="By Category" onClick={handleHover}>Shop All</Element>
           </Section>
           </Div></Text></Option>
-        <Option><Text>Custom<Div>
+        <Option><Text>Coming Soon<Div>
           {/* <Section>
           <Title>Our Designs</Title>
           <Element>By Colour</Element>
@@ -446,7 +447,6 @@ function Header() {
           <Section>
           <TitleCenter>Make Your Own</TitleCenter>
           <UploadDesign>
-          {/* <TitleCenter>Make Your Own</TitleCenter> */}
           <UploadIcon />
           upload from your pc or mobile</UploadDesign>
           {/* <Element>Nail</Element>
