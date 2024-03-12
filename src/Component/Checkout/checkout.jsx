@@ -272,7 +272,7 @@ function Checkout() {
   useEffect(() => {
     if (otpVerification) {
       const products = product.map((e) => ({
-        productId: e.id,
+        product: e.id,
         quantity: e.quantity,
         size: e.size,
         color: e.color,
@@ -286,7 +286,8 @@ function Checkout() {
         orderId: uuid(),
       };
       setIsLoading(true);
-      placeNewOrder(data)
+      console.log("first",data)
+      placeNewOrder()
         .then((res) => {
           if (res.status === 201) {
             setIsLoading(false);
@@ -322,7 +323,7 @@ function Checkout() {
      setOtpPage(true);
   }else{
     const products = product.map((e) => ({
-      productId: e.id,
+      product: e.id,
       quantity: e.quantity,
       size: e.size,
       color: e.color,

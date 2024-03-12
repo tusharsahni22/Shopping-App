@@ -25,7 +25,7 @@ const PaymentSuccessPage = () => {
       getPendingOrders(orderId).then((response) => {
         const orderDetails = response.data;
         console.log('orderDetails:', orderDetails);
-        newOrderPlace(orderDetails);
+        newOrderPlace(orderDetails)
       })
     } catch (error) {
       console.error('Failed to retrieve order details:', error);
@@ -33,7 +33,8 @@ const PaymentSuccessPage = () => {
   }
 
   const newOrderPlace = (orderDetails) => {
-    placeNewOrder(orderDetails).then(() => {  
+    placeNewOrder(orderDetails).then((res) => {  
+      console.log('res:', res);
       setMessage('Processing successful! Your order has been placed.');
     }).catch((error) => {
       console.error('Failed to place new order:', error);

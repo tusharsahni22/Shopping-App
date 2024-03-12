@@ -45,7 +45,7 @@ const axiosInstance = axios.create({
     }
 
     export const getPendingOrders = (id) =>{
-        return axiosInstance.get(`/pendingorders/${id}`).then((result) => {
+        return axiosInstance.get(`/transferorder/${id}`).then((result) => {
             return result;
         }).catch((err) => {
             console.log("Error in getPendingOrders", err);
