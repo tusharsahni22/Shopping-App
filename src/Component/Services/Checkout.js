@@ -43,3 +43,11 @@ const axiosInstance = axios.create({
             console.log("Error in payOnline", err);
         });
     }
+
+    export const getPendingOrders = (id) =>{
+        return axiosInstance.get(`/pendingorders/${id}`).then((result) => {
+            return result;
+        }).catch((err) => {
+            console.log("Error in getPendingOrders", err);
+        });
+    }

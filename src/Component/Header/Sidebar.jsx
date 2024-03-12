@@ -102,34 +102,14 @@ function Sidebar({toggleSidebar}) {
         </Option>
         <Line/>
         <Option>
-          <Title>Tattoos</Title>
+          <Title>Favourite</Title>
           <ArrowRight/>
-        </Option>
+        </Option> 
         <Line/>
-        <Option>
-          <Title>Nail</Title>
-          <ArrowRight/>
-        </Option>
-        <Line/>
-        <Option>
-          <Title>Custom</Title>
-          <ArrowRight/>
-        </Option>
-        <Line/>
-        <Option>
-          <Title>Tattoo MakeOver</Title>
-          <ArrowRight/>
-        </Option>
-        <Line/>
-        <Option>
-          <Title>Sale</Title>
-          <ArrowRight/>
-        </Option>
-        <Line/>
-        <Option>
+        {/* <Option>
           <Title>Category</Title>
           <ArrowRight/>
-        </Option>
+        </Option> */}
         <Line/>
         <Option>
           <Title>Help</Title>

@@ -1,34 +1,49 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect,useState } from 'react';
+import { useNavigate, useParams} from 'react-router-dom';
+import { placeNewOrder ,getPendingOrders} from '../Services/Checkout';
 
 const PaymentSuccessPage = () => {
-  const location = useLocation();
-  const orderId = new URLSearchParams(location.search).get('orderId');
+  const { id: orderId } = useParams();
+  const navigate = useNavigate();
+  const [message, setMessage] = useState('Processing your order...');
 
   useEffect(() => {
+    console.log('orderId:', orderId);
     if (orderId) {
       retrieveOrderDetails(orderId);
     }
   }, [orderId]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('/');
+    }, 3000);
+  }, [message]);
+
   const retrieveOrderDetails = async (orderId) => {
     try {
-      const response = await axios.get(`/api/orders/${orderId}`);
-      const orderDetails = response.data;
-      newOrderPlace(orderDetails);
+      getPendingOrders(orderId).then((response) => {
+        const orderDetails = response.data;
+        console.log('orderDetails:', orderDetails);
+        newOrderPlace(orderDetails);
+      })
     } catch (error) {
       console.error('Failed to retrieve order details:', error);
     }
-  };
+  }
 
   const newOrderPlace = (orderDetails) => {
-    // Your order placement logic here, using the orderDetails
+    placeNewOrder(orderDetails).then(() => {  
+      setMessage('Processing successful! Your order has been placed.');
+    }).catch((error) => {
+      console.error('Failed to place new order:', error);
+      setMessage('Failed to place new order.');
+    });
   };
 
   return (
     <div>
-      <h1>Payment Successful</h1>
+      <h1>{message}</h1>
       {/* You can display some information about the order here */}
     </div>
   );

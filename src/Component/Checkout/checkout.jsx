@@ -321,8 +321,23 @@ function Checkout() {
    if(selectedPayment === "cash"){
      setOtpPage(true);
   }else{
-    payOnline({amount:total+shippingCost,orderId:uuid()}).then((res)=>{
-      window.location.href = res.data
+    const products = product.map((e) => ({
+      productId: e.id,
+      quantity: e.quantity,
+      size: e.size,
+      color: e.color,
+    }));
+    const data = {
+      products,
+      address: addNewAddress? customerAddress.address: selectedAddress,
+      paymentMode: selectedPayment,
+      total: total + shippingCost,
+      shippingCost,
+      orderId: uuid(),
+    };
+    payOnline({amount:total+shippingCost,orderDetails:data,name:"ty"}).then((res)=>{
+      console.log("first",res.data)
+      if(res.status===200){window.location.href = res.data}
     }).catch((err)=>{
       console.log("err",err)
     })
