@@ -287,7 +287,7 @@ function Checkout() {
       };
       setIsLoading(true);
       console.log("first",data)
-      placeNewOrder()
+      placeNewOrder(data)
         .then((res) => {
           if (res.status === 201) {
             setIsLoading(false);

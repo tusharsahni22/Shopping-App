@@ -6,6 +6,7 @@ const PaymentSuccessPage = () => {
   const { id: orderId } = useParams();
   const navigate = useNavigate();
   const [message, setMessage] = useState('Processing your order...');
+  const [orderSuccessDetails, setOrderSuccessDetails] = React.useState();
 
   useEffect(() => {
     console.log('orderId:', orderId);
@@ -16,7 +17,14 @@ const PaymentSuccessPage = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate('/');
+      navigate("/order-success",{state: {
+        orderId: orderSuccessDetails.orderId,
+        // email: address.email,
+        paymentMode: orderSuccessDetails.paymentMode,
+        address: orderSuccessDetails.address,
+        total: orderSuccessDetails.total,
+        shippingCost: orderSuccessDetails.shippingCost,
+      }});
     }, 3000);
   }, [message]);
 
@@ -34,7 +42,9 @@ const PaymentSuccessPage = () => {
 
   const newOrderPlace = (orderDetails) => {
     placeNewOrder(orderDetails).then((res) => {  
-      console.log('res:', res);
+      if (res.status === 201) {
+        setOrderSuccessDetails(res.data);
+      }
       setMessage('Processing successful! Your order has been placed.');
     }).catch((error) => {
       console.error('Failed to place new order:', error);
