@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -20,9 +21,10 @@ width: 100%;
 `;
 
 function Banner(props) {
+  const navigator = useLocation();
   return (
     <Wrapper>
-        <Img  loading='lazy' src={props.url}/>
+        <Img  loading='lazy' src={props.url} onClick={()=>{navigator("/products")}}/>
     </Wrapper>
   )
 }

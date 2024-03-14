@@ -398,7 +398,7 @@ function Checkout() {
                     <p>{e.name}</p>
                     <p>{e.address}</p>
                     <p>{e.landmark}</p>
-                    <p>{e.pincode}</p>checked
+                    <p>{e.pincode}</p>
                     <p>
                       {e.city} {e.state}
                     </p>

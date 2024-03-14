@@ -3,6 +3,7 @@ import { useNavigate, useParams} from 'react-router-dom';
 import { placeNewOrder ,getPendingOrders} from '../Services/Checkout';
 
 const PaymentSuccessPage = () => {
+  
   const { id: orderId } = useParams();
   const navigate = useNavigate();
   const [message, setMessage] = useState('Processing your order...');
@@ -54,8 +55,7 @@ const PaymentSuccessPage = () => {
 
   return (
     <div>
-      <h1>{message}</h1>
-      {/* You can display some information about the order here */}
+      <div>{message}</div>
     </div>
   );
 };

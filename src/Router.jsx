@@ -30,6 +30,7 @@ function Router () {
         <Route path='/policy/privacy-policy' element={<Privacy/>}/>
         <Route path='/checkout' element={<Checkout/>} />
         <Route path='/order-success' element={<OrderSuccessPage/>} />
+        
         <Route path='/order/Processing-order/:id' element={<ProcessingOrder/>} />
         <Route path='/admin' element={<Admin/>} />
         {/* <Route path='/myprofile' element={<PrivateRoutes/>} /> */}
