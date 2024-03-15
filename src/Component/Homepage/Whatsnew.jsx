@@ -56,13 +56,13 @@ height: 240px;
 
 function Whatsnew(props) {
     const dummyData = [
-        {pic:"whatsnew1.jpg",title:"Forgettable",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew2.jpg",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew3.jpg",title:"The Marvels Emblem",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew4.jpg",title:"Photon",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew5.jpg",title:"Ms. Marvel",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew6.jpg",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew7.jpg",title:"We're a Team",size:"4x4 Inches",price:"21"}
+        {pic:"whatsnew1.webp",title:"Forgettable",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew2.webp",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew3.webp",title:"The Marvels Emblem",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew4.webp",title:"Photon",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew5.webp",title:"Ms. Marvel",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew6.webp",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew7.webp",title:"We're a Team",size:"4x4 Inches",price:"21"}
     ]
     const navigate = useNavigate();
   return (

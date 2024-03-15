@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: `${import.meta.env.VITE_API_BASE_URL_PROD}/api`,
+  baseURL: `${import.meta.env.VITE_API_BASE_URL}/api`,
   validateStatus: function (status) {
       return status >= 200 && status < 500; // default
   },
@@ -16,7 +16,6 @@ export const viewProduct = () => {
 }
 
 export const uploadProduct = (data) => {
-  console.log("first",data)
   const formData = new FormData();
   const file = data.pic[0];
   formData.append('pic', file);
@@ -28,8 +27,7 @@ export const uploadProduct = (data) => {
   formData.append('product', JSON.stringify(data));
   
   return axiosInstance.post("/uploadnewproduct",formData,{headers: {
-    'Content-Type': 'multipart/form-data'
-    
+    'Content-Type': 'multipart/form-data' 
   }
   }).then((result) => {
     return result;

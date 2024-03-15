@@ -25,7 +25,7 @@ function Homepage() {
       <Poster url={"./HomePage/Poster.webp"}/>
       <TwoService url2={"./HomePage/service1.webp"} url1={"./HomePage/service2.webp"} buy1={"Shop Now"} buy2={"Shop Now"}/>
       <Padding>
-      <Whatsnew title={"New In"}/>
+      <Whatsnew title={"Limited Edition"}/>
       </Padding>
     </Wrapper>
   )
