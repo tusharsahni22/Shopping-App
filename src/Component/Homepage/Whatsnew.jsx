@@ -20,6 +20,8 @@ font:18px antique-olive;
 margin-bottom: 40px;
 font-weight: 800;
 margin-top: 50px;
+text-align: center;
+font-size: 20px;
 
 `;
 const Service = styled.div`
@@ -56,13 +58,13 @@ height: 240px;
 
 function Whatsnew(props) {
     const dummyData = [
-        {pic:"whatsnew1.webp",title:"Forgettable",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew2.webp",title:"Unlikely Trio",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew3.webp",title:"The Marvels Emblem",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew4.webp",title:"Photon",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew5.webp",title:"Ms. Marvel",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew6.webp",title:"Caption Marvel",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew7.webp",title:"We're a Team",size:"4x4 Inches",price:"21"}
+        {pic:"whatsnew1.webp",title:"Its Time to train",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew2.webp",title:"Human Being",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew3.webp",title:"Wild and Free",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew4.webp",title:"Work hard stay humble",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew5.webp",title:"Skull Island",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew6.webp",title:"I and not old",size:"4x4 Inches",price:"21"},
+        {pic:"whatsnew7.webp",title:"Wild Monkey",size:"4x4 Inches",price:"21"}
     ]
     const navigate = useNavigate();
   return (

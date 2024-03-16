@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import { AiFillInstagram} from 'react-icons/ai'
-// import { FaPinterest } from 'react-icons/fa'
+import { AiFillInstagram, AiOutlineYoutube} from 'react-icons/ai'
+import { CiTwitter } from "react-icons/ci";
 import { BsFacebook } from 'react-icons/bs'
 import { GoArrowRight } from 'react-icons/go'
 import { useNavigate } from "react-router-dom"
@@ -109,18 +109,17 @@ function Footer() {
        <GoArrowRight style={{color:"white",margin:"10px 0px -3px -7px"}}/>
        </InputDiv>
        </Column>
-       <Column>
+       {/* <Column>
        <Heading>About StreetsWear</Heading>
        <Option>About Us</Option>
        <Option>Promotional Deals</Option>
        <Option>Reviews</Option>
-       </Column>
+       </Column> */}
 
        <Column>
-       <Heading>Customer Care</Heading>
-       <Option>Tracking</Option>
-       <Option>Shipping</Option>
-       <Option>Return</Option>
+       <Heading>Customer Support</Heading>
+       <Option onClick={() => window.open('mailto:support@streetswear.in', '_blank')}>Contact Us</Option>
+       <Option>About Us</Option>
        <Option>Help & FAQ</Option>
        </Column>
 
@@ -128,8 +127,11 @@ function Footer() {
        <Title>
         <div>Follow us</div>
        </Title>
-       <Option><AiFillInstagram/> Instagram</Option>
-       <Option><BsFacebook/> Facebook</Option>
+
+       <Option onClick={() => window.open('https://www.instagram.com/streetswear.in', '_blank')}><AiFillInstagram/> Instagram</Option>
+       <Option onClick={() => window.open('https://www.facebook.com/streetswear.in', '_blank')}><BsFacebook/> Facebook</Option>
+       <Option onClick={() => window.open('https://www.youtube.com/@streetswear_in', '_blank')}><AiOutlineYoutube/> Youtube</Option>
+       <Option onClick={() => window.open('https://twitter.com/streetswear_in', '_blank')}><CiTwitter/> Twitter</Option>
        </Column>
     </Wrapper>
     <AllRight>© 2024, Streetswear India. All rights reserved. Managed By Tushar Sahni  </AllRight>
