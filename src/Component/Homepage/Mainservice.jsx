@@ -8,7 +8,7 @@ grid-template-columns: auto auto auto auto;
 grid-gap: 0px;
 height: 500px;
 overflow: hidden;
-margin-bottom: 100px;
+// margin-bottom: 30px;
 @media (max-width: 767px) {
   display: grid;
   grid-template-columns: auto auto;
@@ -36,6 +36,18 @@ cursor: pointer;
     transform: scale(1.1);
     cursor: pointer;
     }
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    height: 350px;
+    width: 100%;
+    &:hover{
+      transition: transform 0.4s ease;
+      transform-origin: 50% 50%;
+      transform: scale(1.1);
+      cursor: pointer;
+      }
+    }
+   
 `;
 
 function Mainservice(props) {

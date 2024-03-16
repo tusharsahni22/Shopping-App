@@ -21,11 +21,12 @@ const Upper = styled.div`
 `;
 const Section1 = styled.div``;
 const Section2 = styled.div`
-height: 625px;
+height: 530px;
+padding: 0 5px 5px 5px;
 overflow-y: scroll;`;
 // const Frame = styled.img``;
 const Tittle = styled.div`
-  margin-top: 20px;
+  // margin-top: 20px;
   font-size: 1.5rem;
   font-weight: bold;
 `;

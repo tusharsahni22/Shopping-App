@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // import { MdOutlineFavoriteBorder } from "react-icons/md";
 
 const Wrapper = styled.div`
-margin-bottom: 100px;
+// margin-bottom: 100px;
 /* padding: 0 50px; */
 `;
 const Products = styled.div`
@@ -19,7 +19,7 @@ const Heading = styled.div`
 font:18px antique-olive;
 margin-bottom: 40px;
 font-weight: 800;
-margin-top: 50px;
+// margin-top: 50px;
 text-align: center;
 font-size: 20px;
 

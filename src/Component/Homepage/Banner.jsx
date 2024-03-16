@@ -18,6 +18,9 @@ width: 100%;
 @media (max-width: 767px) {
   height: 70px;
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+  height: 110px;
+}
 `;
 
 function Banner(props) {

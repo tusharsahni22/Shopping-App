@@ -18,6 +18,9 @@ width: 100%;
 @media (max-width: 767px) {
   height: 250px;
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+  height: 350px;
+}
 
 `;
 function Poster(props) {

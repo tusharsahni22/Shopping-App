@@ -38,7 +38,7 @@ export const uploadProduct = (data) => {
   }).then((result) => {
     return result;
   }).catch((err) => {
-    console.log("Error in uploadProduct", err);
+    console.log("Error in uploadProduct", err)
   });
 }
 
