@@ -6,6 +6,12 @@ const axiosInstance = axios.create({
       return status >= 200 && status < 500; // default
   },
 });
+const axiosInstance2 = axios.create({
+  baseURL: `${import.meta.env.VITE_API_BASE_URL_PROD}/api`,
+  validateStatus: function (status) {
+      return status >= 200 && status < 500; // default
+  },
+});
 
 export const viewProduct = () => {
   return axiosInstance.get("/viewProduct").then((result) => {
@@ -26,7 +32,7 @@ export const uploadProduct = (data) => {
   });
   formData.append('product', JSON.stringify(data));
   
-  return axiosInstance.post("/uploadnewproduct",formData,{headers: {
+  return axiosInstance2.post("/uploadnewproduct",formData,{headers: {
     'Content-Type': 'multipart/form-data' 
   }
   }).then((result) => {

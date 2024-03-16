@@ -7,7 +7,7 @@ import { GoArrowRight } from 'react-icons/go'
 import { useNavigate } from "react-router-dom"
 
 const Container=styled.div`
-width:100%;
+width:90%;
 height: 400px;
 padding: 0 5%;
 background-color:#212121;

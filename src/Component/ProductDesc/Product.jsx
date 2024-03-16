@@ -20,7 +20,9 @@ const Upper = styled.div`
   gap: 50px;
 `;
 const Section1 = styled.div``;
-const Section2 = styled.div``;
+const Section2 = styled.div`
+height: 625px;
+overflow-y: scroll;`;
 // const Frame = styled.img``;
 const Tittle = styled.div`
   margin-top: 20px;
