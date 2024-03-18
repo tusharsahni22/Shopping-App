@@ -8,6 +8,9 @@ margin-bottom: 100px;
   padding: 0px 0px;
   margin-bottom: 50px;
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+  margin-bottom: 50px;
+} 
 `;
 const Img = styled.img`
 height: 500px;

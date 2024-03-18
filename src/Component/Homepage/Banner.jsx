@@ -7,6 +7,9 @@ padding: 0px 50px 100px;
 @media (max-width: 767px) {
   padding: 0px 0px 35px;
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+  padding: 0px 0px 50px;
+}
 `;
 
 const Img =styled.img`
@@ -19,7 +22,7 @@ width: 100%;
   height: 70px;
 }
 @media (min-width: 768px) and (max-width: 1024px) {
-  height: 110px;
+  height: 110px
 }
 `;
 

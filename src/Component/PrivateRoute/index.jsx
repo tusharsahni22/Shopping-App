@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {isUserLoggedIn} from '../Services/auth'
-import { Navigate, Outlet } from 'react-router'
+import { Outlet } from 'react-router'
+import Auth from '../Auth'
 
 const PrivateRoutes =()=> {
     const [loggedIn,setLoggedIn]=useState(true)
@@ -12,8 +13,14 @@ const PrivateRoutes =()=> {
    }
    useEffect(()=>{
     handleLoggedIn()},[])
+
+    const [login, setLogin] = useState(true)
+    const toggleLogin = () => {
+      setLogin(!login)
+    };
+    
   return (<>
-    {loggedIn ? <Outlet/> : <Navigate to="/"/>}
+    {loggedIn ? <Outlet/> :login? <Auth login={login} toggleLogin={toggleLogin} />:""}
     
   </>
   )

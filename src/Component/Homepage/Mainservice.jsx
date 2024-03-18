@@ -8,7 +8,7 @@ grid-template-columns: auto auto auto auto;
 grid-gap: 0px;
 height: 500px;
 overflow: hidden;
-// margin-bottom: 30px;
+margin-bottom:100px;
 @media (max-width: 767px) {
   display: grid;
   grid-template-columns: auto auto;
@@ -16,6 +16,10 @@ overflow: hidden;
   height: 250px;
   overflow: hidden;
   margin-bottom: 50px;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  margin-bottom: 0px;
+  height: 400px;
 }
 `;
 const Img =  styled.img`

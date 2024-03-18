@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
 display: flex;
+gap: 20px;
 justify-content: space-between;
 margin-bottom: 50px;
 padding: 0 50px;
@@ -14,7 +15,7 @@ padding: 0 50px;
 }
 `;
 const Service = styled.div`
-max-width: 50%;
+width: 100%
 `;
 // const Title = styled.div`
 // font-size: 1.25rem;
