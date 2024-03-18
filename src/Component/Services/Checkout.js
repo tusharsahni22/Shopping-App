@@ -37,7 +37,7 @@ const axiosInstance = axios.create({
     }
 
     export const payOnline = (data) =>{
-        return axiosInstance.post("/payments",data).then((result) => {
+        return axiosInstance.post("/paymentss",data).then((result) => {
             return result;
         }).catch((err) => {
             console.log("Error in payOnline", err);
