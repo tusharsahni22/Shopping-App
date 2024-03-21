@@ -32,3 +32,17 @@
   outline: none;
   border: 2px solid black !important;
 }
+.sb-avatar__text{
+  width: 65px !important;
+  height: 65px !important;
+  font-size: 25px !important;
+}
+.example::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

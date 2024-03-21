@@ -19,6 +19,9 @@ padding: 0 60px;
     display: none;
 }
 width: 100%;
+@media (max-width: 767px) {
+  padding: 0 0px;
+}
 `;
 const Title = styled.div`
 font-size: 1rem;
@@ -45,6 +48,8 @@ grid-template-columns: repeat(3, minmax(0, 1fr));
 &:hover{
   cursor: pointer;
 }
+@media (max-width: 767px) {
+  display: block;
 `;
 const Price = styled.div`
 font-weight: bold;

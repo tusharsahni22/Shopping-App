@@ -8,6 +8,9 @@ overflow-y: scroll;
 &::-webkit-scrollbar{
   display: none;
 }
+@media (max-width: 767px) {
+  display: none;
+}
 `;
 const Heading = styled.div`
 font-size: 15px;

@@ -4,6 +4,7 @@ import { Outlet } from 'react-router'
 import Auth from '../Auth'
 
 const PrivateRoutes =()=> {
+    // const navigate = useNavigate()
     const [loggedIn,setLoggedIn]=useState(true)
    const handleLoggedIn = ()=>{
     if(isUserLoggedIn()){
@@ -17,6 +18,7 @@ const PrivateRoutes =()=> {
     const [login, setLogin] = useState(true)
     const toggleLogin = () => {
       setLogin(!login)
+      window.location.reload()
     };
     
   return (<>

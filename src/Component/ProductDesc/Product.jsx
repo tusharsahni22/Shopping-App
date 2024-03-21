@@ -13,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { CiDiscount1 } from "react-icons/ci";
 import { FcDisclaimer } from "react-icons/fc";
 import { addFavorite } from "../Services/profile";
+import SizeChart from "./sizeChart.jsx";
 
 const Wrapper = styled.div``;
 const Upper = styled.div`
@@ -167,7 +168,16 @@ const Size = styled.div`
   gap: 10px;
   margin-top: 10px;
 `;
-
+const SizeChartDiv = styled.div`
+padding: 20px 0 0 0;
+color: red;
+display: flex
+font-size: 12px;
+align-items: center;
+gap: 10px;
+margin-left: 45px;
+cursor: pointer;
+`;
 const MainSizes = styled.div`
   display: flex;
   align-items: center;
@@ -210,6 +220,7 @@ function Product() {
   const [quantity, setQuantity] = React.useState(1);
   const [size, setSize] = React.useState("s");
   const [color,setColor] = React.useState("black")
+  const [isSizeChart,setIsSizeChart] = React.useState(false)
   const { state } = useLocation();
   const { id, title, price,priceAfterDiscount, mainPicture, altPictures,description,colorToIndexMap,specification } = state;
   // description,size
@@ -276,6 +287,7 @@ function Product() {
 
   return (
     <Wrapper>
+      
       <ToastContainer />
       <Upper>
         <Section1>
@@ -318,12 +330,17 @@ function Product() {
           </Colour>
           <Text>Size </Text>
           <Size>
+            <Size style={{display:"flex"}}>
+
             <MainSizes onClick={()=>{setSize("s")}} style={{ color: size==="s"?"white":"black",backgroundColor: size === "s" ? "black" : "transparent" }}>S</MainSizes>
             <MainSizes onClick={()=>{setSize("m")}} style={{color: size==="m"?"white":"black",backgroundColor: size === "m" ? "black" : "transparent" }}>M</MainSizes>
             <MainSizes onClick={()=>{setSize("l")}} style={{color: size==="l"?"white":"black",backgroundColor: size === "l" ? "black" : "transparent" }}>L</MainSizes>
             <MainSizes onClick={()=>{setSize("xl")}} style={{color: size==="xl"?"white":"black",backgroundColor: size === "xl" ? "black" : "transparent" }}>XL</MainSizes>
             <MainSizes onClick={()=>{setSize("xxl")}} style={{color: size==="xxl"?"white":"black",backgroundColor: size === "xxl" ? "black" : "transparent" }}>XXL</MainSizes>
+            </Size>
+            <SizeChartDiv onClick={()=>{setIsSizeChart(!isSizeChart)}}>SIZE CHART</SizeChartDiv>
           </Size>
+          {isSizeChart? <SizeChart/>:null}
           <Text>Quantity</Text>
 
           <Quantity

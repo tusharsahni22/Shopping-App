@@ -28,16 +28,12 @@ function Router () {
         <Route path='/policy/shipping-policy' element={<Shipping/>} />
         <Route path='/policy/terms-of-service' element={<TermandCondition/>}/>
         <Route path='/policy/privacy-policy' element={<Privacy/>}/>
-       
         <Route path='/admin' element={<Admin/>} />
-        
-        
 
         <Route path='/' element={<PrivateRoutes/>}>
         <Route path='/myprofile' element={<MyProfile/>} />
         <Route path='/checkout' element={<Checkout/>} />
         <Route path='/order-success' element={<OrderSuccessPage/>} />
-
         <Route path='/order/Processing-order/:id' element={<ProcessingOrder/>} />
         </Route>
       </Routes>

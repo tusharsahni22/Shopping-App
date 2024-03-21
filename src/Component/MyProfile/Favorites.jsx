@@ -153,10 +153,10 @@ function Favorites({name,greeting}) {
       <ToastContainer />
       <Welcome> {greeting}! {name?.split(" ")[0]}</Welcome>
       <Container>
-      {favData.length === 0 && <div>No favorite items</div>}
-      <Services>
+      {favData.length === 0 && <div style={{display:"flex",justifyContent:"center",width:"100%"}}>No favorite items</div>}
+      {favData.length>0 ?<Services>
         
-        <ProductItems onClick={()=>{navigate("/product-description")}}>
+         <ProductItems onClick={()=>{navigate("/product-description")}}>
            {favData.map((e)=>(
               <Frame key={e._id}>
                 <Title>{e.product?.title}</Title>
@@ -171,7 +171,7 @@ function Favorites({name,greeting}) {
             ))}
         </ProductItems>
        
-      </Services>
+      </Services>:""}
 
       </Container>
     </Wrapper>

@@ -132,31 +132,13 @@ function Profile(props) {
 
     const handleSave = () => {
         const data = {name,mobilenumber,dob,gender}
-        console.log("first",data)
-        if(name === '' ||  dob === '' || gender === ''){
-            toast.error("Please fill all the fields")
-            return 0
-            
-        }
-        else if (name !== ''){
-            const regex = /^[a-zA-Z\s]+$/;
-            if(!regex.test(name)){
-                toast.error("Name should contain only alphabets")
-            }
-        }
-        else {
-            console.log("first.......................")
-         updateProfileInformation().then((res) => {
+         updateProfileInformation(data).then((res) => {
            if(res.status === 200){
             toast.success("Profile Updated Successfully")
-        }
-        else{
+            }}).catch((err) => {
             toast.error("Something went wrong")
-        }
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
+            console.log("err",err)
+         })
     }
 
     

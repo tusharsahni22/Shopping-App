@@ -14,6 +14,7 @@ import Clock from "./clock";
 import MyAddress from './myAddress';
 import ChangePassword from './changePassword';
 import { getProfileInformation } from '../Services/profile';
+import Avatar from "./avatar"
 
 const Wrapper = styled.div`
 padding: 0 5%;
@@ -45,6 +46,7 @@ text-decoration: ${props => props.selected ? 'underline' : 'none'};
 `;
 const ProfileBar =styled.div`
 display:flex;
+gap: 25px;
 border-radius: 25px;
 padding: 15px;
 box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
@@ -60,14 +62,14 @@ letter-spacing: 0.025em;
 // const Time =styled.div`
 
 // `;
-const Profilepic =styled.img`
-margin-right: 20px;
-    width: 61px;
-    height: 61px;
-    min-width: 61px;
-    min-height: 61px;
-    border-radius: 100%;
-`;
+// const Profilepic =styled.img`
+// margin-right: 20px;
+//     width: 61px;
+//     height: 61px;
+//     min-width: 61px;
+//     min-height: 61px;
+//     border-radius: 100%;
+// `;
 const Ganta =styled(CiClock2)`
 margin-right: 10px;
 `;
@@ -96,7 +98,8 @@ function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
     <Wrapper>
         <Head>
           <ProfileBar>
-            <Profilepic src='./whatsnew3.jpg'/>
+            <Avatar name={profileInformation.name}/>
+            {/* <Profilepic src='./whatsnew3.jpg'/> */}
             <div>
               <Name>{profileInformation.name|| "Guest"}</Name>
               <div style={{display:"flex"}}><Ganta /><Clock/></div>

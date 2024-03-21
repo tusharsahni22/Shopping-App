@@ -141,6 +141,13 @@ font-size: 15px;
 font-weight: 700;
 margin: 10px 0 0 20px;
 `;
+const Container = styled.div`
+display: flex;
+padding: 40px 10px;
+height: max-content;
+border-radius: 15px;
+box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
+`;
 
 function OrderHistory({name, greeting}) {
   const [orderList, setOrderList] = React.useState([])
@@ -164,6 +171,9 @@ function OrderHistory({name, greeting}) {
       
       <Welcome> {greeting}! {name?.split(" ")[0]}</Welcome>
       <OrderContainer style={{height:"100vh",overflowY:"auto"}}>
+      {orderList.length===0 ? <Container>
+        <div style={{display:"flex",justifyContent:"center",width:"100%"}}>No Orders Found</div>
+      </Container>:""}
       {orderList.map((order)=>(
       <Box key={order._id}>
       <Details>
