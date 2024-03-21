@@ -21,7 +21,7 @@ font-weight: 800;
 color: #000000;
 `;
 const InputField = styled.input`    
-width: 100%;
+width: 80%;
 height: 40px;
 border: 1px solid #000000;
 border-radius: 5px;
@@ -33,7 +33,9 @@ margin: 10px 0 0 0;
   -webkit-appearance: none;
   margin: 0;
 }
-
+@media (max-width: 768px) {
+  width: 80%;
+}
 `;
 const Dob = styled.div`
 margin: 20px 0 0 0;

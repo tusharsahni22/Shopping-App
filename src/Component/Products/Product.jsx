@@ -4,6 +4,8 @@ import SideBar from "../SideBar/SideBar"
 import { BiCart } from 'react-icons/bi';
 import { useNavigate ,useLocation } from 'react-router-dom';
 import { viewProduct } from "../Services/product";
+import {CiFilter} from "react-icons/ci";
+import {LiaSortDownSolid} from "react-icons/lia";
 
 const Wrapper = styled.div`
 width: 100%;
@@ -49,7 +51,7 @@ grid-template-columns: repeat(3, minmax(0, 1fr));
   cursor: pointer;
 }
 @media (max-width: 767px) {
-  display: block;
+grid-template-columns: repeat(2, minmax(0, 1fr));
 `;
 const Price = styled.div`
 font-weight: bold;
@@ -84,6 +86,13 @@ justify-content: space-between;
 max-width: 340px;
 
 `;
+
+const FilterSort = styled.div`
+padding: 0 10px;
+display: flex;
+justify-content: space-between;
+`;
+
 
 function Product() {
   const navigate = useNavigate();
@@ -162,6 +171,16 @@ viewProduct().then((res)=>{
     <Wrapper>
       <Heading>{MHeading1}</Heading>
       <SubHeadings>{SubHeading}</SubHeadings>
+      <FilterSort >
+        <div style={{display:"flex"}}>
+        <CiFilter />
+        <div>filter</div>
+        </div>
+        <div style={{display:"flex"}}>
+        <div>sort</div>
+        <LiaSortDownSolid />
+        </div>
+      </FilterSort>
       <Container>
       <SideBar data={[{category:"Size",type:["small","medium","large","xl","xxl"]},{category:"Colours",type:["white","black"]},{category:"Category",type:["t-shirt","sweatshirt","hoodie"]}]} setFilter={setFilter}/>
       <Services>
