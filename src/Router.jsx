@@ -11,7 +11,7 @@ import ReturnandRefund from "./Component/Policy/returnandreturnpolicy"
 import Shipping from "./Component/Policy/shipping"
 import TermandCondition from "./Component/Policy/termsandservices"
 import Privacy from "./Component/Policy/Privacy";
-// import Admin from './Component/Admin';
+import Admin from './Component/Admin';
 import OrderSuccessPage from './Component/OrderSuccessPage';
 import ProcessingOrder from './Component/Checkout/PaymentProcesscing';
 import PrivateRoutes from './Component/PrivateRoute'
@@ -46,6 +46,7 @@ function Router () {
         <Route path='/checkout' element={<Layout><Checkout/></Layout>} />
         <Route path='/order-success' element={<Layout><OrderSuccessPage/></Layout>} />
         <Route path='/order/Processing-order/:id' element={<ProcessingOrder/>} />
+        <Route path='/admin' element={<Admin/>} />
         </Route>
       </Routes>
     </BrowserRouter>
