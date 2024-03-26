@@ -42,21 +42,32 @@ flex-direction: column;
 
 function DynamicInput(props) {
   const [inputs, setInputs] = useState(['input-0']);
-  const [inputValue, setInputValue] = useState('');
+  // const [inputValue, setInputValue] = useState('');
 
   const handleAddClick = () => {
-    setInputs(inputs.concat(`input-${inputs.length}`));
+    setInputs(inputs.concat({ id: `input-${inputs.length}`, value: '' }));
   };
-  // const handleSubmit = () => {
-  //   props.setSpecification([...props.specification,inputValue])
-  // }
 
+  const handleInputChange = (id, newValue) => {
+    setInputs(inputs.map(input => input.id === id ? { ...input, value: newValue } : input));
+  };
+
+  const handleInputBlur = () => {
+    props.setSpecification(inputs.map(input => input.value));
+  };
 
 
   return (
     <Wrapper>
       {inputs.map((input, index) => (
-        <InputField key={input} type="text" placeholder={`Input #${index + 1}`} onChange={(e)=>{setInputValue(e.target.value)}} onBlur={()=>{props.setSpecification([...props.specification,inputValue])}} />
+        <InputField
+          key={input.id}
+          type="text"
+          placeholder={`Input #${index + 1}`}
+          value={input.value}
+          onChange={(e) => handleInputChange(input.id, e.target.value)}
+          onBlur={handleInputBlur}
+        />
       ))}
       <Button onClick={handleAddClick}>Add</Button>
     </Wrapper>

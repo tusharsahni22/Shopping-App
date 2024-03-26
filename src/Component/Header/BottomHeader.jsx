@@ -1,8 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+`;
 
 function BottomHeader() {
   return (
-    <div>BottomHeader</div>
+    <Wrapper>BottomHeader</Wrapper>
   )
 }
 

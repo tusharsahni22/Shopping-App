@@ -168,7 +168,7 @@ function SignupPage({toggleLogin,SwitchLogin}) {
 
 
   const handleSignup = () => {
-    const data = {email,password,name,phoneNo:mobile};
+    const data = {email,password,name,mobilenumber:mobile};
     Signup(data).then((res)=>{
       if(res.status === 200){
         alert("Signup Successful");
