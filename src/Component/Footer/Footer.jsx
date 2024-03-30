@@ -120,7 +120,7 @@ function Footer() {
        <Heading>Customer Support</Heading>
        <Option onClick={() => window.open('mailto:support@streetswear.in', '_blank')}>Contact Us</Option>
        <Option>About Us</Option>
-       <Option>Help & FAQ</Option>
+       <Option onClick={()=>{navigate("/Frequently-Asked-Questions")}}>Help & FAQ</Option>
        </Column>
 
        <Column>

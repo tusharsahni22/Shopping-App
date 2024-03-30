@@ -1,8 +1,8 @@
 import React,{useState}from 'react'
 import styled from 'styled-components';
 import { IoCloseOutline } from 'react-icons/io5';
-import { FcGoogle } from 'react-icons/fc';
-import { BsFacebook } from 'react-icons/bs';
+// import { FcGoogle } from 'react-icons/fc';
+// import { BsFacebook } from 'react-icons/bs';
 import { login } from '../Services/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -75,20 +75,20 @@ height: 1px;
 background-color: black;
 margin-bottom: 30px;
 `;
-const FancyButton = styled.div`
-  margin-bottom: 30px;
-  padding-top: 15px;
-  border-radius: 5px;
-  border: none;
-  outline: 1px solid #ccc;
-  color: black;
-  width: 100%;
-  cursor: pointer;
-  height: 40px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-`;
+// const FancyButton = styled.div`
+//   margin-bottom: 30px;
+//   padding-top: 15px;
+//   border-radius: 5px;
+//   border: none;
+//   outline: 1px solid #ccc;
+//   color: black;
+//   width: 100%;
+//   cursor: pointer;
+//   height: 40px;
+//   text-align: center;
+//   display: flex;
+//   justify-content: center;
+// `;
 
 const Span = styled.span`
 font-weight: bold;
@@ -102,13 +102,13 @@ color: #212121;
 const Close = styled(IoCloseOutline)`
 
 `;
-const Facebook = styled(BsFacebook)`
-margin-right: 5px;
+// const Facebook = styled(BsFacebook)`
+// margin-right: 5px;
 
-`;
-const Google = styled(FcGoogle)`
-margin-right: 5px;
-`;
+// `;
+// const Google = styled(FcGoogle)`
+// margin-right: 5px;
+// `;
 const Already = styled.div`
 text-align: center;
 `;
@@ -162,8 +162,8 @@ function Login({SwitchLogin,toggleLogin}) {
             <Field>
             <Button onClick={handleLogin}>Log In</Button>
             <Line/>
-            <FancyButton><Google/>Continue with Google</FancyButton>
-            <FancyButton><Facebook/>Continue with Facebook</FancyButton>
+            {/* <FancyButton><Google/>Continue with Google</FancyButton>
+            <FancyButton><Facebook/>Continue with Facebook</FancyButton> */}
             </Field>
             <Already>Already have an account? <Span onClick={()=>{SwitchLogin()}}>Sign Up</Span></Already>
       </LoginForm>

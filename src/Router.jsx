@@ -15,6 +15,7 @@ import Admin from './Component/Admin';
 import OrderSuccessPage from './Component/OrderSuccessPage';
 import ProcessingOrder from './Component/Checkout/PaymentProcesscing';
 import PrivateRoutes from './Component/PrivateRoute'
+import Faq from './Component/Footer/Faq'
 
 function Layout({ children }) {
   return (
@@ -39,6 +40,7 @@ function Router () {
         <Route path='/policy/shipping-policy' element={<Layout><Shipping/></Layout>} />
         <Route path='/policy/terms-of-service' element={<Layout><TermandCondition/></Layout>}/>
         <Route path='/policy/privacy-policy' element={<Layout><Privacy/></Layout>}/>
+        <Route path='/Frequently-Asked-Questions' element={<Layout><Faq/></Layout>}/>
         
 
         <Route path='/' element={<PrivateRoutes/>}>

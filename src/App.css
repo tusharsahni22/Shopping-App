@@ -46,3 +46,13 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.answer.open {
+  max-height: 100px; /* Adjust this value to fit your content */
+}
