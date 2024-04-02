@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    padding: 0px 50px 100px;
+    padding: 0px 10%;
     @media (max-width: 767px) {
       padding: 0px 0px 35px;
     }
@@ -22,6 +22,11 @@ const MainSection = styled.div`
     }
 `;
 
+const Heading = styled.div`
+    color: #000;
+    font-size: 1.5rem;
+    margin: 20px 0;
+`;
 
 const Faq = () => {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
@@ -52,6 +57,7 @@ const Faq = () => {
   return (
     <Wrapper>
       <h1>Frequently Asked Questions</h1>
+      <Heading>Genral Question</Heading>
       {questions.map((q) => (
         <MainSection key={q.id}>
           <h2 onClick={() => handleClick(q.id)}>{q.question}</h2>
@@ -60,7 +66,7 @@ const Faq = () => {
           </div>
         </MainSection>
       ))}
-      <h1>CANCELLATION, RETURN / EXCHANGE & REFUND</h1>
+      <Heading>CANCELLATION, RETURN / EXCHANGE & REFUND</Heading>
       {cancelationQuestions.map((q) => (
         <MainSection key={q.id}>
           <h2 onClick={() => handleClick(q.id)}>{q.question}</h2>

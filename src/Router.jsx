@@ -16,11 +16,20 @@ import OrderSuccessPage from './Component/OrderSuccessPage';
 import ProcessingOrder from './Component/Checkout/PaymentProcesscing';
 import PrivateRoutes from './Component/PrivateRoute'
 import Faq from './Component/Footer/Faq'
+import BottomHeaderComp from './Component/Header/BottomHeader'
 
 function Layout({ children }) {
   return (
     <>
       <Header/>
+      {children}
+    </>
+  );
+}
+function BottomHeader({ children }) {
+  return (
+    <>
+      <BottomHeaderComp/>
       {children}
     </>
   );
@@ -33,20 +42,20 @@ function Router () {
     {/* <Header/> */}
       <Routes>
         <Route path='*' element={<h1>404 Not Found</h1>} />
-        <Route path='/' element={<Layout><Homepage/></Layout>} />
-        <Route path='/products' element={<Layout><Product/></Layout>} />
-        <Route path='/product-description' element={<Layout><ProductDesc/></Layout>} />
-        <Route path='/policy/return&refund' element={<Layout><ReturnandRefund/></Layout>} />
-        <Route path='/policy/shipping-policy' element={<Layout><Shipping/></Layout>} />
-        <Route path='/policy/terms-of-service' element={<Layout><TermandCondition/></Layout>}/>
-        <Route path='/policy/privacy-policy' element={<Layout><Privacy/></Layout>}/>
-        <Route path='/Frequently-Asked-Questions' element={<Layout><Faq/></Layout>}/>
+        <Route path='/' element={<Layout><Homepage/><BottomHeader/></Layout>} />
+        <Route path='/products' element={<Layout><Product/><BottomHeader/></Layout>} />
+        <Route path='/product-description' element={<Layout><ProductDesc/><BottomHeader/></Layout>} />
+        <Route path='/policy/return&refund' element={<Layout><ReturnandRefund/><BottomHeader/></Layout>} />
+        <Route path='/policy/shipping-policy' element={<Layout><Shipping/><BottomHeader/></Layout>} />
+        <Route path='/policy/terms-of-service' element={<Layout><TermandCondition/><BottomHeader/></Layout>}/>
+        <Route path='/policy/privacy-policy' element={<Layout><Privacy/><BottomHeader/></Layout>}/>
+        <Route path='/Frequently-Asked-Questions' element={<Layout><Faq/><BottomHeader/></Layout>}/>
         
 
         <Route path='/' element={<PrivateRoutes/>}>
-        <Route path='/myprofile' element={<Layout><MyProfile/></Layout>} />
-        <Route path='/checkout' element={<Layout><Checkout/></Layout>} />
-        <Route path='/order-success' element={<Layout><OrderSuccessPage/></Layout>} />
+        <Route path='/myprofile' element={<Layout><MyProfile/><BottomHeader/></Layout>} />
+        <Route path='/checkout' element={<Layout><Checkout/><BottomHeader/></Layout>} />
+        <Route path='/order-success' element={<Layout><OrderSuccessPage/><BottomHeader/></Layout>} />
         <Route path='/order/Processing-order/:id' element={<ProcessingOrder/>} />
         <Route path='/admin' element={<Admin/>} />
         </Route>

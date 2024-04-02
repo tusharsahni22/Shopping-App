@@ -31,6 +31,11 @@ const SignupForm = styled.form`
   display: flex;
   flex-direction: column;
   outline: 1px solid black;
+   @media (max-width: 768px) {
+    width: 300px;
+    height: 380px;
+    overflow-y: scroll;
+  }
 `;
 
 const Input = styled.input`

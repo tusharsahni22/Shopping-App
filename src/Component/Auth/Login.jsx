@@ -29,6 +29,10 @@ const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   outline: 1px solid black;
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 380px;
+  }
 `;
 
 const Input = styled.input`
@@ -40,7 +44,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.div`
-    margin-bottom: 30px;
+  margin-bottom: 30px;
   padding-top: 15px;
   border-radius: 5px;
   border: none;
@@ -70,11 +74,13 @@ const Field = styled.div`
 display: block;
 padding: 0 15%;
 `;
+
 const Line = styled.div`
 height: 1px;
 background-color: black;
 margin-bottom: 30px;
 `;
+
 // const FancyButton = styled.div`
 //   margin-bottom: 30px;
 //   padding-top: 15px;
