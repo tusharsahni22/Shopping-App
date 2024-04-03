@@ -14,6 +14,10 @@ const Wrapper = styled.div`
   justify-content: center;
   gap: 5%;
   width: 100%;
+  @media (max-width:767px){
+    display:block;
+    margin-bottom:60px;
+  }
 `;
 const Left = styled.div`
   background-color: white;
