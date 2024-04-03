@@ -31,7 +31,7 @@ overflow-y: scroll;
 @media(max-width:767px){
   overflow-y:none;
   height:100%;
-  padding:10px 20px 50px 20px;
+  padding:10px 20px 50px 1px;
 }
 `;
 // const Frame = styled.img``;

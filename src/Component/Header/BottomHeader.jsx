@@ -6,7 +6,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { FaOpencart } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import LoginPage from '../Auth';
-import CartMobile from '../Cart/CartMobile';
+import AddToCart from "../Cart/AddToCart"
 
 const Wrapper = styled.div`
 position: fixed;
@@ -43,21 +43,24 @@ color: black;
 function BottomHeader() {
 const navigate = useNavigate();
 const [login, setLogin] = useState(false);
-const [cart,setCart] = useState(false)
+const [AddCartToggle, setAddCartToggle] = useState(false);
 
 const toggleLogin = () => {
   setLogin(!login)
 };
 
+const toggleAddtocart = () => {
+  setAddCartToggle(!AddCartToggle);
+};
   return (
     <>{login?<LoginPage toggleLogin={toggleLogin} /> :""}
-      {cart?<CartMobile/>:"kkdskd"}
+      {AddCartToggle? <AddToCart toggleAddtocart={toggleAddtocart}/> :""}
     <Wrapper>
       <Bar>
         <Home onClick={()=>{navigate("/")}}/>
         <User onClick={toggleLogin}/>
         <Favorite onClick={()=>{navigate("/myprofile",{state:{favorites:"Favorites"}})}} />
-        <Cart onClick={()=>{setCart(true)}}/>
+        <Cart onClick={toggleAddtocart}/>
       </Bar>
     </Wrapper>
     </>

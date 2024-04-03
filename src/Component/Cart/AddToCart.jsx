@@ -19,6 +19,9 @@ const Sidebar = styled.div`
   transition: transform 0.3s ease-in-out;
   /* transform: translateX(100%); */
   backdrop-filter: blur(5px);
+  @media (max-width:767px){
+    width:100%;
+  }
 `;
 const Overlay = styled.div`
   position: fixed;
@@ -68,6 +71,9 @@ const AllCartItems = styled.div`
 height: 50vh;
 overflow-y: scroll;
 overflow-x: hidden;
+@media(max-width:767px){
+  height:35vh;
+}
 `;
 
 const Total = styled.div`
