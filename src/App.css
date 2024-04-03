@@ -20,9 +20,15 @@
 }
 .image-gallery-content{
   width: 325px;
+  @media (max-width:767px){
+    width: 100%;
+  }
 }
 .image-gallery-thumbnails-container{
-  text-align: left!important; ;
+  text-align: left!important;
+  @media(maax-width:767px){
+    text-align: center;
+  }
 }
 .image-gallery-thumbnail:focus {
   outline: none;

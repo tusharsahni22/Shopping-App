@@ -19,12 +19,21 @@ const Wrapper = styled.div``;
 const Upper = styled.div`
   display: flex;
   gap: 50px;
+  @media(max-width:767px){
+    flex-direction:column;
+  }
 `;
 const Section1 = styled.div``;
 const Section2 = styled.div`
 height: 530px;
 padding: 0 5px 5px 5px;
-overflow-y: scroll;`;
+overflow-y: scroll;
+@media(max-width:767px){
+  overflow-y:none;
+  height:100%;
+  padding:10px 20px 50px 20px;
+}
+`;
 // const Frame = styled.img``;
 const Tittle = styled.div`
   // margin-top: 20px;
@@ -177,6 +186,9 @@ align-items: center;
 gap: 10px;
 margin-left: 45px;
 cursor: pointer;
+@media(max-width:767px){
+  display:none;
+}
 `;
 const MainSizes = styled.div`
   display: flex;
