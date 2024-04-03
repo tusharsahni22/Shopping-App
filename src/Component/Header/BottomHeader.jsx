@@ -12,6 +12,9 @@ const Wrapper = styled.div`
 position: fixed;
 bottom: 0;
 width: 100%;
+@media (min-width:768px){
+  display:none;
+}
 
 `;
 const Bar = styled.div`
