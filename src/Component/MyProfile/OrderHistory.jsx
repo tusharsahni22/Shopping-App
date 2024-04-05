@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import Avatar from  "./avatar"
 import {RiArrowDropRightLine} from "react-icons/ri";
 import { getOrderDetails } from '../Services/profile';
 
@@ -150,17 +149,6 @@ border-radius: 15px;
 box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
 `;
 
-const AvatarDiv = styled.div`
-position: relative;
-width: 100%;
-align-items: center;
-display: flex;
-justify-content: center;
-top: -40px;
-@media (min-width:767px){
-  display:none;
-}
-`;
 
 function OrderHistory({name, greeting}) {
   const [orderList, setOrderList] = React.useState([])
@@ -187,7 +175,6 @@ function OrderHistory({name, greeting}) {
       {orderList.length===0 ? <Container>
         <div style={{display:"flex",justifyContent:"center",width:"100%"}}>No Orders Found</div>
       </Container>:""}
-      <AvatarDiv><Avatar name={name}/></AvatarDiv>
       {orderList.map((order)=>(
       <Box key={order._id}>
       <Details>

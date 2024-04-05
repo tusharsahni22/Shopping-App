@@ -109,6 +109,9 @@ align-items: center;
 display: flex;
 justify-content: center;
 top: -40px;
+@media (min-width:767px){
+  display:none;
+}
 `;
 
 

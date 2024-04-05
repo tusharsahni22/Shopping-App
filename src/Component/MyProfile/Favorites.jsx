@@ -58,6 +58,11 @@ const Frame = styled.div`
     height: max-content;
     padding: 10px;
     margin: 0 15px 15px 15px;
+    @media (max-width:767px){
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 `;
 const Img =styled.img`
 /* width: 340px;

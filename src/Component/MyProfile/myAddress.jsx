@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import Avatar from  "./avatar"
 import { LiaEdit } from "react-icons/lia";
 import { HiOutlineMapPin } from "react-icons/hi2";
 import { MdDeleteOutline } from "react-icons/md";
@@ -138,17 +137,6 @@ letter-spacing: 0.025em;
 cursor: pointer;
 
 `;
-const AvatarDiv = styled.div`
-position: relative;
-width: 100%;
-align-items: center;
-display: flex;
-justify-content: center;
-bottom: -32px;
-@media (min-width:767px){
-    display:none;
-}
-`;
 
 
 
@@ -207,7 +195,6 @@ function MyAddress({name, greeting}) {
     <Wrapper>
         <ToastContainer />
       <Welcome> {greeting}! {name?.split(" ")[0]}</Welcome>
-        <AvatarDiv><Avatar name={name}/></AvatarDiv>
         <Card>
         <Box>
                 {edit?<div style={{marginTop:"41px",display:"flex",flexDirection:"column"}}><Addressdetails>
