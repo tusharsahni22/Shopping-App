@@ -12,6 +12,9 @@ padding: 40px 60px;
 height: max-content;
 border-radius: 15px;
 box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
+@media(max-width:767px){
+  padding:40px 30px;
+}
 `;
 const OrderLogo = styled(RxCodesandboxLogo)`
   font-size: 40px;
@@ -23,6 +26,9 @@ color: black;
 margin-bottom: 20px;
 font-size: 35px;
 font-weight: bold;
+@media (max-width:767px){
+  font-size:25px;
+}
 `;
 
 const Title = styled.div`
@@ -41,6 +47,9 @@ const OrderUpdates = styled.div`
   border : 2px solid #f3f3f3;
   height: 40px;
   padding: 25px;
+  @media (max-width:768px){
+    height:70px;
+  }
 `;
 const ImageContainer = styled.div`
   display: flex;
@@ -53,6 +62,9 @@ const Img = styled.img`
   height: 600px;
   margin-top: 20px;
   margin-bottom: 20px;
+  @media(max-width:767px){
+    width:300px;
+  }
 `;
 const ContactDetails = styled.div`
   display: flex;
@@ -88,6 +100,9 @@ const Button = styled.button`
   width: fit-content;
   &:hover {
     background-color: #333;
+  }
+  @media (max-width:767px){
+    width:100%;
   }
 `;
 

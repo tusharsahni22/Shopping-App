@@ -21,6 +21,9 @@ padding: 0 5%;
 display: flex;
 gap: 50px;
 margin: 0 0 100px 0px;
+@media (max-width:767px){
+flex-direction: column;
+}
 `;
 const Head = styled.div`
 // margin: 70px 0 0 0 ;
@@ -30,6 +33,12 @@ border-radius: 25px;
 display: flex;
 flex-direction: column;
 gap: 20px;
+@media (max-width:767px){
+  width:92%;
+  padding:10px 4%;
+  flex-direction:row;
+  overflow-x:scroll;
+  }
 `;
 const Title = styled.div`
 font-size: 15px;
@@ -43,6 +52,12 @@ text-decoration: ${props => props.selected ? 'underline' : 'none'};
 &:hover{ 
     cursor: pointer;
 }
+@media (max-width:767px){
+  padding:5px 0;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
 `;
 const ProfileBar =styled.div`
 display:flex;
@@ -51,6 +66,9 @@ border-radius: 25px;
 padding: 15px;
 box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
 height: 65px;
+@media (max-width:767px){
+display:none;
+}
 `;
 const Name =styled.div`
 margin: 8px 0 5px;
@@ -72,6 +90,12 @@ letter-spacing: 0.025em;
 // `;
 const Ganta =styled(CiClock2)`
 margin-right: 10px;
+`;
+
+const TitleName = styled.div`
+@media (max-width:767px){
+  width:max-content;
+}
 `;
 
 function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
@@ -99,17 +123,16 @@ function HeadComponent({state,OrderHistoryTab,YourProfileTab}) {
         <Head>
           <ProfileBar>
             <Avatar name={profileInformation.name}/>
-            {/* <Profilepic src='./whatsnew3.jpg'/> */}
             <div>
               <Name>{profileInformation.name|| "Guest"}</Name>
               <div style={{display:"flex"}}><Ganta /><Clock/></div>
             </div>
           </ProfileBar>
-            <Title selected={selectedTitle === 'Your Profile'} onClick={() => setSelectedTitle('Your Profile')}><FiUser/>My Profile</Title>
-            <Title selected={selectedTitle === 'Order History'} onClick={() => setSelectedTitle('Order History')}><SlHandbag />Order History</Title> 
-            <Title selected={selectedTitle === 'Delivery Address'} onClick={() => setSelectedTitle('Delivery Address')}><CiLocationOn />Delivery Address</Title> 
-            <Title selected={selectedTitle === 'Favorites'} onClick={() => setSelectedTitle('Favorites')}><MdFavoriteBorder />Favorites</Title>
-            <Title selected={selectedTitle === 'Change Password'} onClick={() => setSelectedTitle('Change Password')}><MdOutlinePassword />Change Password</Title>
+            <Title selected={selectedTitle === 'Your Profile'} onClick={() => setSelectedTitle('Your Profile')}><FiUser/><TitleName>My Profile</TitleName></Title>
+            <Title selected={selectedTitle === 'Order History'} onClick={() => setSelectedTitle('Order History')}><SlHandbag /><TitleName>Order History</TitleName></Title> 
+            <Title selected={selectedTitle === 'Delivery Address'} onClick={() => setSelectedTitle('Delivery Address')}><CiLocationOn /><TitleName>Delivery Address</TitleName></Title> 
+            <Title selected={selectedTitle === 'Favorites'} onClick={() => setSelectedTitle('Favorites')}><MdFavoriteBorder /><TitleName>Favorites</TitleName></Title>
+            <Title selected={selectedTitle === 'Change Password'} onClick={() => setSelectedTitle('Change Password')}><MdOutlinePassword /><TitleName>Change Password</TitleName></Title>
             <Title selected={selectedTitle === 'Logout'} onClick={() =>{handleLogout()}}><IoPowerOutline />Logout</Title>
         </Head>
         {selectedTitle === 'Your Profile'? <Profile greeting={greeting} profileInformation={profileInformation}/> : null}

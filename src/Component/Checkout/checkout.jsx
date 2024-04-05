@@ -398,7 +398,7 @@ function Checkout() {
             <PreviouslySavedAddress>
               {address.address?.map((e) => (
                 <Addresses key={e._id}>
-                  <div>
+                  <div style={{width:"200px"}}>
                     <p>{e.name}</p>
                     <p>{e.address}</p>
                     <p>{e.landmark}</p>

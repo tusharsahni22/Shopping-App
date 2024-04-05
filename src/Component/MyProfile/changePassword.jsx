@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
+import Avatar from  "./avatar"
 import { TbLockUp } from "react-icons/tb";
 import { ToastContainer, toast } from 'react-toastify';
 import { changePassword } from '../Services/profile';
@@ -27,6 +28,18 @@ width: 100%;
 text-align: center;
 
 `;
+const AvatarDiv = styled.div`
+position: relative;
+width: 100%;
+align-items: center;
+display: flex;
+justify-content: center;
+bottom: -32px;
+@media (min-width:767px){
+  display:none;
+}
+`;
+
 
 const LockIcon = styled(TbLockUp)`
 font-size: 50px;
@@ -129,6 +142,7 @@ function ChangePassword({name, greeting,email}) {
     <Wrapper>
       <ToastContainer/>
       <Welcome> {greeting}! {name?.split(" ")[0]}</Welcome>
+        <AvatarDiv><Avatar name={name}/></AvatarDiv>
         <Card>
         <LockIcon/>
         <Title>Update your Password for</Title>

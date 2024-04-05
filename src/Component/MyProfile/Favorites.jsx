@@ -38,6 +38,9 @@ grid-template-columns: repeat(3, minmax(0, 1fr));
 &:hover{
   cursor: pointer;
 }
+@media (max-width:767px){
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
 `;
 const Price = styled.div`
 text-align: center;

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import Avatar from  "./avatar"
 import {getProfileInformation, updateProfileInformation } from '../Services/profile';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -101,6 +102,15 @@ text-align: center;
 
 `;
 
+const AvatarDiv = styled.div`
+position: relative;
+width: 100%;
+align-items: center;
+display: flex;
+justify-content: center;
+top: -40px;
+`;
+
 
 
 
@@ -149,6 +159,7 @@ function Profile(props) {
   <ToastContainer />
   <Welcome> {props.greeting}! {name?.split(" ")[0]}</Welcome>
   <Card>
+    <AvatarDiv><Avatar name={name}/></AvatarDiv>
         <div style={{display:'flex',justifyContent:"space-between"}}>
         <div>
         <Name>First & Last Name</Name>

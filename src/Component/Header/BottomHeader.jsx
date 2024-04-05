@@ -1,4 +1,5 @@
-import React ,{useState} from 'react'
+import React ,{useState,useEffect} from 'react'
+import { isUserLoggedIn } from '../Services/auth';
 import styled from 'styled-components'
 import { RiHomeSmileLine } from "react-icons/ri";
 import { FiUser } from "react-icons/fi";
@@ -47,14 +48,20 @@ function BottomHeader() {
 const navigate = useNavigate();
 const [login, setLogin] = useState(false);
 const [AddCartToggle, setAddCartToggle] = useState(false);
+const [isLoggedIN, setIsLoggedIN] = useState(false);
 
 const toggleLogin = () => {
+  isLoggedIN? navigate("/myprofile",{state:{YourProfileTab:"Your Profile"}}):
   setLogin(!login)
 };
 
 const toggleAddtocart = () => {
   setAddCartToggle(!AddCartToggle);
 };
+useEffect(() => {
+  setIsLoggedIN(isUserLoggedIn());
+}, [login]);
+
   return (
     <>{login?<LoginPage toggleLogin={toggleLogin} /> :""}
       {AddCartToggle? <AddToCart toggleAddtocart={toggleAddtocart}/> :""}
