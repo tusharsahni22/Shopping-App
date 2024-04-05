@@ -8,7 +8,7 @@ width: 100%;
 
 `;
 const Box = styled.div`
-padding: 40px 60px;
+padding: 40px 5%;
 // margin: 60px 0;
 border-radius: 15px;
 box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
@@ -16,6 +16,8 @@ box-shadow: 0 2px 5px #00000029, 0 2px 10px #0000001f;
 const Details = styled.div`
 display: flex;
 justify-content: space-between;
+@media (max-width:767px){
+  display: block;
 `;
 const Ids = styled.div`
 display: flex;
@@ -25,18 +27,27 @@ const Datee = styled.div`
 margin-right: 20px;
 font-size: 15px !important;
 color: rgb(153,153,153);
+@media (max-width:767px){
+  margin: 0 10px 10px 0;
+}
 `;
 const OrderId = styled.div`
  margin-right: 20px;
  color: rgb(153,153,153);;
  font-size: 15px !important;
+ @media (max-width:767px){
+  margin: 0 10px 10px 0;
+  width: 85px;
+}
 `;
 const OrderDetails = styled.div`
     font-size: 15px;
     color:black;
     display: flex;
     cursor: pointer;
-
+@media (max-width:767px){
+  margin: 10px 0 0 0;
+}
 `;
 const Line = styled.div`
 width: 100%;
