@@ -55,7 +55,7 @@ const Bundle = styled.div`
 text-align: center;
 color: #212121;
 margin-top: 25px;
-font-weight: bold;
+font-weight: 400;
 `;
 const AddMore = styled.div`
 text-align: center;
@@ -89,7 +89,7 @@ margin-top:25px;
 const Price = styled.div`
 `;
 const PriceTotal = styled.div`
-font-weight: bold;
+font-weight: 400;
 display:flex;
 justify-content: flex-end;
 margin-top: 10px;
@@ -126,7 +126,7 @@ margin-left: 15px;
 `;
 const Name = styled.div`
 margin-top: 10px;
-font-weight: bold;
+font-weight: 400;
 `;
 
 const TotalPrice = styled.div`
@@ -259,7 +259,7 @@ function App({toggleAddtocart}) {
             <Price>{"--"}</Price>
           </SubTotal>
           <SubTotal>
-            <div style={{fontWeight:"bold"}}>Total</div>
+            <div style={{fontWeight:"400"}}>Total</div>
             <Price>₹{total}</Price>
           </SubTotal>
         <BuyButton onClick={()=>handleproduct()}>Buy Now</BuyButton>

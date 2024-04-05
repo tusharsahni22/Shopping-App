@@ -162,19 +162,19 @@ text-align: center;
 
 const Option= styled.div`
 display: flex;
-font-weight: bold;
+font-weight: 400;
 &:hover{
   cursor: pointer;
 }
  `;
 const Title= styled.div`
 margin-top: 50px;
-font-weight: bold;
+font-weight: 400;
  `;
 const TitleCenter= styled.div`
 margin-top: 50px;
 text-align: center;
-font-weight: bold;
+font-weight: 400;
  `;
 const Element= styled.div`
 margin-top: 10px;

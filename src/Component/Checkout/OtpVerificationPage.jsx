@@ -56,7 +56,7 @@ const Header = styled.div`
 `;
 const Text = styled.div`
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 400;
 `;
 
 const Field = styled.div`
@@ -70,7 +70,7 @@ const Line = styled.div`
 `;
 
 const Span = styled.span`
-  font-weight: bold;
+  font-weight: 400;
   color: #212121;
   &:hover {
     cursor: pointer;

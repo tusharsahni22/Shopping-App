@@ -14,7 +14,7 @@ const PolicyText = styled.div`
 const Title = styled.div`
   text-align: center;
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 400;
 `;
 
 function Index() {

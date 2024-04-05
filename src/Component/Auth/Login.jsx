@@ -62,7 +62,7 @@ margin: 20px 0;
 `
 const Text = styled.div`
 font-size: 24px;
-font-weight: bold;
+font-weight: 400;
 `;
 const Email = styled.div`
 
@@ -97,7 +97,7 @@ margin-bottom: 30px;
 // `;
 
 const Span = styled.span`
-font-weight: bold;
+font-weight: 400;
 color: #212121;
 &:hover{
   cursor: pointer;

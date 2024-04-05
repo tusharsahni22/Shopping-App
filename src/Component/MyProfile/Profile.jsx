@@ -18,7 +18,7 @@ border-radius: 25px;
 const Name = styled.div`
 margin: 20px 0 0 0;
 font-size: 15px;
-font-weight: 800;
+font-weight: 500;
 color: #000000;
 `;
 const InputField = styled.input`    

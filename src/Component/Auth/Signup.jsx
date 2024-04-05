@@ -65,7 +65,7 @@ margin: 20px 0;
 `
 const Text = styled.div`
 font-size: 24px;
-font-weight: bold;
+font-weight: 400;
 `;
 const Email = styled.div`
 
@@ -114,7 +114,7 @@ const Already = styled.div`
 text-align: center;
 `;
 const Span = styled.span`
-font-weight: bold;
+font-weight: 400;
 color: #212121;
 &:hover{
   cursor: pointer;

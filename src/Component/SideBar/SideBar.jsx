@@ -14,11 +14,11 @@ overflow-y: scroll;
 `;
 const Heading = styled.div`
 font-size: 15px;
-font-weight: bold;
+font-weight: 400;
 `;
 const Category = styled.div`
 font-size: 15px;
-font-weight: bold;
+font-weight: 400;
 margin: 30px 0  ;
 `;
 const Type = styled.div`

@@ -25,7 +25,7 @@ const Head = styled.div`
 color: black;
 margin-bottom: 20px;
 font-size: 35px;
-font-weight: bold;
+font-weight: 400;
 @media (max-width:767px){
   font-size:25px;
 }
@@ -77,7 +77,7 @@ const ContactDetails = styled.div`
 `;
 const Lable = styled.div`
   color: black;
-  font-weight: bold;
+  font-weight: 400;
 `;
 const Details = styled.div`
   color: black;
@@ -96,7 +96,7 @@ const Button = styled.button`
   margin-top: 20px;
   cursor: pointer;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 400;
   width: fit-content;
   &:hover {
     background-color: #333;

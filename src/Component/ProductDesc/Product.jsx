@@ -38,12 +38,12 @@ overflow-y: scroll;
 const Tittle = styled.div`
   // margin-top: 20px;
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 400;
 `;
 const Description = styled.div`
   margin-top: 20px;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 400;
   margin-bottom: 10px;
 `;
 const Disclaimer = styled(FcDisclaimer)`
@@ -74,7 +74,7 @@ const SAVEtAGLINE = styled.div`
 const Price = styled.div`
   margin-top: 25px;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 400;
   text-decoration: line-through;
 `;
 const Specification = styled.div`
@@ -84,7 +84,7 @@ const Specification = styled.div`
 `;
 const Text = styled.div`
   margin-top: 40px;
-  font-weight: bold;
+  font-weight: 400;
 `;
 const Quantity = styled.select`
   width: 55px;
@@ -220,7 +220,7 @@ const Offer = styled.div`
   margin-top: 10px;
   padding: 5px 10px;
   border-radius: 7px;
-  font-weight: bold;
+  font-weight: 400;
 `;
 const Discount = styled(CiDiscount1)`
   height: 20px;

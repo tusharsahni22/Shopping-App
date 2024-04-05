@@ -113,7 +113,7 @@ const Total = styled.div`
   margin-bottom: 10px;
 `;
 const TotalText = styled.div`
-  font-weight: bold;
+  font-weight: 400;
   font-size: 20px;
   color: gray;
   margin-bottom: 10px;
@@ -121,7 +121,7 @@ const TotalText = styled.div`
   text-align: right;
 `;
 const TotalPrice = styled.div`
-  font-weight: bold;
+  font-weight: 400;
   font-size: 16px;
   color: black;
   margin-bottom: 10px;
@@ -130,14 +130,14 @@ const TotalPrice = styled.div`
 `;
 
 const Shipping = styled.div`
-  font-weight: bold;
+  font-weight: 400;
   font-size: 20px;
   color: gray;
   margin-bottom: 10px;
   text-align: right;
 `;
 const ShippingPrice = styled.div`
-  font-weight: bold;
+  font-weight: 400;
   font-size: 16px;
   color: gray;
   margin-bottom: 10px;
@@ -180,7 +180,7 @@ const Details = styled.div`
 `;
 const Name = styled.div`
   margin-top: 10px;
-  font-weight: bold;
+  font-weight: 400;
 `;
 const Size = styled.div``;
 const Color = styled.div`

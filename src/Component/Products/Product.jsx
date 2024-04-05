@@ -27,17 +27,20 @@ width: 100%;
 `;
 const Title = styled.div`
 font-size: 1rem;
-font-weight: bold;
+font-weight: 500;
 padding: 25px 0 5px 0;
+@media (max-width: 767px) {
+  font-weight: 200;
+}
 `;
 const Heading = styled.div`
 font-size: 2.25rem;
-font-weight: bold;
+font-weight: 400;
 padding: 25px 0 0 0;
 `;
 const SubHeadings = styled.div`
 font-size: 1.25rem;
-font-weight: bold;
+font-weight: 400;
 padding: 0 0 25px 0;
 `;
 const ProductItems = styled.div`
@@ -54,7 +57,7 @@ grid-template-columns: repeat(3, minmax(0, 1fr));
 grid-template-columns: repeat(2, minmax(0, 1fr));
 `;
 const Price = styled.div`
-font-weight: bold;
+color: grey;
 text-decoration: line-through;
 `;
 const DiscountedPrice = styled.div`
@@ -70,6 +73,9 @@ gap: 15px;
 // `;
 const Frame = styled.div`
 padding: 10px;
+@media (max-width: 767px) {
+  padding: 10px 2px;
+}
 
 `;
 const Img =styled.img`
@@ -91,6 +97,8 @@ const FilterSort = styled.div`
 padding: 0 10px;
 display: flex;
 justify-content: space-between;
+@media (min-width: 767px) {
+  display: none;
 `;
 
 

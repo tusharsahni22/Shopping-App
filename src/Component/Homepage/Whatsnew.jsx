@@ -16,9 +16,9 @@ overflow-x: scroll;
   }
 `;
 const Heading = styled.div`
-font:18px antique-olive;
+// font:18px antique-olive;
 margin-bottom: 40px;
-font-weight: 800;
+font-weight: 500;
 // margin-top: 50px;
 text-align: center;
 font-size: 20px;
@@ -31,7 +31,7 @@ justify-content: center;
 `;
 const Title = styled.div`
 margin-top: 25px;
-font-weight: 800;
+font-weight: 500;
 `;
 
 const Frame = styled.div`
