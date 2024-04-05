@@ -31,6 +31,7 @@ font-weight: 500;
 padding: 25px 0 5px 0;
 @media (max-width: 767px) {
   font-weight: 200;
+  padding:10px 0 5px 0;
 }
 `;
 const Heading = styled.div`
