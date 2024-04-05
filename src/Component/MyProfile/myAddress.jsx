@@ -16,8 +16,11 @@ display: grid;
 grid-template-columns: repeat(3, minmax(0, 1fr));
 box-shadow: 0 2px 10px #0000001f;
 border-radius: 25px;
-@media (max-width:767px){
+@media (max-width:850px){
     grid-template-columns: repeat(1, minmax(0, 1fr));
+};
+@media (min-width:851px) and (max-width:1100px){
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 `;
 const Welcome = styled.div`
