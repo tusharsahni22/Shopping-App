@@ -9,7 +9,6 @@ import { uploadProduct } from '../Services/product';
 
 const Wrapper = styled.div`
 width: 100%;
-// width:100%;
 `;
 const Card = styled.div`
 padding: 10px 5%;
