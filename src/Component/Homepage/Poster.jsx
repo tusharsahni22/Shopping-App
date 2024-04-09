@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -27,9 +28,10 @@ width: 100%;
 
 `;
 function Poster(props) {
+  const navigator = useNavigate()
   return (
     <Wrapper>
-        <Img  loading='lazy' src={props.url}/>
+        <Img  loading='lazy' src={props.url} onClick={()=>{navigator("/products")}}/>
     </Wrapper>
   )
 }
