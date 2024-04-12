@@ -180,7 +180,7 @@ const Size = styled.div`
 const SizeChartDiv = styled.div`
 padding: 20px 0 0 0;
 color: red;
-display: flex
+display: flex;
 font-size: 12px;
 align-items: center;
 gap: 10px;
@@ -234,7 +234,7 @@ function Product() {
   const [color,setColor] = React.useState("black")
   const [isSizeChart,setIsSizeChart] = React.useState(false)
   const { state } = useLocation();
-  const { id, title, price,priceAfterDiscount, mainPicture, altPictures,description,colorToIndexMap,specification } = state;
+  const { id, title, price,priceAfterDiscount, productColor, mainPicture, altPictures,description,colorToIndexMap,specification } = state || {};
   // description,size
 
   useEffect(() => {
@@ -335,11 +335,12 @@ function Product() {
           </Specification>
           <Text>Color </Text>
           <Colour>
-            <MainColour onClick={()=>{setColor("black")}} style={{ backgroundColor: "black" }} />
-            <MainColour onClick={()=>{setColor("white")}}style={{ backgroundColor: "white" }} />
-            {/* <MainColour onClick={()=>{setColor("red")}}style={{ backgroundColor: "red" }} /> */}
-            {/* <MainColour onClick={()=>{setColor("blue")}} style={{ backgroundColor: "blue" }} /> */}
+          {productColor.map((e,id)=>
+          <MainColour key={id} onClick={()=>{setColor(e)}} style={{ backgroundColor: e }} />)}
           </Colour>
+          
+           
+          
           <Text>Size </Text>
           <Size>
             <Size style={{display:"flex"}}>

@@ -56,6 +56,7 @@ grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 @media (max-width: 767px) {
 grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 `;
 const Price = styled.div`
 color: grey;
@@ -100,6 +101,7 @@ display: flex;
 justify-content: space-between;
 @media (min-width: 767px) {
   display: none;
+}
 `;
 
 
@@ -178,9 +180,10 @@ viewProduct().then((res)=>{
 
   return (
     <Wrapper>
+      
+      <FilterSort >
       <Heading>{MHeading1}</Heading>
       <SubHeadings>{SubHeading}</SubHeadings>
-      <FilterSort >
         <div style={{display:"flex"}}>
         <CiFilter />
         <div>filter</div>
@@ -205,6 +208,7 @@ viewProduct().then((res)=>{
               altPictures:e.altPictures,
               specification:e.specification,
               description:e.description,
+              productColor:e.color,
               colorToIndexMap:e.colorToIndexMap.reduce((res,cur)=>{return {...cur,...res}},{})
               }})}}>
             <Img src={e.mainPicture} />   
