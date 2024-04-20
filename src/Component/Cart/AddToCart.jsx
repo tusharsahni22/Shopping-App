@@ -57,6 +57,9 @@ text-align: center;
 color: #212121;
 margin-top: 25px;
 font-weight: 400;
+@media (max-width:767px){
+  margin-top: 10px;
+}
 `;
 const AddMore = styled.div`
 text-align: center;
@@ -74,7 +77,7 @@ overflow-y: scroll;
 overflow-x: hidden;
 @media(max-width:767px){
     padding: 10px 0;
-    height: 55vh;
+    height: 50vh;
     border-bottom: 0.5px solid gray;
 }
 @media(min-width:768px) and (max-width:1200px){
