@@ -73,12 +73,23 @@ height: 50vh;
 overflow-y: scroll;
 overflow-x: hidden;
 @media(max-width:767px){
-  height:35vh;
+    padding: 10px 0;
+    height: 55vh;
+    border-bottom: 0.5px solid gray;
+}
+@media(min-width:768px) and (max-width:1200px){
+    padding: 10px 0;
+    height: 55vh;
+    border-bottom: 0.5px solid gray;
 }
 `;
 
 const Total = styled.div`
-padding:0 25px;
+position: absolute;
+background-color: white;
+width: 90%;
+bottom: 0;
+padding:0 5%;
 
 
 `;
@@ -250,8 +261,8 @@ function App({toggleAddtocart}) {
         </CartItems>
         ))}
         </AllCartItems>
-        <ApplyPromo/>
         <Total>
+        <ApplyPromo/>
           <SubTotal>
             <div>Subtotal</div>
             <Price>₹{total}</Price>

@@ -23,7 +23,7 @@ const PromoCodeInputDiv = styled.div`
     display: flex;
     margin-top: 10px;
     justify-content: space-between;
-    padding: 0 5%;
+    /* padding: 0 5%; */
 `;
 
 
