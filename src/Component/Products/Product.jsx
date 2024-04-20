@@ -98,7 +98,8 @@ max-width: 340px;
 const FilterSort = styled.div`
 padding: 0 10px;
 display: flex;
-justify-content: space-between;
+justify-content:flex-end;
+gap: 20px;
 @media (min-width: 767px) {
   display: none;
 }
@@ -112,7 +113,6 @@ function Product() {
   const [filterData,setFilterData] = React.useState([])
   const location = useLocation();
   const {MHeading1,SubHeading} = location.state || {}
-  // const [colorToIndexMap,setColorToIndexMap] = React.useState({})  
 
     useEffect(()=>{
       window.scrollTo(0, 0);
@@ -164,18 +164,10 @@ function Product() {
 
 useEffect(()=>{
 viewProduct().then((res)=>{
-  console.log("first",res.data)
   filterDataBySelector(filter , res.data)
-  // console.log("first",res.data[0].mainPicture)
-  // // eslint-disable-next-line dot-notation
-  // setColorToIndexMap["white"] = res.data[0].mainPicture
 }).catch((err)=>console.log(err))
 },[filter])
 
-// const discoutPrice = (pricetoConvert)=>{
-//   const discountedPrice=pricetoConvert - 0.1675 * pricetoConvert;
-//   return Math.round(discountedPrice);
-// }
 
 
   return (
@@ -194,7 +186,7 @@ viewProduct().then((res)=>{
         </div>
       </FilterSort>
       <Container>
-      <SideBar data={[{category:"Size",type:["small","medium","large","xl","xxl"]},{category:"Colours",type:["white","black"]},{category:"Category",type:["t-shirt","sweatshirt","hoodie"]}]} setFilter={setFilter}/>
+      <SideBar data={[{_id:1,category:"Size",type:["small","medium","large","xl","xxl"]},{_id:2,category:"Colours",type:["white","black"]},{_id:3,category:"Category",type:["t-shirt","oversize"]}]} setFilter={setFilter}/>
       <Services>
         <ProductItems >
         {filterData?.map((e)=>(

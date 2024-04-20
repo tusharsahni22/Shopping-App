@@ -220,8 +220,8 @@ function Admin(props) {
         <RadioButtons>
             <input type='radio' name='category' value='t-shirt' checked={category === 't-shirt'} onChange={()=>{setCategory("t-shirt")}}/>
             <label>T-shirt</label>
-            <input type='radio' name='category' value='sweatshirt' checked={category === 'sweatshirt'} onChange={()=>{setCategory("sweatshirt")}} />
-            <label>Sweatshirt</label>
+            <input type='radio' name='category' value='oversize' checked={category === 'oversize'} onChange={()=>{setCategory("oversize")}} />
+            <label>Oversize</label>
             <input type='radio' name='category' value='hoodies' checked={category === 'hoodies'} onChange={()=>{setCategory("hoodies")}}/>
             <label>Hoodies</label>
         </RadioButtons>

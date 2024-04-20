@@ -20,6 +20,13 @@ export const viewProduct = () => {
     console.log("Error in viewProduct", err);
   });
 }
+export const viewProductById = (id) => {
+  return axiosInstance.get(`/viewProduct/${id}`).then((result) => {
+    return result;
+  }).catch((err) => {
+    console.log("Error in viewProduct", err);
+  });
+}
 
 export const uploadProduct = (data) => {
   const formData = new FormData();

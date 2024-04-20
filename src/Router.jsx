@@ -45,6 +45,7 @@ function Router () {
         <Route path='/' element={<Layout><Homepage/><BottomHeader/></Layout>} />
         <Route path='/products' element={<Layout><Product/><BottomHeader/></Layout>} />
         <Route path='/product-description' element={<Layout><ProductDesc/><BottomHeader/></Layout>} />
+        <Route path='/product-description/:id' element={<Layout><ProductDesc/><BottomHeader/></Layout>} />
         <Route path='/policy/return&refund' element={<Layout><ReturnandRefund/><BottomHeader/></Layout>} />
         <Route path='/policy/shipping-policy' element={<Layout><Shipping/><BottomHeader/></Layout>} />
         <Route path='/policy/terms-of-service' element={<Layout><TermandCondition/><BottomHeader/></Layout>}/>

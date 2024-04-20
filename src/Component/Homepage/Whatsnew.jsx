@@ -58,13 +58,13 @@ height: 240px;
 
 function Whatsnew(props) {
     const dummyData = [
-        {pic:"whatsnew1.webp",title:"Its Time to train",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew2.webp",title:"Human Being",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew3.webp",title:"Wild and Free",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew4.webp",title:"Work hard stay humble",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew5.webp",title:"Skull Island",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew6.webp",title:"I and not old",size:"4x4 Inches",price:"21"},
-        {pic:"whatsnew7.webp",title:"Wild Monkey",size:"4x4 Inches",price:"21"}
+        {_id:1,pic:"whatsnew1.webp",title:"Its Time to train",size:"4x4 Inches",price:"21"},
+        {_id:2,pic:"whatsnew2.webp",title:"Human Being",size:"4x4 Inches",price:"21"},
+        {_id:3,pic:"whatsnew3.webp",title:"Wild and Free",size:"4x4 Inches",price:"21"},
+        {_id:4,pic:"whatsnew4.webp",title:"Work hard stay humble",size:"4x4 Inches",price:"21"},
+        {_id:5,pic:"whatsnew5.webp",title:"Skull Island",size:"4x4 Inches",price:"21"},
+        {_id:6,pic:"whatsnew6.webp",title:"I and not old",size:"4x4 Inches",price:"21"},
+        {_id:7,pic:"whatsnew7.webp",title:"Wild Monkey",size:"4x4 Inches",price:"21"}
     ]
     const navigate = useNavigate();
   return (

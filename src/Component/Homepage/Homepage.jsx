@@ -21,7 +21,7 @@ function Homepage() {
   return (
     <Wrapper>
       <Banner url={"./HomePage/FREE KEYCHAIN WITH EVERY ORDER.webp"}/>
-      <Mainservice url={[{data:"./HomePage/1.webp"},{data:"./HomePage/2.webp"},{data:"./HomePage/3.webp"},{data:"./HomePage/4.webp"}]}/>
+      <Mainservice url={[{_id:1,data:"./HomePage/1.webp"},{_id:2,data:"./HomePage/2.webp"},{_id:3,data:"./HomePage/3.webp"},{_id:4,data:"./HomePage/4.webp"}]}/>
       <Poster url={"./HomePage/Poster.webp"}/>
       <TwoService url2={"./HomePage/service1.webp"} url1={"./HomePage/service2.webp"} buy1={"Shop Now"} buy2={"Shop Now"}/>
       <Padding>

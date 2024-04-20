@@ -14,6 +14,7 @@ import LoginPage from "../Auth";
 import Sidebar from "./Sidebar";
 import { doLogout, isUserLoggedIn } from "../Services/auth";
 import { useSelector } from "react-redux";
+import BrandPic from "./brand.png"
 
 const Wrapper = styled.div`
   position: fixed;
@@ -25,6 +26,9 @@ const Wrapper = styled.div`
 `;
 const HeaderContent = styled.div`
   padding-bottom: 220px; // This should be equal to the height of your header
+  @media (max-width:767px){
+    padding-bottom: 180px;
+  }
 `;
 const Slide = styled.div`
   height: 36px;
@@ -136,6 +140,7 @@ const DropDown= styled.div`
   @media (max-width:767px){
     // padding: 0 5%;
     padding: 10px 5% 10px 5%;
+  }
  `;
  
 
@@ -354,7 +359,7 @@ function Header() {
       <Menu>
         <MobileMenu>
         <FiMenu onClick={toggleSidebar} style={{width:"25px",height:"25px"}}/>
-        <ImgMob src="./brand.png" alt="logo" onClick={(e)=>{navigate("/")}}/>
+        <ImgMob src={BrandPic} alt="logo" onClick={(e)=>{navigate("/")}}/>
         </MobileMenu>
         <Img src="./brand.png" alt="logo" onClick={(e)=>{navigate("/")}}/>
         <Search>
