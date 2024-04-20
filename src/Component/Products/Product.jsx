@@ -50,12 +50,15 @@ display: grid;
 width: 100%;
 height: 100vh;
 overflow-y: scroll;
-grid-template-columns: repeat(3, minmax(0, 1fr));
+grid-template-columns: repeat(4, minmax(0, 1fr));
 &:hover{
   cursor: pointer;
 }
 @media (max-width: 767px) {
 grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 768px) and (max-width: 1200px){
+grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 `;
 const Price = styled.div`
@@ -114,6 +117,27 @@ function Product() {
   const location = useLocation();
   const {MHeading1,SubHeading} = location.state || {}
 
+
+  // function shuffleArray(array) {
+  //   const currentIndex = array.length
+  //   const randomIndex;
+  
+  //   // While there remain elements to shuffle...
+  //   while (0 !== currentIndex) {
+  
+  //     // Pick a remaining element...
+  //     randomIndex = Math.floor(Math.random() * currentIndex);
+  //     currentIndex -= 1;
+  
+  //     // And swap it with the current element.
+  //     let temporaryValue = array[currentIndex];
+  //     array[currentIndex] = array[randomIndex];
+  //     array[randomIndex] = temporaryValue;
+  //   }
+  
+  //   return array;
+  // }
+
     useEffect(()=>{
       window.scrollTo(0, 0);
     },[])
@@ -131,7 +155,6 @@ function Product() {
           if (e.color.includes(filter.type)) {
             const colorToIndex = e.colorToIndexMap.reduce((res, cur) => { return { ...cur, ...res } }, {});
               const index = colorToIndex[filter.type];
-              console.log("first",index)
               let newMainPicture = e.mainPicture;
               if (index === 0) {
                   newMainPicture = e.mainPicture;
@@ -164,7 +187,7 @@ function Product() {
 
 useEffect(()=>{
 viewProduct().then((res)=>{
-  filterDataBySelector(filter , res.data)
+  filterDataBySelector(filter , res.data.sort(() => Math.random() - 0.5))
 }).catch((err)=>console.log(err))
 },[filter])
 
@@ -176,12 +199,12 @@ viewProduct().then((res)=>{
       <FilterSort >
       <Heading>{MHeading1}</Heading>
       <SubHeadings>{SubHeading}</SubHeadings>
-        <div style={{display:"flex"}}>
+        <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
         <CiFilter />
-        <div>filter</div>
+        <div>Filter</div>
         </div>
-        <div style={{display:"flex"}}>
-        <div>sort</div>
+        <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
+        <div>Sort</div>
         <LiaSortDownSolid />
         </div>
       </FilterSort>

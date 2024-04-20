@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { BsArrowLeft } from 'react-icons/bs';
 // import SliderComponent from './Slider';
 import { useSelector,useDispatch  } from 'react-redux';
+import ApplyPromo from './applyPromoCode';
 import { removeFromCart,updateQuantity } from '../reducers/cart';
 import { useNavigate } from 'react-router-dom';
 
@@ -249,6 +250,7 @@ function App({toggleAddtocart}) {
         </CartItems>
         ))}
         </AllCartItems>
+        <ApplyPromo/>
         <Total>
           <SubTotal>
             <div>Subtotal</div>

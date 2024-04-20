@@ -4,7 +4,7 @@ import { IoIosSearch } from 'react-icons/io';
 import { BsHeart } from 'react-icons/bs';
 import { TiShoppingCart as TbHistory } from 'react-icons/ti';
 import { BiUserCircle,BiLogOutCircle } from 'react-icons/bi';
-import { FiMenu } from 'react-icons/fi';
+// import { FiMenu } from 'react-icons/fi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import {FaUpload} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 const HeaderContent = styled.div`
   padding-bottom: 220px; // This should be equal to the height of your header
   @media (max-width:767px){
-    padding-bottom: 180px;
+    padding-bottom: 130px;
   }
 `;
 const Slide = styled.div`
@@ -79,9 +79,9 @@ padding: 6px 0;
 }
 `;
 const ImgMob = styled.img`
-width:160px;
+width:230px;
 height:60px;
-padding: 0px 10px;
+/* padding: 0px 10px; */
 &:hover{
   cursor: pointer;
 }
@@ -140,6 +140,7 @@ const DropDown= styled.div`
   @media (max-width:767px){
     // padding: 0 5%;
     padding: 10px 5% 10px 5%;
+    display: none;
   }
  `;
  
@@ -358,7 +359,7 @@ function Header() {
 
       <Menu>
         <MobileMenu>
-        <FiMenu onClick={toggleSidebar} style={{width:"25px",height:"25px"}}/>
+        {/* <FiMenu onClick={toggleSidebar} style={{width:"25px",height:"25px"}}/> */}
         <ImgMob src={BrandPic} alt="logo" onClick={(e)=>{navigate("/")}}/>
         </MobileMenu>
         <Img src="./brand.png" alt="logo" onClick={(e)=>{navigate("/")}}/>
