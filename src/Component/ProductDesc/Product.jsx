@@ -236,7 +236,7 @@ const ShareDiv = styled.div`
   margin-right: 10px;
   position: relative;
   z-index: 10;
-  top: 40px;
+  top: 65px;
 `;
 
 function Product() {
@@ -336,7 +336,7 @@ function Product() {
       <Upper>
         <Section1>
           <ShareDiv>  
-          <ShareButton shareUrl={`https://www.streetswear.in/product-description/${id}`} title={title} />
+          <ShareButton url={`https://www.streetswear.in/product-description/${id}`} title={title} text={"Hey, this stuff is awesome on Streetswear. You can also use NEW50 to get ₹50 off on your first order"} />
           </ShareDiv>
           <ImageGallery
             className="image-gallery-content image-gallery-thumbnails-container image-gallery-thumbnail image-gallery-thumbnail.active"

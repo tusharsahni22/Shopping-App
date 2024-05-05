@@ -1,5 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 import { HiOutlineShare } from 'react-icons/hi';
+
+const Share = styled(HiOutlineShare)`
+  font-size: 1.5rem;
+  color: black;
+  `;
 
 const ShareButton = ({ url, title, text }) => {
   const shareData = { title, text, url };
@@ -18,7 +24,7 @@ const ShareButton = ({ url, title, text }) => {
   return (
     isShareSupported && (
       <button style={{border:"none",background:"none"}} onClick={handleShare}>
-        <HiOutlineShare/>
+        <Share/>
       </button>
     )
   );
