@@ -86,3 +86,11 @@ export const getOrderDetails = async ()=>{
         console.log("error for getting orders",err)
     })
 }
+
+export const applyPromoCode = (data) => {
+    return axiosInstance.post("/applyPromoCode",data).then((result) => {
+      return result;
+    }).catch((err) => {
+      console.log("Error in applyPromoCode", err);
+    });
+  }

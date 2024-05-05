@@ -18,6 +18,7 @@ display: flex;
 justify-content: space-between;
 @media (max-width:767px){
   display: block;
+}
 `;
 const Ids = styled.div`
 display: flex;
@@ -207,9 +208,9 @@ function OrderHistory({name, greeting}) {
       {OrderDetailsExpanded ? <ItemDetails>Items Details</ItemDetails> : null}
       {order.items.map((item)=>(
       <Product key={item._id}>
-        <Img src={item.product.mainPicture}/>
+        <Img src={item.product?.mainPicture}/>
         <div style={{display:"flex",flexDirection:"column"}}>
-        <Title>{item.product.title} / {item?.size?.toUpperCase()} / {item?.color?.toUpperCase()} </Title>
+        <Title>{item.product?.title} / {item?.size?.toUpperCase()} / {item?.color?.toUpperCase()} </Title>
         {OrderDetailsExpanded?<Price>Price  {item.product.price}</Price>:""}
         </div>
       </Product>))}
@@ -218,6 +219,10 @@ function OrderHistory({name, greeting}) {
       <OrderSummary>
         <SubTotalContainer>
           <SubTotal>Subtotal</SubTotal>
+          <SubTotalAmount>{order.paymentMode==="cash"? `₹ ${order.total-100}`: order.total}</SubTotalAmount>
+        </SubTotalContainer>
+        <SubTotalContainer>
+          <SubTotal>Saving</SubTotal>
           <SubTotalAmount>{order.paymentMode==="cash"? `₹ ${order.total-100}`: order.total}</SubTotalAmount>
         </SubTotalContainer>
         <ShippingContainer>

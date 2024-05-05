@@ -7,6 +7,7 @@ const ls = new SecureLS({ encodingType: 'aes' });
 const cartItems = ls.get('cart');
 const totalItems = ls.get('totalItems');
 const total = ls.get('total');
+const finalAmount = ls.get('saving');
 // const cartItems=JSON.parse(localStorage.getItem("cart"))
 // const totalItems=JSON.parse(localStorage.getItem("totalItems"));
 // const total=JSON.parse(localStorage.getItem("total"));
@@ -14,14 +15,16 @@ const total = ls.get('total');
 const initialState = {
     cart: cartItems || [],
     total: total || 0,
+    finalAmount:finalAmount || 0,
     totalItems: totalItems || 0,
 };
 // function to store cart items in local storage 
-const storeCartItems=(cart,totalItems,total)=>{
+const storeCartItems=(cart,totalItems,total,finalAmount)=>{
     
     ls.set('cart', cart);
     ls.set('totalItems', totalItems);
     ls.set('total', total);
+    ls.set('finalAmount', finalAmount);
 
     // localStorage.setItem("cart",JSON.stringify(cart));
     // localStorage.setItem("totalItems",JSON.stringify(totalItems));
@@ -39,6 +42,7 @@ export const cartSlice = createSlice({
             const { id, title, price, image, quantity, pic, size, color } = action.payload;
             const product = state.cart.find((item) => item.id === id && item.size === size && item.color === color);
             const total= price*quantity;
+
                      
             if (product) {
                 // convert to int
@@ -60,22 +64,21 @@ export const cartSlice = createSlice({
 
             state.totalItems=parseInt(state.totalItems)+parseInt(quantity);
             state.total += total;
+            state.finalAmount=state.total;
             
-            storeCartItems(state.cart,state.totalItems,state.total);
+            storeCartItems(state.cart,state.totalItems,state.total,state.finalAmount);
         },
         removeFromCart: (state, action) => {
             const  {id,size,color}  = action.payload;
-            console.log("first",id,size,color)
             const product = state.cart.find((item)=>item.id===id && item.size===size && item.color===color);
             // if product then remove from cart
-            console.log("first",product)
-
             if (product) {
                 state.cart = state.cart.filter((item) => item.id !== id || item.size !== size || item.color !== color);
                 state.totalItems=parseInt(state.totalItems)-parseInt(product.quantity);
                 state.total -= product.total;
+                state.finalAmount=state.total;
             }
-            storeCartItems(state.cart,state.totalItems,state.total);
+            storeCartItems(state.cart,state.totalItems,state.total,state.finalAmount);
         },
         updateQuantity: (state, action) => {
             const {id, quantity, size, color} = action.payload;
@@ -88,6 +91,7 @@ export const cartSlice = createSlice({
                     product.total = total;
                     state.totalItems = parseInt(state.totalItems) + 1;
                     state.total += product.price;
+                    state.finalAmount=state.total;
                 }
             }
         
@@ -98,21 +102,24 @@ export const cartSlice = createSlice({
                     product.total = total;
                     state.totalItems = parseInt(state.totalItems) - 1;
                     state.total -= product.price;
+                    state.finalAmount=state.total;
                 } else {
                     // Remove item from cart if quantity is 1
                     state.cart = state.cart.filter((item) => item.id !== id || item.size !== size || item.color !== color);
                     state.totalItems = parseInt(state.totalItems) - 1;
                     state.total -= product.price;
+                    state.finalAmount=state.total;
                 }
             }
         
-            storeCartItems(state.cart, state.totalItems, state.total);
+            storeCartItems(state.cart, state.totalItems, state.total, state.finalAmount);
         },
         clearCart: (state) => {
             state.cart = [];
             state.totalItems = 0;
             state.total = 0;
-            storeCartItems(state.cart, state.totalItems, state.total);
+            state.finalAmount=0;
+            storeCartItems(state.cart, state.totalItems, state.total, state.finalAmount);
         },
 
     },

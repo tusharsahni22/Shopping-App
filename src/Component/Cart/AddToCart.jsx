@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { BsArrowLeft } from 'react-icons/bs';
 // import SliderComponent from './Slider';
@@ -207,16 +207,18 @@ align-items: center;
 function App({toggleAddtocart}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [discount,setDiscount] = React.useState(0)
+  const [saving,setSaving] = React.useState(0)
   
   const product = useSelector((state) => state.cart)
   const total = useSelector((state) => state.total)
+  const finalAmount = useSelector((state) => state.finalAmount)
   const totalItems = 0 || parseInt(useSelector((state) => state.totalItems))
   const handleproduct = ()=>{
     toggleAddtocart()
-    navigate("/checkout")
+    navigate("/checkout",{state:{saving,discount}})
   }
   const handleRemoveFromCart = (id,size,color)=>{
-    console.log("first",id,size,color)
     const data ={id,size,color}
     dispatch(removeFromCart(data))
 
@@ -229,6 +231,16 @@ function App({toggleAddtocart}) {
     const data ={"quantity":1,id,size,color}    
     dispatch(updateQuantity(data))
   }
+  useEffect(()=>{
+    console.log("first",discount)
+    let saving = 0
+    if(discount.flatDiscount){
+      setSaving(discount.flatDiscount)
+    }else if(discount.percentageDiscount){
+      saving = (total * discount.percentageDiscount)/100
+      setSaving(saving) 
+    }
+  },[discount,total])
 
   return (
     <> 
@@ -240,7 +252,6 @@ function App({toggleAddtocart}) {
         </Head>
         <Bundle>Bundle And Save!</Bundle>
         <AddMore>Add More Save More</AddMore>
-        {/* <SliderComponent /> */}
         <AllCartItems>
         {product.map((e)=>(
         totalItems===0?<NoItem key={e.id} >No Item in Cart</NoItem>:
@@ -265,18 +276,18 @@ function App({toggleAddtocart}) {
         ))}
         </AllCartItems>
         <Total>
-        <ApplyPromo/>
+        <ApplyPromo setDiscount={setDiscount}/>
           <SubTotal>
             <div>Subtotal</div>
             <Price>₹{total}</Price>
           </SubTotal>
           <SubTotal>
             <div>Savings</div>
-            <Price>{"--"}</Price>
+            <Price>{saving|| `${"--"}`}</Price>
           </SubTotal>
           <SubTotal>
             <div style={{fontWeight:"400"}}>Total</div>
-            <Price>₹{total}</Price>
+            <Price>₹{finalAmount-saving}</Price>
           </SubTotal>
         <BuyButton onClick={()=>handleproduct()}>Buy Now</BuyButton>
         </Total>

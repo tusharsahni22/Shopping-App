@@ -5,7 +5,7 @@ import { getProfileInformation } from "../Services/profile";
 import OtpVerificationPage from "./OtpVerificationPage";
 import { payOnline, placeNewOrder } from "../Services/Checkout";
 import { v4 as uuid } from "uuid";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useLocation} from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 
 const Wrapper = styled.div`
@@ -249,6 +249,9 @@ function Checkout() {
   const [orderSuccessDetails, setOrderSuccessDetails] = React.useState();
 
   const navigate = useNavigate();
+  const {state} = useLocation();
+  const saving = state?.saving || 0;
+  const promocode = state?.promocode || "";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -285,8 +288,10 @@ function Checkout() {
         products,
         address: addNewAddress? customerAddress.address: selectedAddress,
         paymentMode: selectedPayment,
-        total: total + shippingCost,
+        total: total - saving + shippingCost,
         shippingCost,
+        promocode,
+        saving,
         orderId: uuid(),
       };
       setIsLoading(true);
@@ -318,6 +323,8 @@ function Checkout() {
       paymentMode: orderSuccessDetails.paymentMode,
       address: orderSuccessDetails.address,
       total: orderSuccessDetails.total,
+      saving,
+      promocode,
       shippingCost: orderSuccessDetails.shippingCost,
     }});
   };
@@ -336,11 +343,11 @@ function Checkout() {
       products,
       address: addNewAddress? customerAddress.address: selectedAddress,
       paymentMode: selectedPayment,
-      total: total + shippingCost,
+      total: total - saving  + shippingCost,
       shippingCost,
       orderId: uuid(),
     };
-    payOnline({amount:total+shippingCost,orderDetails:data,name:"ty"}).then((res)=>{
+    payOnline({amount:total-saving+shippingCost,orderDetails:data}).then((res)=>{
       console.log("first",res.data)
       if(res.status===200){window.location.href = res.data}
     }).catch((err)=>{
@@ -528,8 +535,12 @@ function Checkout() {
             <ShippingPrice>{selectedPayment === "cash" ? `₹ ${shippingCost}`: "Free"}</ShippingPrice>
           </div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <TotalText>Saving</TotalText>
+            <TotalPrice>₹{saving}</TotalPrice>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <TotalText>Total</TotalText>
-            <TotalPrice>₹{total + shippingCost}</TotalPrice>
+            <TotalPrice>₹{total - saving + shippingCost}</TotalPrice>
           </div>
         </Total>
         <Line></Line>

@@ -203,7 +203,7 @@ viewProduct().then((res)=>{
         <CiFilter />
         <div>Filter</div>
         </div>
-        <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
+        <div style={{display:"flex",alignItems:"center",gap:"10px"}}>[]
         <div>Sort</div>
         <LiaSortDownSolid />
         </div>
@@ -212,27 +212,15 @@ viewProduct().then((res)=>{
       <SideBar data={[{_id:1,category:"Size",type:["small","medium","large","xl","xxl"]},{_id:2,category:"Colours",type:["white","black"]},{_id:3,category:"Category",type:["t-shirt","oversize"]}]} setFilter={setFilter}/>
       <Services>
         <ProductItems >
-        {filterData?.map((e)=>(
-            <Frame key={e._id} onClick={()=>{navigate("/product-description",{state:{
-              id:e._id,
-              price:e.price,
-              priceAfterDiscount:e.priceAfterDiscount,
-              size:e.size,
-              title:e.title,
-              mainPicture:e.mainPicture,
-              altPictures:e.altPictures,
-              specification:e.specification,
-              description:e.description,
-              productColor:e.color,
-              colorToIndexMap:e.colorToIndexMap.reduce((res,cur)=>{return {...cur,...res}},{})
-              }})}}>
-            <Img src={e.mainPicture} />   
+        {filterData?.map((f)=>(
+            <Frame key={f._id} onClick={()=>{navigate(`/product-description/${f._id}`)}}>
+            <Img src={f.mainPicture} />   
             <Service>
             <div>                
-            <Title>{e.title}</Title>
+            <Title>{f.title}</Title>
             <Discounted>
-            <Price>₹{e.price}</Price>
-            <DiscountedPrice>₹{e.priceAfterDiscount}</DiscountedPrice>
+            <Price>₹{f.price}</Price>
+            <DiscountedPrice>₹{f.priceAfterDiscount}</DiscountedPrice>
             </Discounted>
             </div>
             <BiCart className='Bicart' style={{marginTop:"20px",height:"25px",width:"25px",padding:"10px",borderRadius:"20px",':hover': {backgroundColor:"#80808057",cursor:"pointer"}}}/>

@@ -7,13 +7,15 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import Whatsnew from "../Homepage/Whatsnew";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../reducers/cart";
-// import { nanoid } from '@reduxjs/toolkit';
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { CiDiscount1 } from "react-icons/ci";
 import { FcDisclaimer } from "react-icons/fc";
 import { addFavorite } from "../Services/profile";
 import SizeChart from "./sizeChart.jsx";
+import { viewProductById } from "../Services/product.js";
+import ShareComponent from "./shareButton.jsx";
+import ShareButton from "./shareWebUrl.jsx";
 
 const Wrapper = styled.div``;
 const Upper = styled.div`
@@ -227,21 +229,49 @@ const Discount = styled(CiDiscount1)`
   width: 20px;
 `;
 
+const ShareDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-right: 10px;
+  position: relative;
+  z-index: 10;
+  top: 40px;
+`;
+
 function Product() {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = React.useState(1);
   const [size, setSize] = React.useState("s");
   const [color,setColor] = React.useState("black")
   const [isSizeChart,setIsSizeChart] = React.useState(false)
-  const { state } = useLocation();
-  const { id, title, price,priceAfterDiscount, productColor, mainPicture, altPictures,description,colorToIndexMap,specification } = state || {};
-  // description,size
-
+  const [productDetails,setProductDetails] = React.useState({})
+  const [loading, setLoading] = React.useState(true);
+  const {id} = useParams() 
+ 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log("first",state)
   }, []);
   
+  useEffect(() => { 
+    if (id) { // Only call viewProductById if id is not undefined
+      viewProductById(id).then((res) => {
+        console.log("first",res.data)
+        setTimeout(() => {
+        setProductDetails(res.data);
+        setLoading(false);
+        }, 1000);
+        setColor(res.data.color[0])
+      });
+    }
+  }, [id]);
+
+  const {title, price, priceAfterDiscount, description, specification} = productDetails;
+  const productColor = productDetails.color || [];
+  const mainPicture = productDetails.mainPicture || "";
+  const altPictures = productDetails.altPictures || [];
+  const colorToIndexMap = productDetails.colorToIndexMap || [];
+ 
   const images = [
     {
       original: mainPicture,
@@ -260,15 +290,15 @@ function Product() {
       thumbnail: altPictures[2],
     },
   ];
-  // const colorToIndexMap = {
-  //   'black': 0,
-  //   'white': 1,
-  //   'red': 2,
-  //   'blue':3
-  //   // Add more colors as needed
-  // };
+  const colorToIndexMapObject = colorToIndexMap.reduce((obj, colorMap) => {
+    const color = Object.keys(colorMap)[0];
+    obj[color] = colorMap[color];
+    return obj;
+  }, {});
+
   useEffect(()=>{
   },[color])
+
   const handleAddtocart = () => {
     dispatch(
       addToCart({
@@ -283,9 +313,9 @@ function Product() {
     );
     toast.success("Added to cart successfully");
   };
+
   const discountPrice = (price,discountedPrice) => {
     const discountedPriceper= (price-discountedPrice)/price*100;
-    console.log("discountedPriceper",discountedPriceper)
     return Math.round(discountedPriceper);
   };
 
@@ -295,21 +325,26 @@ function Product() {
         toast.success("Added to favorites")
       }}).catch(()=>{toast.error("Something went wrong")})}
   
-  
+  const handleColor = (e,f)=>{
+    setColor(f)
+  }
 
   return (
-    <Wrapper>
-      
+    loading ? <div>Loading...</div> :
+    <Wrapper>  
       <ToastContainer />
       <Upper>
         <Section1>
+          <ShareDiv>  
+          <ShareButton shareUrl={`https://www.streetswear.in/product-description/${id}`} title={title} />
+          </ShareDiv>
           <ImageGallery
             className="image-gallery-content image-gallery-thumbnails-container image-gallery-thumbnail image-gallery-thumbnail.active"
             showFullscreenButton={false}
             showNav={false}
             showPlayButton={false}
             items={images}
-            startIndex={parseInt(colorToIndexMap[color])}
+            startIndex={parseInt(colorToIndexMapObject[color])}
           />
         </Section1>
         <Section2>
@@ -335,16 +370,15 @@ function Product() {
           </Specification>
           <Text>Color </Text>
           <Colour>
-          {productColor.map((e,id)=>
-          <MainColour key={id} onClick={()=>{setColor(e)}} style={{ backgroundColor: e }} />)}
+          {productColor.map((f,id)=>
+          <MainColour  style={{ backgroundColor:f}} key={id} onClick={(e)=>handleColor(e,f)} />)
+          }
           </Colour>
-          
-           
+          <ShareComponent shareUrl={`https://www.streetswear.in/product-description/${id}`} title={title} />
           
           <Text>Size </Text>
           <Size>
             <Size style={{display:"flex"}}>
-
             <MainSizes onClick={()=>{setSize("s")}} style={{ color: size==="s"?"white":"black",backgroundColor: size === "s" ? "black" : "transparent" }}>S</MainSizes>
             <MainSizes onClick={()=>{setSize("m")}} style={{color: size==="m"?"white":"black",backgroundColor: size === "m" ? "black" : "transparent" }}>M</MainSizes>
             <MainSizes onClick={()=>{setSize("l")}} style={{color: size==="l"?"white":"black",backgroundColor: size === "l" ? "black" : "transparent" }}>L</MainSizes>
@@ -386,8 +420,6 @@ function Product() {
             Actual colour of the product may vary slightly due to photographic lighting sources or your device.
           </div>
 
-
-
           <AddtoCart onClick={handleAddtocart}>
             <CartIcon /> Add to Cart
           </AddtoCart>
@@ -401,5 +433,4 @@ function Product() {
     </Wrapper>
   );
 }
-
 export default Product;

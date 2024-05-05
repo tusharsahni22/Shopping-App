@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { applyPromoCode } from "../Services/profile";
 
 const Input = styled.input`
     padding: 10px;
@@ -28,15 +29,28 @@ const PromoCodeInputDiv = styled.div`
 
 
 
-const PromoCodeInput = ({ onSubmit }) => {
+const PromoCodeInput = (props) => {
   const [promoCode, setPromoCode] = useState("");
+//   const [discount, setDiscount] = useState(0);
 
   const handleChange = (event) => {
     setPromoCode(event.target.value);
   };
 
-  const handleSubmit = () => {
-    onSubmit(promoCode);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    applyPromoCode({"code":promoCode.toLowerCase()}).then((res) => {
+      if (res.status === 200) {
+       if(res.data.flatDiscount===null){
+        props.setDiscount({"percentageDiscount":res.data.percentDiscout});
+       }else{
+        props.setDiscount({"flatDiscount":res.data.flatDiscount});
+       }
+
+      } else {
+        alert("Invalid Promo Code");
+      }
+    });
   };
 
   return (
