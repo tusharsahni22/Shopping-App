@@ -64,7 +64,7 @@ export const cartSlice = createSlice({
 
             state.totalItems=parseInt(state.totalItems)+parseInt(quantity);
             state.total += total;
-            state.finalAmount=state.total;
+            state.finalAmount=total;
             
             storeCartItems(state.cart,state.totalItems,state.total,state.finalAmount);
         },
