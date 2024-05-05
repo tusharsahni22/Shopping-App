@@ -236,7 +236,7 @@ const ShareDiv = styled.div`
   margin-right: 10px;
   position: relative;
   z-index: 10;
-  top: 65px;
+  top: 50px;
 `;
 
 function Product() {
