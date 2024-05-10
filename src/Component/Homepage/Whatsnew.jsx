@@ -1,8 +1,7 @@
-import React from 'react'
-// import { BiCart } from 'react-icons/bi';
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom';
-// import { MdOutlineFavoriteBorder } from "react-icons/md";
+import { viewLimitedProduct } from '../Services/product';
 
 const Wrapper = styled.div`
 // margin-bottom: 100px;
@@ -57,26 +56,24 @@ height: 240px;
 // `;
 
 function Whatsnew(props) {
-    const dummyData = [
-        {_id:1,pic:"./whatsnew1.webp",title:"Its Time to train",size:"4x4 Inches",price:"21"},
-        {_id:2,pic:"whatsnew2.webp",title:"Human Being",size:"4x4 Inches",price:"21"},
-        {_id:3,pic:"whatsnew3.webp",title:"Wild and Free",size:"4x4 Inches",price:"21"},
-        {_id:4,pic:"whatsnew4.webp",title:"Work hard stay humble",size:"4x4 Inches",price:"21"},
-        {_id:5,pic:"whatsnew5.webp",title:"Skull Island",size:"4x4 Inches",price:"21"},
-        {_id:6,pic:"whatsnew6.webp",title:"I and not old",size:"4x4 Inches",price:"21"},
-        {_id:7,pic:"whatsnew7.webp",title:"Wild Monkey",size:"4x4 Inches",price:"21"}
-    ]
+  
+  const [product,setProduct] = React.useState([]);
+  useEffect(() => {
+    viewLimitedProduct().then((response) => {
+      setProduct(response.data);
+    })},[])
+
     const navigate = useNavigate();
+
   return (
     <Wrapper>
         <Heading>{props.title}</Heading>
         <Products>
-        {dummyData.map((e)=>(
+        {product.map((e)=>(
             <Frame key={e._id} >
               {/* <FavoriteIcon/> */}
-            <Img loading='lazy' onClick={()=>{navigate("/products")}} src={e.pic} />   
+            <Img  onClick={()=>{navigate(`/product-description/${e._id}`)}} src={e.mainPicture} />   
             <Service>
-                           
             <Title>{e.title}</Title>
          
              </Service>

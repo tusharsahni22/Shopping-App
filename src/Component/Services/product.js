@@ -27,6 +27,13 @@ export const viewProductById = (id) => {
     console.log("Error in viewProduct", err);
   });
 }
+export const viewLimitedProduct = (id) => {
+  return axiosInstance.get(`/viewlimitedproduct`).then((result) => {
+    return result;
+  }).catch((err) => {
+    console.log("Error in viewlimitedproduct", err);
+  });
+}
 
 export const uploadProduct = (data) => {
   const formData = new FormData();

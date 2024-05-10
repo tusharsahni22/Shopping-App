@@ -15,7 +15,7 @@ import { addFavorite } from "../Services/profile";
 import SizeChart from "./sizeChart.jsx";
 import { viewProductById } from "../Services/product.js";
 import ShareComponent from "./shareButton.jsx";
-import ShareButton from "./shareWebUrl.jsx";
+import ShareButton from "./shareWebUrlPopup.jsx";
 
 const Wrapper = styled.div``;
 const Upper = styled.div`
@@ -256,7 +256,6 @@ function Product() {
   useEffect(() => { 
     if (id) { // Only call viewProductById if id is not undefined
       viewProductById(id).then((res) => {
-        console.log("first",res.data)
         setTimeout(() => {
         setProductDetails(res.data);
         setLoading(false);
@@ -374,6 +373,7 @@ function Product() {
           <MainColour  style={{ backgroundColor:f}} key={id} onClick={(e)=>handleColor(e,f)} />)
           }
           </Colour>
+          <br/>
           <ShareComponent shareUrl={`https://www.streetswear.in/product-description/${id}`} title={title} />
           
           <Text>Size </Text>

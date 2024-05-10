@@ -95,7 +95,6 @@ const Service = styled.div`
 display: flex;
 justify-content: space-between;
 max-width: 340px;
-
 `;
 
 const FilterSort = styled.div`
@@ -108,39 +107,17 @@ gap: 20px;
 }
 `;
 
-
 function Product() {
   const navigate = useNavigate();
 
   const [filter,setFilter] = React.useState("")
   const [filterData,setFilterData] = React.useState([])
   const location = useLocation();
-  const {MHeading1,SubHeading} = location.state || {}
+  const {MHeading1,SubHeading} = location.state || {};
 
-
-  // function shuffleArray(array) {
-  //   const currentIndex = array.length
-  //   const randomIndex;
-  
-  //   // While there remain elements to shuffle...
-  //   while (0 !== currentIndex) {
-  
-  //     // Pick a remaining element...
-  //     randomIndex = Math.floor(Math.random() * currentIndex);
-  //     currentIndex -= 1;
-  
-  //     // And swap it with the current element.
-  //     let temporaryValue = array[currentIndex];
-  //     array[currentIndex] = array[randomIndex];
-  //     array[randomIndex] = temporaryValue;
-  //   }
-  
-  //   return array;
-  // }
-
-    useEffect(()=>{
+  useEffect(()=>{
       window.scrollTo(0, 0);
-    },[])
+  },[])
 
   const filterDataBySelector = (filter,data)=>{
     switch(filter.filterOn){
